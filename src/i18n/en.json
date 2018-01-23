@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "Advanced Testing"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address.",
+    "alreadyExists": "An account with that email already exists.",
+    "unknown": "Unknown error",
+    "unknownApi": "A problem has occurred on the server, please try again later.",
+    "shortUserName": "User name must be longer",
+    "userNameTaken": "That user name has been taken. Please choose a different user name.",
+    "missingUsername": "User name is required.",
+    "loginError": "Login error. Please try again.",
+    "userNotFound": "User not found"
+  },
+  "loginScreen": {
+    "header": "Advanced Testing"
+  }
+}
