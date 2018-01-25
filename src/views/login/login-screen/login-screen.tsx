@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { KeyboardAvoidingView, View, ScrollView, Image } from 'react-native'
+import { Image, KeyboardAvoidingView, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { inject, observer } from 'mobx-react'
@@ -26,10 +26,10 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
     const { isLoggingIn } = loginStore
 
     return (
-      <ScrollView
+      <KeyboardAvoidingView
         style={screenStyles.ROOT}
         contentContainerStyle={screenStyles.container}
-        keyboardShouldPersistTaps="handled"
+        behavior="position"
       >
         <View style={screenStyles.logoContainer}>
           <Image source={images.atLogo} style={screenStyles.logo} />
@@ -104,11 +104,12 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 returnKeyType="go"
                 onSubmitEditing={() => {}}
               />
+              <Button tx="loginScreen.register" style={screenStyles.signupButton} stretch />
             </View>
           </ScrollableTabView>
         </View>
         <KeyboardSpacer />
-      </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }

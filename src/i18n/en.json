@@ -21,6 +21,7 @@
     "passwordPlaceholder": "Your password here...",
     "login": "LOG IN",
     "confirmPassword": "Confirm Passwrod",
-    "confirmPasswordPlaceholder": "Confirm password here..."
+    "confirmPasswordPlaceholder": "Confirm password here...",
+    "register": "REGISTER"
   }
 }

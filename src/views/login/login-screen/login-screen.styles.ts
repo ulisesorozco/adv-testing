@@ -39,8 +39,13 @@ export const loginContent: ViewStyle = {
 }
 
 export const signupContent: ViewStyle = {
+  flex: 1,
   paddingVertical: spacing[6],
   paddingHorizontal: spacing[6],
+}
+
+export const signupButton: ViewStyle = {
+  marginTop: spacing[3],
 }
 
 export const inputTextField: ViewStyle = {
