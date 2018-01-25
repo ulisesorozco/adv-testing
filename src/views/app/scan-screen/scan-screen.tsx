@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { View } from 'react-native'
-import { Text } from '../../shared/text'
 import { NavigationScreenProps } from 'react-navigation'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { translate } from '../../../i18n'
+import { Text } from '../../shared/text'
 
 import * as screenStyles from './scan-screen.styles'
 
@@ -15,4 +17,9 @@ export class ScanScreen extends React.Component<ScanScreenProps, {}> {
       </View>
     )
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    title: translate('scanScreen.header'),
+    tabBarIcon: ({ tintColor }) => <Icon name="camera" size={25} color={tintColor} />,
+  })
 }

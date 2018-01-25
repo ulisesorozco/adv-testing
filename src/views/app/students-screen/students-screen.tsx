@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { View } from 'react-native'
-import { Text } from '../../shared/text'
 import { NavigationScreenProps } from 'react-navigation'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { translate } from '../../../i18n'
+import { Text } from '../../shared/text'
 
 import * as screenStyles from './students-screen.styles'
 
@@ -15,4 +17,9 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
       </View>
     )
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    title: translate('studentsScreen.header'),
+    tabBarIcon: ({ tintColor }) => <Icon name="graduation-cap" size={25} color={tintColor} />,
+  })
 }

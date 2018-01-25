@@ -24,6 +24,9 @@
     "confirmPasswordPlaceholder": "Confirm password here...",
     "register": "REGISTER"
   },
+  "appScreen": {
+    "header": "APP"
+  },
   "scanScreen": {
     "header": "SCAN"
   },
