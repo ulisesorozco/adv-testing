@@ -1,5 +1,6 @@
 import { StackNavigator, NavigationRouteConfig } from 'react-navigation'
 import { LoginNavigator } from './login-navigator'
+import { AppNavigator } from './app-navigator'
 
 export const routes = {
   loginStack: {
@@ -12,6 +13,12 @@ export const routes = {
       drawerLabel: () => null,
     },
   } as NavigationRouteConfig<any>,
+  appStack: {
+    screen: AppNavigator,
+    navigationOptions: {
+      drawerLabel: () => null,
+    },
+  } as NavigationRouteConfig<any>,
 }
 
 /**
@@ -20,6 +27,7 @@ export const routes = {
  * @see https://github.com/react-community/react-navigation/blob/master/docs/api/navigators/DrawerNavigator.md#contentoptions-for-draweritems
  */
 export const RootNavigator = StackNavigator(routes, {
+  headerMode: 'none',
   initialRouteName: 'loginStack',
   mode: 'card',
   navigationOptions: {},

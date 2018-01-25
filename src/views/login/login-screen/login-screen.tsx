@@ -18,8 +18,9 @@ export interface LoginScreenProps extends NavigationScreenProps<{}> {
 @inject('loginStore')
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
-  /* Ref Field */
-  passwordField = null
+  toAppScreens = () => {
+    this.props.navigation.navigate('appStack')
+  }
 
   render() {
     const { loginStore } = this.props
@@ -63,7 +64,7 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 returnKeyType="go"
                 onSubmitEditing={e => {}}
               />
-              <Button tx="loginScreen.login" stretch />
+              <Button tx="loginScreen.login" stretch onPress={this.toAppScreens} />
             </View>
             <View tabLabel="SIGN UP" style={screenStyles.signupContent}>
               <TextField

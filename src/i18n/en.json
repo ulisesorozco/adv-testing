@@ -23,5 +23,14 @@
     "confirmPassword": "Confirm Passwrod",
     "confirmPasswordPlaceholder": "Confirm password here...",
     "register": "REGISTER"
+  },
+  "scanScreen": {
+    "header": "SCAN"
+  },
+  "settingsScreen": {
+    "header": "SETTINGS"
+  },
+  "studentsScreen": {
+    "header": "STUDENTS"
   }
 }
