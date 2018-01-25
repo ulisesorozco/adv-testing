@@ -1,3 +1,3 @@
 export const images = {
-  // avatar: require('../../../assets/images/avatar.png'),
+  atLogo: require('../../../assets/images/atLogo.png'),
 }

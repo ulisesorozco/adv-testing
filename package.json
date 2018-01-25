@@ -1,5 +1,5 @@
 {
-  "name": "AdvTesting",
+  "name": "advantage_testing",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
     "react-native": "0.52.1",
     "react-native-animatable": "^1.2.4",
     "react-native-i18n": "^2.0.10",
+    "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.0.0-beta.27",
     "solidarity": "^1.1.1"
@@ -35,6 +36,7 @@
     "@types/ramda": "^0.25.16",
     "@types/react": "^16.0.34",
     "@types/react-native": "^0.52.2",
+    "@types/react-native-scrollable-tab-view": "^0.7.6",
     "@types/react-navigation": "^1.0.28",
     "@types/validate.js": "^0.11.0",
     "babel-jest": "22.1.0",

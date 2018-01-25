@@ -12,7 +12,6 @@ const CONTAINER: ViewStyle = {
 const LINE: ViewStyle = {
   flexDirection: 'row',
   justifyContent: 'space-between',
-  backgroundColor: color.palette.lightpurple,
 }
 
 // the base styling for the TextInput
@@ -27,6 +26,9 @@ const INPUT: TextStyle = {
 
 // the base styling for the label above the TextInput
 const LABEL: TextStyle = {
+  color: color.text,
+  fontSize: 16,
+  fontWeight: '600',
   paddingBottom: spacing[2],
 }
 

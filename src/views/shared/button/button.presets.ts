@@ -27,14 +27,19 @@ const BASE_IMAGE: ImageStyle = {
  * What the base view looks like.
  */
 export const viewPresets = {
-  primary: { ...BASE_VIEW, backgroundColor: color.palette.purple } as ViewStyle,
+  primary: { ...BASE_VIEW, backgroundColor: color.button } as ViewStyle,
 }
 
 /**
  * What the text looks like.
  */
 export const textPresets = {
-  primary: { ...BASE_TEXT, fontSize: 12, color: color.palette.white } as TextStyle,
+  primary: {
+    ...BASE_TEXT,
+    fontSize: 16,
+    fontWeight: '600',
+    color: color.palette.white,
+  } as TextStyle,
 }
 
 /**

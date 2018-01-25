@@ -3,7 +3,6 @@ import { TouchableOpacity, Image, ViewStyle } from 'react-native'
 import { Text } from '../text'
 import { viewPresets, textPresets, imagePresets, disabledViewPresets } from './button.presets'
 import { ButtonProps } from './button.props'
-import { backgroundContainer } from '../../login/reset-password-screen/reset-password-screen.styles'
 
 /**
  * It's a button.  That you tap!

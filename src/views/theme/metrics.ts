@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
 
 // Used via Metrics.baseMargin
-export const Metrics = {
+export const metrics = {
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   buttonRadius: 4,

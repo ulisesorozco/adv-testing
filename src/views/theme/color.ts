@@ -23,7 +23,7 @@ export const color = {
   /**
    * The screen background.
    */
-  background: palette.darkpurple,
+  background: 'rgb(246, 246, 246)',
   /**
    * The main tinting color.
    */
@@ -35,17 +35,9 @@ export const color = {
   /**
    * The default color of text in many components.
    */
-  text: palette.white,
+  text: palette.black,
   /**
-   * Secondard information.
+   * The default color of buttons.
    */
-  dim: palette.lightGrey,
-  /**
-   * Error messages and icons.
-   */
-  error: palette.angry,
-  /**
-   * Facebook blue
-   */
-  facebook: '#3B5998',
+  button: 'rgb(229,150,58)',
 }
