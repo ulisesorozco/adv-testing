@@ -6,13 +6,13 @@ import { color } from '../../theme'
 
 import * as screenStyles from './settings-screen.styles'
 
-interface SettingsScreenProps {
+interface TestCaseScreenProps {
   checked?: boolean
   text?: string
 }
 
-export default class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
-  public static defaultProps: Partial<SettingsScreenProps> = {
+export default class TestCaseScreen extends React.Component<TestCaseScreenProps, {}> {
+  public static defaultProps: Partial<TestCaseScreenProps> = {
     checked: false,
     text: '',
   }

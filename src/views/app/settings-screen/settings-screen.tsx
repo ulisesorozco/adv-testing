@@ -9,6 +9,7 @@ import { TextField } from '../../shared/text-field'
 import { Button } from '../../shared/button'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer'
 import TestCase from './settings-screen.check'
+import SearchBox from './settings-screen.search'
 
 import * as screenStyles from './settings-screen.styles'
 
@@ -68,6 +69,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <Button tx="settingsScreen.updatePassword" stretch onPress={() => {}} />
             </View>
             <View tabLabel="Manage Tests" style={screenStyles.container}>
+              <SearchBox onChangeText={e => console.log(e)} />
               <View style={screenStyles.boderLine}>
                 <Text text="A" />
               </View>
