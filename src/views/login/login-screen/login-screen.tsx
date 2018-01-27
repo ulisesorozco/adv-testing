@@ -40,8 +40,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
             <View tabLabel="LOG IN" style={screenStyles.loginContent}>
               <TextField
                 value={''}
-                labelTx="loginScreen.username"
-                placeholderTx="loginScreen.usernamePlaceholder"
+                labelTx="common.username"
+                placeholderTx="common.usernamePlaceholder"
                 onChangeText={e => {}}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -54,8 +54,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               />
               <TextField
                 value={''}
-                labelTx="loginScreen.password"
-                placeholderTx="loginScreen.passwordPlaceholder"
+                labelTx="common.password"
+                placeholderTx="common.passwordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}
@@ -69,8 +69,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
             <View tabLabel="SIGN UP" style={screenStyles.signupContent}>
               <TextField
                 value={''}
-                labelTx="loginScreen.username"
-                placeholderTx="loginScreen.usernamePlaceholder"
+                labelTx="common.username"
+                placeholderTx="common.usernamePlaceholder"
                 onChangeText={e => {}}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -83,8 +83,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               />
               <TextField
                 value={''}
-                labelTx="loginScreen.password"
-                placeholderTx="loginScreen.passwordPlaceholder"
+                labelTx="common.password"
+                placeholderTx="common.passwordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}
@@ -95,8 +95,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               />
               <TextField
                 value={''}
-                labelTx="loginScreen.confirmPassword"
-                placeholderTx="loginScreen.confirmPasswordPlaceholder"
+                labelTx="common.confirmPassword"
+                placeholderTx="common.confirmPasswordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}

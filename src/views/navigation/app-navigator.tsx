@@ -19,9 +19,9 @@ const students: NavigationRouteConfig<any> = {
   screen: StudentsScreen,
 }
 const tabs = {
+  settings,
   students,
   scan,
-  settings,
 }
 
 /** Tabbar which contains dialogue list and contact list */

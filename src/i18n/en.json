@@ -1,6 +1,14 @@
 {
   "common": {
-    "appName": "Advanced Testing"
+    "appName": "Advanced Testing",
+    "username": "Username",
+    "password": "Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Passwrod",
+    "usernamePlaceholder": "Your username here...",
+    "passwordPlaceholder": "Your password here...",
+    "newPasswordPlaceholder": "New password here...",
+    "confirmPasswordPlaceholder": "Confirm password here..."
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
@@ -15,13 +23,7 @@
   },
   "loginScreen": {
     "header": "Advanced Testing",
-    "username": "Username",
-    "usernamePlaceholder": "Your username here...",
-    "password": "Password",
-    "passwordPlaceholder": "Your password here...",
     "login": "LOG IN",
-    "confirmPassword": "Confirm Passwrod",
-    "confirmPasswordPlaceholder": "Confirm password here...",
     "register": "REGISTER"
   },
   "appScreen": {
@@ -31,7 +33,9 @@
     "header": "SCAN"
   },
   "settingsScreen": {
-    "header": "SETTINGS"
+    "header": "SETTINGS",
+    "updateUsername": "UPDATE USERNAME",
+    "updatePassword": "UPDATE PASSWORD"
   },
   "studentsScreen": {
     "header": "STUDENTS"

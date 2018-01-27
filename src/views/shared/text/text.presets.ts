@@ -26,9 +26,9 @@ export const presets = {
   bold: { ...BASE, fontWeight: '600' } as TextStyle,
 
   /**
-   * A super bold version of the default text.
+   * Normal font
    */
-  superBold: { ...BASE, fontWeight: '800' } as TextStyle,
+  button: { ...BASE, fontSize: 18, fontWeight: '800' } as TextStyle,
 
   /**
    * Large headers.
