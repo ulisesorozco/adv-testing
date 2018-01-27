@@ -37,6 +37,13 @@ export const inputText: ViewStyle = {
   backgroundColor: '#fff',
 }
 
+export const boderLine: ViewStyle = {
+  flexDirection: 'row',
+  borderBottomColor: color.palette.lightGrey,
+  borderBottomWidth: 1,
+  marginTop: spacing[5],
+}
+
 export const testItem: ViewStyle = {
   flexDirection: 'row',
   alignItems: 'center',

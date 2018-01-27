@@ -7,16 +7,27 @@ import { color } from '../../theme'
 import * as screenStyles from './settings-screen.styles'
 
 interface SettingsScreenProps {
-  checked: boolean
+  checked?: boolean
+  text?: string
 }
 
 export default class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
+  public static defaultProps: Partial<SettingsScreenProps> = {
+    checked: false,
+    text: '',
+  }
+
   render() {
-    const { checked } = this.props
+    const { checked, text } = this.props
     return (
       <View style={screenStyles.testItem}>
-        <Text preset="button" text="ACT - V1" />
-        <View style={[screenStyles.testCircle, { backgroundColor: color.button }]}>
+        <Text preset="button" text={text} />
+        <View
+          style={[
+            screenStyles.testCircle,
+            { backgroundColor: checked ? color.button : color.transparent },
+          ]}
+        >
           {checked && <Icon name="check" size={20} color={color.palette.white} />}
         </View>
       </View>

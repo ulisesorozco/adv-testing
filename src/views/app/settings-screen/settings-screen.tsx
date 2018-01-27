@@ -68,7 +68,17 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <Button tx="settingsScreen.updatePassword" stretch onPress={() => {}} />
             </View>
             <View tabLabel="Manage Tests" style={screenStyles.container}>
-              <TestCase checked />
+              <View style={screenStyles.boderLine}>
+                <Text text="A" />
+              </View>
+              <TestCase text="ACT - V1" />
+              <TestCase checked text="ACT - V2" />
+
+              <View style={screenStyles.boderLine}>
+                <Text text="L" />
+              </View>
+              <TestCase text="LAST - V1" />
+              <TestCase checked text="LAST - V2" />
             </View>
           </ScrollableTabView>
         </View>
