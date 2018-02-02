@@ -39,5 +39,8 @@
   },
   "studentsScreen": {
     "header": "STUDENTS"
+  },
+  "studentDetailsScreen": {
+    "header": "STUDENT DETIALS"
   }
 }

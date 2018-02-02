@@ -18,6 +18,12 @@
   version "0.25.16"
   resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.16.tgz#1d4eeb78d3247d1ceef971b458dd8469646cd1b4"
 
+"@types/react-native-collapsible@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-collapsible/-/react-native-collapsible-0.8.0.tgz#d393687e863f45ad6f309cd97491026215f7db08"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native-scrollable-tab-view@^0.7.6":
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/@types/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.7.6.tgz#f13eed4906c4beb18992da7f42db278b9a8bb093"
@@ -4886,6 +4892,12 @@ react-devtools-core@3.0.0:
 react-native-animatable@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.4.tgz#b5fb7657e8f6edadbc26697057a327fb920b3039"
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-collapsible@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-0.10.0.tgz#3a3db2685ea4ff1b25812840e719f1225e412936"
   dependencies:
     prop-types "^15.5.10"
 

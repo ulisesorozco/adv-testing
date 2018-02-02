@@ -40,4 +40,15 @@ export const color = {
    * The default color of buttons.
    */
   button: 'rgb(229,150,58)',
+  cancel: '#FC404C',
+  /**
+   * The default color of borders.
+   */
+  border: palette.darkGreen,
+  borderGreen: '#9DB2A6',
+  /**
+   * The default color of Right and Wrong.
+   */
+  right: '#159679',
+  wrong: '#FF4B4B',
 }

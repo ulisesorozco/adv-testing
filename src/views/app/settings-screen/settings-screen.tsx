@@ -7,9 +7,9 @@ import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { TextField } from '../../shared/text-field'
 import { Button } from '../../shared/button'
+import { SearchBox } from '../../shared/search-box'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer'
 import TestCase from './settings-screen.check'
-import SearchBox from './settings-screen.search'
 
 import * as screenStyles from './settings-screen.styles'
 

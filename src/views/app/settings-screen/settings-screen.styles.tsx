@@ -1,4 +1,4 @@
-import { ImageStyle, ViewStyle, TextStyle } from 'react-native'
+import { ViewStyle, TextStyle } from 'react-native'
 import { color, metrics, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -35,27 +35,6 @@ export const inputText: ViewStyle = {
   borderRadius: 3,
   borderColor: 'rgb(85, 97, 95)',
   backgroundColor: '#fff',
-}
-
-export const searchItem: ViewStyle = {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginTop: spacing[5],
-  padding: spacing[1],
-  paddingLeft: spacing[3],
-  borderRadius: 3,
-  borderWidth: 1,
-  borderColor: color.palette.lightGrey,
-}
-
-export const searchContainer: ViewStyle = {
-  flex: 1,
-  paddingVertical: 0,
-}
-
-export const searchInput: ViewStyle = {
-  backgroundColor: color.transparent,
 }
 
 export const boderLine: ViewStyle = {

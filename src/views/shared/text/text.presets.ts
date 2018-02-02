@@ -38,7 +38,7 @@ export const presets = {
   /**
    * Large bold headers.
    */
-  title: { ...BASE, fontSize: 24, fontWeight: '900' } as TextStyle,
+  title: { ...BASE, fontSize: 24, fontWeight: '900', color: color.palette.darkGreen } as TextStyle,
 
   /**
    * A small font size version of the default text.

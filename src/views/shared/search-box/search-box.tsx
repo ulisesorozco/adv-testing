@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { TextField } from '../../shared/text-field'
+import { TextField } from '../text-field'
 import { color } from '../../theme'
 
-import * as screenStyles from './settings-screen.styles'
+import * as screenStyles from './search-box.styles'
 
-interface SearchScreenProps {
+interface SearchBoxProps {
   onChangeText?(e: string): void
 }
 
-export default class SearchScreen extends React.Component<SearchScreenProps, {}> {
+export class SearchBox extends React.Component<SearchBoxProps, {}> {
   render() {
     const { onChangeText } = this.props
     return (
@@ -26,3 +26,5 @@ export default class SearchScreen extends React.Component<SearchScreenProps, {}>
     )
   }
 }
+
+export default SearchBox

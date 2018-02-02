@@ -8,6 +8,8 @@ export const palette = {
   paleOrange: '#FFE6BE',
   lightGrey: '#939AA4',
   lighterGrey: '#CDD4DA',
+  lightGreen: '#DFDADC',
+  darkGreen: '#55615F',
   angry: '#dd3333',
   // Colors from designer:
   purple: '#3C2ADD',

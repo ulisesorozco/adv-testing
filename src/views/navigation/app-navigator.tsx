@@ -6,6 +6,9 @@ import { commonStyles } from '../theme'
 import { ScanScreen } from '../app/scan-screen'
 import { SettingsScreen } from '../app/settings-screen'
 import { StudentsScreen } from '../app/students-screen'
+import { StudentDetailsScreen } from '../app/student-details-screen'
+import { EditAnswersScreen } from '../app/edit-answers-screen'
+import { ManageScheduledTestScreen } from '../app/manage-scheduled-test-screen'
 
 const scan: NavigationRouteConfig<any> = {
   screen: ScanScreen,
@@ -18,10 +21,23 @@ const settings: NavigationRouteConfig<any> = {
 const students: NavigationRouteConfig<any> = {
   screen: StudentsScreen,
 }
+
+const studentDetails: NavigationRouteConfig<any> = {
+  screen: StudentDetailsScreen,
+}
+
+const editAnswers: NavigationRouteConfig<any> = {
+  screen: EditAnswersScreen,
+}
+
+const manageTests: NavigationRouteConfig<any> = {
+  screen: ManageScheduledTestScreen,
+}
+
 const tabs = {
-  settings,
   students,
   scan,
+  settings,
 }
 
 /** Tabbar which contains dialogue list and contact list */
@@ -42,7 +58,10 @@ const appMainTab: NavigationRouteConfig<any> = {
 }
 
 const routes = {
+  editAnswers,
   appMainTab,
+  studentDetails,
+  manageTests,
 }
 
 export const AppNavigator = StackNavigator(routes, {
