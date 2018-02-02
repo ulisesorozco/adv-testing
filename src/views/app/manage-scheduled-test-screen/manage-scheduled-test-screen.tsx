@@ -44,7 +44,12 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
               </View>
             </View>
             <View style={screenStyles.testButtons}>
-              <Button stretch text="EDIT DETAILS" style={screenStyles.editButton} />
+              <Button
+                stretch
+                text="EDIT DETAILS"
+                style={screenStyles.editButton}
+                onPress={() => this.props.navigation.navigate('editTest')}
+              />
               <Button stretch text="CANCEL TEST" style={screenStyles.cancelButton} />
             </View>
           </View>

@@ -9,6 +9,7 @@ import { StudentsScreen } from '../app/students-screen'
 import { StudentDetailsScreen } from '../app/student-details-screen'
 import { EditAnswersScreen } from '../app/edit-answers-screen'
 import { ManageScheduledTestScreen } from '../app/manage-scheduled-test-screen'
+import { EditTestScreen } from '../app/edit-test-screen'
 
 const scan: NavigationRouteConfig<any> = {
   screen: ScanScreen,
@@ -32,6 +33,10 @@ const editAnswers: NavigationRouteConfig<any> = {
 
 const manageTests: NavigationRouteConfig<any> = {
   screen: ManageScheduledTestScreen,
+}
+
+const editTest: NavigationRouteConfig<any> = {
+  screen: EditTestScreen,
 }
 
 const tabs = {
@@ -62,6 +67,7 @@ const routes = {
   appMainTab,
   studentDetails,
   manageTests,
+  editTest,
 }
 
 export const AppNavigator = StackNavigator(routes, {
