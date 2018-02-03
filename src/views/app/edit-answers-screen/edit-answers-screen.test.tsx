@@ -32,10 +32,15 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
     title: 'Act v2',
   }
 
+  open = () => {
+    this.setState({
+      isCollapsed: false,
+    })
+  }
+
   toggle = () => {
     this.setState({
       isCollapsed: !this.state.isCollapsed,
-      title: 'asdfasdfasdf',
     })
   }
 
@@ -92,19 +97,22 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
     const { test } = this.props
     const { title, answers } = test
     const { isCollapsed } = this.state
+    const caret = isCollapsed ? 'caret-down' : 'caret-up'
 
     return (
-      <Collapsible collapsed={isCollapsed} collapsedHeight={250}>
-        <TouchableOpacity style={screenStyles.sectionHeader} onPress={this.toggle}>
-          <View>
-            <Text preset="bold" text={this.state.title} />
-          </View>
-          <View style={screenStyles.sectinHeaderCollapse}>
-            <Icon name="caret-up" size={20} color={color.palette.darkGreen} />
-          </View>
-        </TouchableOpacity>
-        {this._renderContent(answers)}
-      </Collapsible>
+      <TouchableOpacity onPress={this.open}>
+        <Collapsible collapsed={isCollapsed} collapsedHeight={50}>
+          <TouchableOpacity style={screenStyles.sectionHeader} onPress={this.toggle}>
+            <View>
+              <Text preset="bold" text={title} />
+            </View>
+            <View style={screenStyles.sectinHeaderCollapse}>
+              <Icon name={caret} size={20} color={color.palette.darkGreen} />
+            </View>
+          </TouchableOpacity>
+          {this._renderContent(answers)}
+        </Collapsible>
+      </TouchableOpacity>
     )
   }
 }

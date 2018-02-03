@@ -53,12 +53,12 @@ export const presets = {
   /**
    * A smaller piece of secondard information.
    */
-  secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+  secondary: { ...BASE, fontSize: 9 } as TextStyle,
 
   /**
    * Appears above the form when there is a problem.
    */
-  formError: { ...BASE, fontSize: 12, color: color.error } as TextStyle,
+  formError: { ...BASE, fontSize: 12 } as TextStyle,
 }
 
 /**

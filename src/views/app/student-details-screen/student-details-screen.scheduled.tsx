@@ -7,7 +7,7 @@ import { color } from '../../theme'
 import * as screenStyles from './student-details-screen.styles'
 
 interface ScheduledScreenProps {
-  onPress?(): void
+  onPress?: () => void
 }
 
 export default class ScheduledScreen extends React.Component<ScheduledScreenProps, {}> {

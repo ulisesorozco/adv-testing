@@ -4,15 +4,26 @@ import { commonStyles } from '../theme'
  * Import screens
  */
 import { ScanScreen } from '../app/scan-screen'
+import { ScoringScreen } from '../app/scoring-screen'
+import { ScannedResultsScreen } from '../app/scanned-results-screen'
 import { SettingsScreen } from '../app/settings-screen'
 import { StudentsScreen } from '../app/students-screen'
 import { StudentDetailsScreen } from '../app/student-details-screen'
 import { EditAnswersScreen } from '../app/edit-answers-screen'
 import { ManageScheduledTestScreen } from '../app/manage-scheduled-test-screen'
-import { EditTestScreen } from '../app/edit-test-screen'
+import { EditScheduledTestScreen } from '../app/edit-scheduled-test-screen'
+import { TestResultsScreen } from '../app/test-results-screen'
 
 const scan: NavigationRouteConfig<any> = {
   screen: ScanScreen,
+}
+
+const scoringTest: NavigationRouteConfig<any> = {
+  screen: ScoringScreen,
+}
+
+const scannedResults: NavigationRouteConfig<any> = {
+  screen: ScannedResultsScreen,
 }
 
 const settings: NavigationRouteConfig<any> = {
@@ -35,13 +46,17 @@ const manageTests: NavigationRouteConfig<any> = {
   screen: ManageScheduledTestScreen,
 }
 
-const editTest: NavigationRouteConfig<any> = {
-  screen: EditTestScreen,
+const editScheduledTest: NavigationRouteConfig<any> = {
+  screen: EditScheduledTestScreen,
+}
+
+const testResults: NavigationRouteConfig<any> = {
+  screen: TestResultsScreen,
 }
 
 const tabs = {
-  students,
   scan,
+  students,
   settings,
 }
 
@@ -67,7 +82,10 @@ const routes = {
   appMainTab,
   studentDetails,
   manageTests,
-  editTest,
+  editScheduledTest,
+  testResults,
+  scoringTest,
+  scannedResults,
 }
 
 export const AppNavigator = StackNavigator(routes, {

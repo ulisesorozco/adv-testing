@@ -17,6 +17,10 @@ export class StudentDetailsScreen extends React.Component<StudentDetailsScreenPr
     this.props.navigation.goBack()
   }
 
+  goTo = (route: string) => {
+    this.props.navigation.navigate(route)
+  }
+
   render() {
     return (
       <View style={screenStyles.ROOT}>
@@ -30,13 +34,13 @@ export class StudentDetailsScreen extends React.Component<StudentDetailsScreenPr
           <Text text="Scheduled Tests" />
         </View>
         <View>
-          <Scheduled onPress={() => this.props.navigation.navigate('manageTests')} />
+          <Scheduled onPress={() => this.goTo('manageTests')} />
         </View>
         <View style={screenStyles.boderLine}>
           <Text text="Completed Tests" />
         </View>
         <View>
-          <Completed text="1200" />
+          <Completed text="1200" onPress={() => this.goTo('testResults')} />
         </View>
         <Button text="CREATE NEW TEST" style={screenStyles.submitButton} stretch />
       </View>

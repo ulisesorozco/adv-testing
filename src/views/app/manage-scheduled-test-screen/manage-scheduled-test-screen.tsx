@@ -48,7 +48,7 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
                 stretch
                 text="EDIT DETAILS"
                 style={screenStyles.editButton}
-                onPress={() => this.props.navigation.navigate('editTest')}
+                onPress={() => this.props.navigation.navigate('editScheduledTest')}
               />
               <Button stretch text="CANCEL TEST" style={screenStyles.cancelButton} />
             </View>
@@ -57,14 +57,14 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
         <View style={screenStyles.space} />
         <View style={screenStyles.footer}>
           <Button
-            text="CREATE NEW TEST"
+            text="EMAIL BUBBLE SHEET"
             style={screenStyles.editButton}
             textStyle={screenStyles.submitButton}
             stretch
           />
           <View style={screenStyles.spaceButton} />
           <Button
-            text="CREATE NEW TEST"
+            text="PRINT BUBBLE SHEET"
             style={screenStyles.editButton}
             textStyle={screenStyles.submitButton}
             stretch

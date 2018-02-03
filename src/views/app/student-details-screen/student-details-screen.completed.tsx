@@ -8,6 +8,7 @@ import * as screenStyles from './student-details-screen.styles'
 
 interface CompletedScreenProps {
   text?: string
+  onPress?: () => void
 }
 
 export default class CompletedScreen extends React.Component<CompletedScreenProps, {}> {
@@ -16,9 +17,9 @@ export default class CompletedScreen extends React.Component<CompletedScreenProp
   }
 
   render() {
-    const { text } = this.props
+    const { text, onPress } = this.props
     return (
-      <TouchableOpacity style={screenStyles.completedItem}>
+      <TouchableOpacity style={screenStyles.completedItem} onPress={onPress}>
         <View style={screenStyles.completedHeader}>
           <Text text={text} />
         </View>
