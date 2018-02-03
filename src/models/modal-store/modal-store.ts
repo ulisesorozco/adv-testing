@@ -10,7 +10,7 @@ export const ModalStoreModel = types
   .model('ModalStore')
   .props({
     banner: types.optional(types.enumeration(['auto', 'blank']), 'auto'),
-    modal: types.optional(types.enumeration(['confirm', 'blank']), 'blank'),
+    modal: types.optional(types.enumeration(['test-created', 'blank']), 'blank'),
     /** Tracks the status of the Modal workflow. */
     status: types.optional(types.enumeration(['idle', 'modal', 'banner']), 'idle'),
     /** Notification message */
@@ -36,7 +36,7 @@ export const ModalStoreModel = types
     setBanner(value: 'auto' | 'blank') {
       self.banner = value
     },
-    setModal(value: 'confirm' | 'blank') {
+    setModal(value: 'test-created' | 'blank') {
       self.modal = value
     },
     setNotiMessage(value: string) {
@@ -48,7 +48,8 @@ export const ModalStoreModel = types
     showBanner() {
       self.status = 'banner'
     },
-    showModal() {
+    showModal(value: 'test-created') {
+      self.modal = value
       self.status = 'modal'
     },
     close() {

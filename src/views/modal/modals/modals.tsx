@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { Modal, View, ViewStyle } from 'react-native'
+import { View } from 'react-native'
+import Modal from 'react-native-modal'
 import { inject, observer } from 'mobx-react'
 import { ModalStore } from '../../../models/modal-store'
 import { BlankModal } from './blank-modal'
-
-const ROOT: ViewStyle = { flex: 1, position: 'absolute' }
+import { TestCreatedModal } from './test-created-modal'
+import * as screenStyles from './modals.styles'
 
 export interface ModalNavigatorProps {
   modalStore?: ModalStore
@@ -13,17 +14,17 @@ export interface ModalNavigatorProps {
 @inject('modalStore')
 @observer
 export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
-  closeModal = () => {
+  _closeModal = () => {
     const { close } = this.props.modalStore
     close()
   }
 
-  getModal = () => {
+  _renderModal = () => {
     const { modal } = this.props.modalStore
 
     switch (modal) {
-      case 'confirm':
-        return <BlankModal />
+      case 'test-created':
+        return <TestCreatedModal />
       default:
         return <BlankModal />
     }
@@ -33,18 +34,9 @@ export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
     const { isModal } = this.props.modalStore
 
     return (
-      isModal && (
-        <View style={ROOT}>
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={isModal}
-            onRequestClose={this.closeModal}
-          >
-            {this.getModal()}
-          </Modal>
-        </View>
-      )
+      <Modal isVisible={isModal} swipeDirection="left" onSwipe={this._closeModal}>
+        <View style={screenStyles.ROOT}>{this._renderModal()}</View>
+      </Modal>
     )
   }
 }
