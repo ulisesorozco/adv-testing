@@ -4,6 +4,7 @@ import Modal from 'react-native-modal'
 import { inject, observer } from 'mobx-react'
 import { ModalStore } from '../../../models/modal-store'
 import { BlankModal } from './blank-modal'
+import { New } from './new-student-modal'
 import { TestCreatedModal } from './test-created-modal'
 import * as screenStyles from './modals.styles'
 
