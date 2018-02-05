@@ -6,11 +6,17 @@ import { types } from 'mobx-state-tree'
  * The `mobx-state-tree` model used to create `ModalStore` instances
  * as well as including as props in other `mobx-state-tree` models.
  */
+
+type modalTypes = 'test-created' | 'new-student' | 'new-test' | 'select-test' | 'blank'
+
 export const ModalStoreModel = types
   .model('ModalStore')
   .props({
     banner: types.optional(types.enumeration(['auto', 'blank']), 'auto'),
-    modal: types.optional(types.enumeration(['test-created', 'blank']), 'blank'),
+    modal: types.optional(
+      types.enumeration(['test-created', 'new-student', 'new-test', 'select-test', 'blank']),
+      'blank',
+    ),
     /** Tracks the status of the Modal workflow. */
     status: types.optional(types.enumeration(['idle', 'modal', 'banner']), 'idle'),
     /** Notification message */
@@ -36,7 +42,7 @@ export const ModalStoreModel = types
     setBanner(value: 'auto' | 'blank') {
       self.banner = value
     },
-    setModal(value: 'test-created' | 'blank') {
+    setModal(value: modalTypes) {
       self.modal = value
     },
     setNotiMessage(value: string) {
@@ -48,7 +54,7 @@ export const ModalStoreModel = types
     showBanner() {
       self.status = 'banner'
     },
-    showModal(value: 'test-created') {
+    showModal(value: modalTypes) {
       self.modal = value
       self.status = 'modal'
     },

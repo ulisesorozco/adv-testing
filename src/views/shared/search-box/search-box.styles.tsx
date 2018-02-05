@@ -9,8 +9,13 @@ export const searchItem: ViewStyle = {
   padding: spacing[1],
   paddingLeft: spacing[3],
   borderRadius: 3,
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderColor: color.palette.lightGrey,
+  backgroundColor: color.palette.white,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const searchContainer: ViewStyle = {

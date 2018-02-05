@@ -55,8 +55,8 @@ const testResults: NavigationRouteConfig<any> = {
 }
 
 const tabs = {
-  scan,
   students,
+  scan,
   settings,
 }
 

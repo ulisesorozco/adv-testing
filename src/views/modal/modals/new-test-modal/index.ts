@@ -1,1 +1,1 @@
-export * from './test-created-modal'
+export * from './new-test-modal'

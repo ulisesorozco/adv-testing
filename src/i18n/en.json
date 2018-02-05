@@ -8,7 +8,11 @@
     "usernamePlaceholder": "Your username here...",
     "passwordPlaceholder": "Your password here...",
     "newPasswordPlaceholder": "New password here...",
-    "confirmPasswordPlaceholder": "Confirm password here..."
+    "confirmPasswordPlaceholder": "Confirm password here...",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Your firstname here...",
+    "lastNamePlaceholder": "Your lastname here..."
   },
   "errors": {
     "invalidEmail": "Invalid email address.",

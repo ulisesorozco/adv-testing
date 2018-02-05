@@ -23,15 +23,13 @@ export class TestResultsScreen extends React.Component<TestResultsScreenProps, {
   render() {
     return (
       <View style={screenStyles.ROOT}>
-        <View style={screenStyles.navBar}>
-          <TouchableOpacity onPress={this.back}>
-            <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
-          </TouchableOpacity>
+        <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
+          <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
           <View style={screenStyles.navTitle}>
             <Text preset="title" text="ACT v2" />
             <Text text="ID:1234522" />
           </View>
-        </View>
+        </TouchableOpacity>
         <ScrollView style={screenStyles.content}>
           <Result text="Composite" completed={32} total={36} />
           <View style={screenStyles.divider} />

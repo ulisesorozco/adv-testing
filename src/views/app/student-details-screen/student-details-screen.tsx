@@ -1,17 +1,26 @@
 import * as React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
+import { inject, observer } from 'mobx-react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+
 import { translate } from '../../../i18n'
+import { ModalStore } from '../../../models/modal-store'
+
+import Scheduled from './student-details-screen.scheduled'
+import Completed from './student-details-screen.completed'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
 import { color } from '../../theme'
-import Scheduled from './student-details-screen.scheduled'
-import Completed from './student-details-screen.completed'
+
 import * as screenStyles from './student-details-screen.styles'
 
-export interface StudentDetailsScreenProps extends NavigationScreenProps<{}> {}
+export interface StudentDetailsScreenProps extends NavigationScreenProps<{}> {
+  modalStore: ModalStore
+}
 
+@inject('modalStore')
+@observer
 export class StudentDetailsScreen extends React.Component<StudentDetailsScreenProps, {}> {
   back = () => {
     this.props.navigation.goBack()
@@ -21,15 +30,18 @@ export class StudentDetailsScreen extends React.Component<StudentDetailsScreenPr
     this.props.navigation.navigate(route)
   }
 
+  onNewTest = () => {
+    const { showModal } = this.props.modalStore
+    showModal('new-test')
+  }
+
   render() {
     return (
       <View style={screenStyles.ROOT}>
-        <View style={screenStyles.navBar}>
-          <TouchableOpacity onPress={this.back}>
-            <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
-          </TouchableOpacity>
-          <Text preset="title" text="   ASHLEY BOWER" />
-        </View>
+        <TouchableOpacity onPress={this.back} style={screenStyles.navBar}>
+          <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
+          <Text preset="title" text="    ASHLEY BOWER" />
+        </TouchableOpacity>
         <View style={screenStyles.boderLine}>
           <Text text="Scheduled Tests" />
         </View>
@@ -42,7 +54,12 @@ export class StudentDetailsScreen extends React.Component<StudentDetailsScreenPr
         <View>
           <Completed text="1200" onPress={() => this.goTo('testResults')} />
         </View>
-        <Button text="CREATE NEW TEST" style={screenStyles.submitButton} stretch />
+        <Button
+          text="CREATE NEW TEST"
+          style={screenStyles.submitButton}
+          onPress={this.onNewTest}
+          stretch
+        />
       </View>
     )
   }

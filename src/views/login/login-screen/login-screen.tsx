@@ -18,13 +18,12 @@ export interface LoginScreenProps extends NavigationScreenProps<{}> {
 }
 
 @inject('loginStore')
-@inject('modalStore')
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   toAppScreens = () => {
-    // this.props.navigation.navigate('appStack')
-    const { showModal } = this.props.modalStore
-    showModal('test-created')
+    this.props.navigation.navigate('appStack')
+    // const { showModal } = this.props.modalStore
+    // showModal('new-student')
   }
 
   render() {
@@ -69,7 +68,8 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
                 returnKeyType="go"
                 onSubmitEditing={e => {}}
               />
-              <Button tx="loginScreen.login" stretch onPress={this.toAppScreens} />
+              <View style={screenStyles.container} />
+              <Button tx="loginScreen.login" onPress={this.toAppScreens} stretch />
             </View>
             <View tabLabel="SIGN UP" style={screenStyles.signupContent}>
               <TextField

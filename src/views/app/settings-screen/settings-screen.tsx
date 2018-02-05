@@ -20,13 +20,13 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
     const isSaving: boolean = false
 
     return (
-      <ScrollView style={screenStyles.ROOT}>
+      <View style={screenStyles.ROOT}>
         <View>
-          <Text preset="bold" tx={'settingsScreen.header'} style={screenStyles.header} />
+          <Text preset="title" tx={'settingsScreen.header'} style={screenStyles.header} />
         </View>
         <View style={screenStyles.inputContainer}>
           <ScrollableTabView style={screenStyles.inputContent}>
-            <View tabLabel="Update Credentials" style={screenStyles.container}>
+            <ScrollView tabLabel="Update Credentials" style={screenStyles.container}>
               <TextField
                 value={''}
                 labelTx="common.username"
@@ -41,7 +41,12 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
                 onSubmitEditing={() => {}}
                 blurOnSubmit={false}
               />
-              <Button tx="settingsScreen.updateUsername" stretch onPress={() => {}} />
+              <Button
+                tx="settingsScreen.updateUsername"
+                style={screenStyles.button}
+                onPress={() => {}}
+                stretch
+              />
               <TextField
                 value={''}
                 labelTx="common.newPassword"
@@ -66,26 +71,32 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
                 returnKeyType="go"
                 onSubmitEditing={e => {}}
               />
-              <Button tx="settingsScreen.updatePassword" stretch onPress={() => {}} />
-            </View>
-            <View tabLabel="Manage Tests" style={screenStyles.container}>
+              <Button
+                tx="settingsScreen.updatePassword"
+                style={screenStyles.button}
+                onPress={() => {}}
+                stretch
+              />
+            </ScrollView>
+            <ScrollView tabLabel="Manage Tests" style={screenStyles.container}>
               <SearchBox onChangeText={e => console.log(e)} />
               <View style={screenStyles.boderLine}>
                 <Text text="A" />
               </View>
-              <TestCase text="ACT - V1" />
-              <TestCase checked text="ACT - V2" />
+              <Button type="check" preset="unChecked" text="ACT - V1" stretch />
+              <Button type="check" preset="checked" text="ACT - V2" stretch />
 
               <View style={screenStyles.boderLine}>
                 <Text text="L" />
               </View>
-              <TestCase text="LAST - V1" />
-              <TestCase checked text="LAST - V2" />
-            </View>
+              <Button type="check" preset="unChecked" text="LAST - V1" stretch />
+              <Button type="check" preset="checked" text="LAST - V2" stretch />
+              <View style={{ height: 50 }} />
+            </ScrollView>
           </ScrollableTabView>
         </View>
-        <KeyboardSpacer offset={50} />
-      </ScrollView>
+        <KeyboardSpacer />
+      </View>
     )
   }
 

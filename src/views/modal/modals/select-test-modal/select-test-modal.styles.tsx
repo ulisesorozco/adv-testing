@@ -3,6 +3,7 @@ import { color, spacing } from '../../../theme'
 
 export const ROOT: ViewStyle = {
   flex: 1,
+  padding: spacing[5],
   backgroundColor: color.background,
 }
 
@@ -14,18 +15,10 @@ export const content: ViewStyle = {
   padding: spacing[3],
 }
 
-export const bannerContainer: ViewStyle = {
-  flex: 1,
-}
-
-export const infoContainer: ViewStyle = {
-  flex: 1,
-}
-
-export const submitContainer: ViewStyle = {
-  flex: 1,
-}
-
-export const doneContainer: ViewStyle = {
-  flex: 1,
+export const boderLine: ViewStyle = {
+  flexDirection: 'row',
+  borderBottomColor: color.palette.lightGrey,
+  borderBottomWidth: 1,
+  paddingBottom: spacing[2],
+  marginVertical: spacing[5],
 }

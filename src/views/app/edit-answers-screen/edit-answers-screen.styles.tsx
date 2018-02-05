@@ -9,7 +9,8 @@ export const ROOT: ViewStyle = {
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
-  padding: spacing[3],
+  marginTop: spacing[4],
+  paddingTop: spacing[4],
 }
 
 export const sectionHeader: ViewStyle = {
@@ -38,6 +39,10 @@ export const answerContainer: ViewStyle = {
 export const testItem: ViewStyle = {
   flexDirection: 'row',
   height: 50,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const testNumber: ViewStyle = {

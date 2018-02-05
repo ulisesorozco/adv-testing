@@ -28,13 +28,17 @@ export const resultItem: ViewStyle = {
   flexDirection: 'row',
   marginBottom: spacing[3],
   height: 60,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const resultHeader: ViewStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   width: 60,
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
   borderColor: color.borderGreen,
@@ -43,7 +47,7 @@ export const resultHeader: ViewStyle = {
 
 export const resultCenter: ViewStyle = {
   flex: 1,
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderBottomWidth: 1,
   borderColor: color.border,
   padding: spacing[3],
@@ -53,7 +57,7 @@ export const resultFooter: ViewStyle = {
   alignItems: 'flex-end',
   justifyContent: 'center',
   padding: spacing[3],
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderRightWidth: 1,
   borderBottomWidth: 1,
   borderTopRightRadius: 2,
@@ -70,6 +74,6 @@ export const submitButton: ViewStyle = {
 export const footer: ViewStyle = {
   padding: spacing[6],
   backgroundColor: 'white',
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderTopColor: color.border,
 }

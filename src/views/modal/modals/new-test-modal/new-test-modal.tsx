@@ -1,7 +1,11 @@
 import * as React from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, View, TouchableOpacity } from 'react-native'
 import { inject, observer } from 'mobx-react'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Case from './new-test-modal.item'
 import { Button } from '../../../shared/button'
+import { Text } from '../../../shared/text'
+import { color } from '../../../theme'
 import { ModalStore } from '../../../../models/modal-store'
 import * as screenStyles from './new-test-modal.styles'
 
@@ -12,23 +16,37 @@ export interface NewTestModalProps {
 @inject('modalStore')
 @observer
 export class NewTestModal extends React.Component<NewTestModalProps, {}> {
+  onCreate = () => {
+    const { showModal } = this.props.modalStore
+    showModal('new-student')
+  }
+
+  onSelectType = async () => {
+    const { showModal, close } = this.props.modalStore
+    await close()
+    showModal('select-test')
+  }
+
   render() {
     const { close } = this.props.modalStore
 
     return (
       <View style={screenStyles.ROOT}>
+        <View style={screenStyles.header}>
+          <Text preset="title" text="NEW TEST" />
+          <TouchableOpacity style={screenStyles.closeButton} onPress={close}>
+            <Icon name="times" size={20} color={color.palette.white} />
+          </TouchableOpacity>
+        </View>
         <ScrollView
           style={screenStyles.container}
           contentContainerStyle={screenStyles.content}
           keyboardShouldPersistTaps="handled"
         >
-          <View style={screenStyles.bannerContainer} />
-          <View style={screenStyles.infoContainer} />
-          <View style={screenStyles.submitContainer}>
-            <Button stretch text="EMAIL BUBBLE SHEET" onPress={close} />
-            <Button stretch text="PRINT BUBBLE SHEET" onPress={close} />
-          </View>
-          <View style={screenStyles.doneContainer} />
+          <Case text="SAT v2" icon="caret-right" stretch onPress={this.onSelectType} />
+          <Case label="Test Date" text="12/11/2017" icon="caret-down" />
+          <Case label="Test Time" text="10:00 AM" icon="caret-down" />
+          <Button stretch text="CREATE TEST" onPress={close} />
         </ScrollView>
       </View>
     )

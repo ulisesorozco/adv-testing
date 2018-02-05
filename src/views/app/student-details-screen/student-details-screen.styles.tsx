@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native'
+import { ViewStyle, TextStyle } from 'react-native'
 import { color, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -9,7 +9,8 @@ export const ROOT: ViewStyle = {
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
-  padding: spacing[3],
+  marginTop: spacing[4],
+  paddingTop: spacing[4],
 }
 
 export const boderLine: ViewStyle = {
@@ -23,11 +24,16 @@ export const boderLine: ViewStyle = {
 export const scheduledItem: ViewStyle = {
   flexDirection: 'row',
   justifyContent: 'space-between',
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderRadius: 2,
   borderColor: color.border,
+  backgroundColor: color.palette.white,
   padding: spacing[3],
   marginBottom: spacing[3],
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const scheduledFooter: ViewStyle = {
@@ -38,22 +44,33 @@ export const scheduledFooter: ViewStyle = {
 export const completedItem: ViewStyle = {
   flexDirection: 'row',
   marginBottom: spacing[3],
+  backgroundColor: color.palette.white,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const completedHeader: ViewStyle = {
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
   borderColor: color.borderGreen,
   backgroundColor: color.palette.lightGreen,
 }
 
+export const scoreText: TextStyle = {
+  fontSize: 15,
+  fontWeight: '900',
+  color: color.palette.darkGreen,
+}
+
 export const completedCenter: ViewStyle = {
   flex: 3,
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderBottomWidth: 1,
   borderColor: color.border,
   padding: spacing[3],
@@ -64,7 +81,7 @@ export const completedFooter: ViewStyle = {
   alignItems: 'flex-end',
   justifyContent: 'center',
   padding: spacing[3],
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderRightWidth: 1,
   borderBottomWidth: 1,
   borderTopRightRadius: 2,

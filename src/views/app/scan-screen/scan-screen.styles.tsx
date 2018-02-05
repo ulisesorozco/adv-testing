@@ -19,6 +19,10 @@ export const studentItem: ViewStyle = {
   borderWidth: 0.5,
   borderRadius: 5,
   borderColor: color.border,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const studentText: ViewStyle = {
@@ -34,13 +38,16 @@ export const content: ViewStyle = {
 export const footer: ViewStyle = {
   flexDirection: 'row',
   padding: spacing[6],
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderTopColor: color.border,
   backgroundColor: 'white',
 }
 
 export const closeButton: ViewStyle = {
-  padding: spacing[4],
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 50,
+  height: 50,
   marginRight: spacing[4],
   borderRadius: 4,
   backgroundColor: color.wrong,

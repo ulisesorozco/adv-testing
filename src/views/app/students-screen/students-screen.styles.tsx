@@ -7,9 +7,21 @@ export const ROOT: ViewStyle = {
   padding: spacing[4],
 }
 
-export const navBar: ViewStyle = {
+export const header: ViewStyle = {
   flexDirection: 'row',
-  padding: spacing[3],
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginTop: spacing[4],
+  paddingTop: spacing[4],
+}
+
+export const closeButton: ViewStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 40,
+  height: 40,
+  borderRadius: 4,
+  backgroundColor: color.button,
 }
 
 export const boderLine: ViewStyle = {
@@ -27,10 +39,14 @@ export const studentItem: ViewStyle = {
   height: 60,
   marginBottom: spacing[3],
   padding: spacing[3],
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderRadius: 2,
   borderColor: color.border,
   backgroundColor: 'white',
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const studentFooter: ViewStyle = {

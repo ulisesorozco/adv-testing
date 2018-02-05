@@ -19,15 +19,13 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
     return (
       <View style={screenStyles.ROOT}>
         <View style={screenStyles.top}>
-          <View style={screenStyles.navBar}>
-            <TouchableOpacity onPress={this.back}>
-              <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
-            </TouchableOpacity>
+          <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
+            <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
             <View style={screenStyles.navTitle}>
               <Text preset="title" text="SAT v2" />
               <Text text="ID:1234522" />
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={screenStyles.manageContainer}>
             <View style={screenStyles.testType}>
               <Text text="Test Type" />
@@ -48,6 +46,7 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
                 stretch
                 text="EDIT DETAILS"
                 style={screenStyles.editButton}
+                textStyle={screenStyles.editButtonText}
                 onPress={() => this.props.navigation.navigate('editScheduledTest')}
               />
               <Button stretch text="CANCEL TEST" style={screenStyles.cancelButton} />
@@ -56,19 +55,9 @@ export class ManageScheduledTestScreen extends React.Component<ManageScheduledTe
         </View>
         <View style={screenStyles.space} />
         <View style={screenStyles.footer}>
-          <Button
-            text="EMAIL BUBBLE SHEET"
-            style={screenStyles.editButton}
-            textStyle={screenStyles.submitButton}
-            stretch
-          />
+          <Button text="EMAIL BUBBLE SHEET" textStyle={screenStyles.submitButton} stretch />
           <View style={screenStyles.spaceButton} />
-          <Button
-            text="PRINT BUBBLE SHEET"
-            style={screenStyles.editButton}
-            textStyle={screenStyles.submitButton}
-            stretch
-          />
+          <Button text="PRINT BUBBLE SHEET" textStyle={screenStyles.submitButton} stretch />
         </View>
       </View>
     )

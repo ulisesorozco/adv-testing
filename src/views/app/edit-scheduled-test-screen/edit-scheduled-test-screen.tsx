@@ -19,15 +19,13 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
   render() {
     return (
       <View style={screenStyles.ROOT}>
-        <View style={screenStyles.navBar}>
-          <TouchableOpacity onPress={this.back}>
-            <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
-          </TouchableOpacity>
+        <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
+          <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
           <View style={screenStyles.navTitle}>
             <Text preset="title" text="SAT v2" />
             <Text text="ID:1234522" />
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={screenStyles.content}>
           <Case text="SAT v2" icon="caret-right" stretch />
           <Case label="Test Date" text="12/11/2017" icon="caret-down" />

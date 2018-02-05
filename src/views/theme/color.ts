@@ -35,7 +35,7 @@ export const color = {
   /**
    * The default color of text in many components.
    */
-  text: palette.black,
+  text: palette.darkGreen,
   /**
    * The default color of buttons.
    */
@@ -51,4 +51,8 @@ export const color = {
    */
   right: '#159679',
   wrong: '#FF4B4B',
+  /**
+   * The default color of shadow.
+   */
+  shadow: '#55615F26',
 }

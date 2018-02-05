@@ -4,10 +4,12 @@ import { color, spacing } from '../../theme'
 export const ROOT: ViewStyle = {
   flex: 1,
   backgroundColor: color.background,
+  paddingTop: spacing[4],
 }
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
+  marginTop: spacing[4],
   padding: spacing[4],
 }
 
@@ -33,8 +35,12 @@ export const resultText: ViewStyle = {
 export const resultProgress: ViewStyle = {
   flexDirection: 'row',
   marginVertical: spacing[2],
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderColor: color.border,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const progressText: TextStyle = {
@@ -52,7 +58,7 @@ export const divider: ViewStyle = {
 
 export const Footer: ViewStyle = {
   padding: spacing[6],
-  borderTopWidth: 1,
+  borderTopWidth: 0.5,
   borderTopColor: color.border,
   backgroundColor: 'white',
 }

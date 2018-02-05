@@ -1,6 +1,5 @@
 import { ViewStyle, TextStyle, ImageStyle } from 'react-native'
-import { color } from '../../theme/color'
-import { spacing } from '../../theme/spacing'
+import { color, spacing, metrics } from '../../theme'
 
 const BASE_VIEW: ViewStyle = {
   paddingVertical: spacing[2],
@@ -13,6 +12,7 @@ const BASE_VIEW: ViewStyle = {
 }
 
 const BASE_TEXT: TextStyle = {
+  fontWeight: '900',
   textAlign: 'center',
   paddingHorizontal: spacing[3],
 }
@@ -23,11 +23,35 @@ const BASE_IMAGE: ImageStyle = {
   alignSelf: 'center',
 }
 
+const BASE_CHECKVIEW: ViewStyle = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginTop: spacing[3],
+  padding: spacing[3],
+  borderRadius: 3,
+  borderWidth: 0.5,
+  borderColor: color.palette.lightGrey,
+}
+
+const BASE_CHECKICON: ViewStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: color.background,
+  borderColor: color.palette.lightGrey,
+  borderWidth: 0.5,
+  borderRadius: metrics.screenWidth / 20,
+  width: metrics.screenWidth / 10,
+  height: metrics.screenWidth / 10,
+}
+
 /**
  * What the base view looks like.
  */
 export const viewPresets = {
   primary: { ...BASE_VIEW, backgroundColor: color.button } as ViewStyle,
+  checked: { ...BASE_CHECKVIEW } as ViewStyle,
+  unChecked: { ...BASE_CHECKVIEW } as ViewStyle,
 }
 
 /**
@@ -37,7 +61,6 @@ export const textPresets = {
   primary: {
     ...BASE_TEXT,
     fontSize: 16,
-    fontWeight: '600',
     color: color.palette.white,
   } as TextStyle,
 }
@@ -47,6 +70,17 @@ export const textPresets = {
  */
 export const imagePresets = {
   primary: { ...BASE_IMAGE } as ImageStyle,
+}
+
+export const checkPresets = {
+  checked: {
+    ...BASE_CHECKICON,
+    backgroundColor: color.button,
+  } as ViewStyle,
+  unChecked: {
+    ...BASE_CHECKICON,
+    backgroundColor: color.transparent,
+  } as ViewStyle,
 }
 
 /**
@@ -59,4 +93,8 @@ export const disabledViewPresets = {
 /**
  * A list of preset names.
  */
-export type ButtonPresetNames = keyof typeof viewPresets
+export type ButtonPresetNames =
+  | keyof typeof viewPresets
+  | keyof typeof imagePresets
+  | keyof typeof textPresets
+  | keyof typeof checkPresets

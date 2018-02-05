@@ -21,7 +21,7 @@ export default class CompletedScreen extends React.Component<CompletedScreenProp
     return (
       <TouchableOpacity style={screenStyles.completedItem} onPress={onPress}>
         <View style={screenStyles.completedHeader}>
-          <Text text={text} />
+          <Text text={text} style={screenStyles.scoreText} />
         </View>
         <View style={screenStyles.completedCenter}>
           <Text text="SAT v2" />

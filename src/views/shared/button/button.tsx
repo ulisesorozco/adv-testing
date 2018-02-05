@@ -1,7 +1,14 @@
 import * as React from 'react'
-import { TouchableOpacity, Image, ViewStyle } from 'react-native'
+import { TouchableOpacity, Image, View, ViewStyle } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { Text } from '../text'
-import { viewPresets, textPresets, imagePresets, disabledViewPresets } from './button.presets'
+import {
+  viewPresets,
+  textPresets,
+  imagePresets,
+  disabledViewPresets,
+  checkPresets,
+} from './button.presets'
 import { ButtonProps } from './button.props'
 
 /**
@@ -29,6 +36,7 @@ export function Button(props: ButtonProps) {
   const disabledViewPresetToUse = disabledViewPresets[preset] || disabledViewPresets.primary
   const textPresetToUse = textPresets[preset] || textPresets.primary
   const imagePresetToUse = imagePresets[preset] || imagePresets.primary
+  const checkPresetToUse = checkPresets[preset] || checkPresets.unChecked
 
   // assemble the base TouchableOpacity style
   const setViewStyle = {
@@ -60,6 +68,16 @@ export function Button(props: ButtonProps) {
       return (
         <TouchableOpacity {...rest} style={setViewStyle}>
           {children}
+        </TouchableOpacity>
+      )
+    case 'check':
+      const checked = preset === 'checked'
+      return (
+        <TouchableOpacity {...rest} style={setViewStyle}>
+          <Text preset="button" text={text} />
+          <View style={checkPresetToUse}>
+            {checked && <Icon name="check" size={20} color="white" />}
+          </View>
         </TouchableOpacity>
       )
     default:

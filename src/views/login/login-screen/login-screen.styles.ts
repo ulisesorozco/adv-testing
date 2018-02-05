@@ -49,15 +49,18 @@ export const signupButton: ViewStyle = {
 }
 
 export const inputTextField: ViewStyle = {
-  flex: 1,
   padding: 0,
   paddingVertical: 8,
 }
 
 export const inputText: ViewStyle = {
   height: 50,
-  borderWidth: 1,
+  borderWidth: 0.5,
   borderRadius: 3,
   borderColor: 'rgb(85, 97, 95)',
   backgroundColor: '#fff',
+}
+
+export const submitButton: ViewStyle = {
+  alignSelf: 'flex-end',
 }

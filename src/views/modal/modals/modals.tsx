@@ -4,7 +4,9 @@ import Modal from 'react-native-modal'
 import { inject, observer } from 'mobx-react'
 import { ModalStore } from '../../../models/modal-store'
 import { BlankModal } from './blank-modal'
-import { New } from './new-student-modal'
+import { NewStudentModal } from './new-student-modal'
+import { NewTestModal } from './new-test-modal'
+import { SelectTestModal } from './select-test-modal'
 import { TestCreatedModal } from './test-created-modal'
 import * as screenStyles from './modals.styles'
 
@@ -26,6 +28,12 @@ export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
     switch (modal) {
       case 'test-created':
         return <TestCreatedModal />
+      case 'new-student':
+        return <NewStudentModal />
+      case 'new-test':
+        return <NewTestModal />
+      case 'select-test':
+        return <SelectTestModal />
       default:
         return <BlankModal />
     }

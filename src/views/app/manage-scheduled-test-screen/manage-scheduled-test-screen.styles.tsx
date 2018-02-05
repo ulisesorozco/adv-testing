@@ -19,11 +19,15 @@ export const navTitle: ViewStyle = {
 }
 
 export const manageContainer: ViewStyle = {
-  borderWidth: 1,
-  borderColor: color.border,
-  backgroundColor: 'white',
-  marginBottom: spacing[3],
   marginTop: spacing[8],
+  marginBottom: spacing[3],
+  borderWidth: 0.5,
+  borderColor: color.palette.darkGreen,
+  backgroundColor: 'white',
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const testType: ViewStyle = {
@@ -37,6 +41,8 @@ export const testDetail: ViewStyle = {
 
 export const testButtons: ViewStyle = {
   flexDirection: 'row',
+  borderTopWidth: 0.5,
+  borderTopColor: color.palette.darkGreen,
 }
 
 export const space: ViewStyle = {
@@ -45,22 +51,28 @@ export const space: ViewStyle = {
 
 export const footer: ViewStyle = {
   flex: 1,
-  backgroundColor: 'white',
   padding: spacing[5],
+  borderTopWidth: 0.5,
+  borderTopColor: color.palette.darkGreen,
+  backgroundColor: 'white',
 }
 
 export const editButton: ViewStyle = {
   flex: 1,
   padding: spacing[3],
-  backgroundColor: color.button,
-  borderRadius: 2,
+  borderRightWidth: 0.5,
+  borderRightColor: color.palette.darkGreen,
+  backgroundColor: color.palette.lightGreen,
+}
+
+export const editButtonText: TextStyle = {
+  color: color.palette.darkGreen,
 }
 
 export const cancelButton: ViewStyle = {
   flex: 1,
   padding: spacing[3],
   backgroundColor: color.cancel,
-  borderRadius: 2,
 }
 
 export const spaceButton: ViewStyle = {

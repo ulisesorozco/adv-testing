@@ -63,12 +63,10 @@ export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {
   render() {
     return (
       <View style={screenStyles.ROOT}>
-        <View style={screenStyles.navBar}>
-          <TouchableOpacity onPress={this.back}>
-            <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
-          </TouchableOpacity>
+        <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
+          <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
           <Text preset="title" text="    ACT v2" />
-        </View>
+        </TouchableOpacity>
         <View style={screenStyles.answerContainer}>
           {TESTS.map(test => <TestAnswer key={Math.random()} test={test} />)}
         </View>
