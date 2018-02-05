@@ -2,18 +2,30 @@ import * as React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { inject, observer } from 'mobx-react'
 import Case from './edit-scheduled-test-screen.item'
+import { ModalStore } from '../../../models/modal-store'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
 import { color } from '../../theme'
 import * as screenStyles from './edit-scheduled-test-screen.styles'
 
-export interface EditScheduledTestScreenProps extends NavigationScreenProps<{}> {}
+export interface EditScheduledTestScreenProps extends NavigationScreenProps<{}> {
+  modalStore: ModalStore
+}
 
+@inject('modalStore')
+@observer
 export class EditScheduledTestScreen extends React.Component<EditScheduledTestScreenProps, {}> {
   back = () => {
     this.props.navigation.goBack()
+  }
+
+  onSelectType = async () => {
+    const { showModal, close } = this.props.modalStore
+    await close()
+    showModal('select-test')
   }
 
   render() {
@@ -27,7 +39,7 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
           </View>
         </TouchableOpacity>
         <View style={screenStyles.content}>
-          <Case text="SAT v2" icon="caret-right" stretch />
+          <Case text="SAT v2" icon="caret-right" onPress={this.onSelectType} stretch />
           <Case label="Test Date" text="12/11/2017" icon="caret-down" />
           <Case label="Test Time" text="10:00 AM" icon="caret-down" />
           <Button

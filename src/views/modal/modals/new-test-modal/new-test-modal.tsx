@@ -16,9 +16,10 @@ export interface NewTestModalProps {
 @inject('modalStore')
 @observer
 export class NewTestModal extends React.Component<NewTestModalProps, {}> {
-  onCreate = () => {
-    const { showModal } = this.props.modalStore
-    showModal('new-student')
+  onCreate = async () => {
+    const { close, showModal } = this.props.modalStore
+    await close()
+    showModal('test-created')
   }
 
   onSelectType = async () => {
@@ -46,7 +47,7 @@ export class NewTestModal extends React.Component<NewTestModalProps, {}> {
           <Case text="SAT v2" icon="caret-right" stretch onPress={this.onSelectType} />
           <Case label="Test Date" text="12/11/2017" icon="caret-down" />
           <Case label="Test Time" text="10:00 AM" icon="caret-down" />
-          <Button stretch text="CREATE TEST" onPress={close} />
+          <Button stretch text="CREATE TEST" onPress={this.onCreate} />
         </ScrollView>
       </View>
     )

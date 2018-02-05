@@ -11,6 +11,7 @@ interface EditCaseProps {
   text?: string
   label?: string
   stretch?: boolean
+  onPress?(): void
 }
 
 export default class TestCaseScreen extends React.Component<EditCaseProps, {}> {
@@ -22,18 +23,14 @@ export default class TestCaseScreen extends React.Component<EditCaseProps, {}> {
   }
 
   render() {
-    const { icon, text, label, stretch } = this.props
+    const { icon, text, label, stretch, onPress } = this.props
     return (
       <View style={screenStyles.testItem}>
         <Text text={label} />
-        <View style={screenStyles.testDetail}>
-          <TouchableOpacity>
-            <Text preset="button" text={text} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Icon name={icon} size={20} color={color.palette.black} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={screenStyles.testDetail} onPress={onPress}>
+          <Text preset="button" text={text} />
+          <Icon name={icon} size={20} color={color.palette.black} />
+        </TouchableOpacity>
       </View>
     )
   }

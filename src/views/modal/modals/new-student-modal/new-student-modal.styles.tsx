@@ -17,8 +17,8 @@ export const header: ViewStyle = {
 export const closeButton: ViewStyle = {
   justifyContent: 'center',
   alignItems: 'center',
-  width: 40,
-  height: 40,
+  width: 35,
+  height: 35,
   borderRadius: 4,
   backgroundColor: color.wrong,
 }

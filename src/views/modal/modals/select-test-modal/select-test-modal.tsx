@@ -4,19 +4,28 @@ import { inject, observer } from 'mobx-react'
 import { Button } from '../../../shared/button'
 import { Text } from '../../../shared/text'
 import { ModalStore } from '../../../../models/modal-store'
+import { NavigationStore } from '../../../../views/navigation'
+import { last } from 'ramda'
 import * as screenStyles from './select-test-modal.styles'
 
 export interface SelectTestModalProps {
-  modalStore?: ModalStore
+  modalStore: ModalStore
+  navigationStore: NavigationStore
 }
 
 @inject('modalStore')
+@inject('navigationStore')
 @observer
 export class SelectTestModal extends React.Component<SelectTestModalProps, {}> {
   onSelect = async () => {
     const { showModal, close } = this.props.modalStore
-    await close()
-    showModal('test-created')
+    const { routes } = this.props.navigationStore.state
+    if (last(last(routes).routes).routeName === 'studentDetails') {
+      await close()
+      showModal('new-test')
+    } else {
+      close()
+    }
   }
   render() {
     return (
