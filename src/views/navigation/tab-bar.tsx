@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { Image, View, ViewStyle, Text, TextStyle, StyleSheet, TouchableOpacity } from 'react-native'
+import { inject } from 'mobx-react'
+import { NavigationStore } from './navigation-store'
 import { color, images, metrics } from '../theme'
 
 export interface TXTabBarProps {
+  navigationStore: NavigationStore
   navigation: any
 }
 
@@ -10,23 +13,37 @@ export interface TXTabBarState {
   selected: number
 }
 
+@inject('navigationStore')
 export class TXTabBar extends React.Component<TXTabBarProps, TXTabBarState> {
   constructor(props) {
     super(props)
     this.state = { selected: 0 }
   }
 
+  getCurrentRouteFromState(navState) {
+    const route = navState.routes[navState.index]
+    if (route.routes) {
+      return this.getCurrentRouteFromState(route)
+    }
+    return route
+  }
+
   toStudents = () => {
+    if (this.getCurrentRouteFromState(this.props.navigationStore.state).routeName == 'students')
+      return
     this.setState({ selected: 0 })
     this.props.navigation.navigate('students')
   }
 
   toScan = () => {
+    if (this.getCurrentRouteFromState(this.props.navigationStore.state).routeName == 'scan') return
     this.setState({ selected: 1 })
     this.props.navigation.navigate('scan')
   }
 
   toSettings = () => {
+    if (this.getCurrentRouteFromState(this.props.navigationStore.state).routeName == 'settings')
+      return
     this.setState({ selected: 2 })
     this.props.navigation.navigate('settings')
   }
