@@ -1,4 +1,4 @@
-import { StackNavigator, TabNavigator, NavigationRouteConfig, TabBarBottom } from 'react-navigation'
+import { StackNavigator, TabNavigator, NavigationRouteConfig } from 'react-navigation'
 import { commonStyles } from '../theme'
 /**
  * Import screens
@@ -13,6 +13,7 @@ import { EditAnswersScreen } from '../app/edit-answers-screen'
 import { ManageScheduledTestScreen } from '../app/manage-scheduled-test-screen'
 import { EditScheduledTestScreen } from '../app/edit-scheduled-test-screen'
 import { TestResultsScreen } from '../app/test-results-screen'
+import { TXTabBar } from './tab-bar'
 
 const scan: NavigationRouteConfig<any> = {
   screen: ScanScreen,
@@ -62,7 +63,7 @@ const tabs = {
 
 /** Tabbar which contains dialogue list and contact list */
 const AppMainTabScreen = TabNavigator(tabs, {
-  tabBarComponent: TabBarBottom,
+  tabBarComponent: TXTabBar,
   tabBarPosition: 'bottom',
   swipeEnabled: false,
   animationEnabled: false,
