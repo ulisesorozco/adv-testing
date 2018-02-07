@@ -1,11 +1,10 @@
-/**
- * Define all the possible ways out of your service here.
- */
+import apisauce from 'apisauce'
+
 export type APIServiceResponse = {
   ok: boolean
   status?: number
-  kind: string
-  response: any,
+  kind: 'success' | 'undefined' | 'unknown-error'
+  response?: any,
 }
 
 export interface APIConfig {
@@ -14,23 +13,24 @@ export interface APIConfig {
   production: string
 }
 
-declare global {
-  interface Console {
-    tron: any
-  }
-}
-
 /**
  * Responsible for talking with API.
  */
 export class API {
+  api: any
   config: APIConfig
-
   token: string
 
   /** Creates the only instance of API service. */
   constructor(config: APIConfig) {
     this.config = config
+    this.api = apisauce.create({
+      baseURL: this.config.production,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      timeout: 10000,
+    })
   }
 
   /** Will be called before any React components are initialized. */
@@ -40,87 +40,44 @@ export class API {
 
   setupToken(newToken) {
     this.token = newToken
+    this.api.setHeader('Authorization', `Bearer ${this.token}`)
   }
 
-  /**
-   * Base request of all APIs.
-   */
-  baseRequest = async (
-    method: string,
-    endpoint: string,
-    payload: any,
-  ): Promise<APIServiceResponse> => {
-    try {
-      const params = {
-        method: method,
-        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token },
-      }
-      if (payload) {
-        params['body'] = JSON.stringify(payload)
-      }
-      const url = `${this.config.dev}/${endpoint}`
-
-      __DEV__ && console.log(`API REQUEST ---->>>>> ${url}`, params)
-
-      const res = await fetch(url, params)
-      let response: any
-
-      // always safely try to unpack a json object from the server because
-      // it may not be available to do that.
-      try {
-        response = await res.json()
-      } catch (e) {}
-      __DEV__ && console.log(`API RESPONSE ----<<<<<< ${url}`, res)
-      __DEV__ && console.tron.display({ name: 'API RESPONSE', value: res })
-
-      // send back a happy-path response
+  processResponse = response => {
+    if (response.ok) {
       return {
-        ok: res.ok,
-        status: res.status,
-        kind: res.ok ? 'success' : res.statusText,
-        response,
+        ok: true,
+        status: response.status,
+        kind: 'success',
+        response: response.data,
       }
-    } catch (e) {
-      // API issue... could be a thousand things... here you would figure out the subset
-      // your app is interested in specifically.
-      switch (e.code) {
-        case 'undefined':
-          return { ok: false, kind: 'undefined', response: null }
-        default:
-          return { ok: false, kind: 'unknown-error', response: null }
+    } else if (!response.ok && response.status === 401) {
+      return {
+        ok: false,
+        status: response.status,
+        kind: 'invalid token',
       }
+    }
+
+    return {
+      ok: false,
+      status: response.status,
+      kind: 'unknown-error',
     }
   }
 
-  publicRequest = async (method: string, endpoint: string, payload: any) => {
-    return this.baseRequest(method, endpoint, payload)
+  guildAll = async () => {
+    const response = await this.api.get('guilds')
+    return this.processResponse(response)
   }
 
-  privateRequest = async (
-    method: string,
-    endpoint: string,
-    payload: any,
-    forceCredentials: any,
-  ) => {
-    const credentials = forceCredentials
+  guildCreate = async payload => {
+    const response = await this.api.post('guilds', payload)
+    return this.processResponse(response)
+  }
 
-    try {
-      let authPayload = { ...payload }
-      if (!authPayload.api_key) {
-        authPayload = { ...authPayload, ...credentials }
-      }
-
-      return this.baseRequest(method, endpoint, authPayload)
-    } catch (e) {
-      // API issue... could be a thousand things... here you would figure out the subset
-      // your app is interested in specifically.
-      switch (e.code) {
-        case 'undefined':
-          return { ok: false, kind: 'undefined' }
-
-        default:
-          return { ok: false, kind: 'unknown-error' }
-      }
-    }
+  guildUpdate = async (guild_id, payload) => {
+    const response = await this.api.put(`guilds/${guild_id}`, payload)
+    return this.processResponse(response)
   }
 }
