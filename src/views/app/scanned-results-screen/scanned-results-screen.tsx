@@ -1,11 +1,9 @@
 import * as React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
-import { color } from '../../theme'
 import Result from './scanned-results-screen.item'
 import * as screenStyles from './scanned-results-screen.styles'
 
