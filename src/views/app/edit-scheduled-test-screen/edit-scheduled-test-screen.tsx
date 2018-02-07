@@ -39,7 +39,7 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
           </View>
         </TouchableOpacity>
         <View style={screenStyles.content}>
-          <Case text="SAT v2" icon="caret-right" onPress={this.onSelectType} stretch />
+          <Case text="SAT v2" icon="caret-right" onPress={this.onSelectType} />
           <Case label="Test Date" text="12/11/2017" icon="caret-down" />
           <Case label="Test Time" text="10:00 AM" icon="caret-down" />
           <Button
