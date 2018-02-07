@@ -1,14 +1,7 @@
 import * as React from 'react'
-import { TouchableOpacity, Image, View, ViewStyle } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { TouchableOpacity, ViewStyle } from 'react-native'
 import { Text } from '../text'
-import {
-  viewPresets,
-  textPresets,
-  imagePresets,
-  disabledViewPresets,
-  checkPresets,
-} from './button.presets'
+import { viewPresets, textPresets, disabledViewPresets } from './button.presets'
 import { ButtonProps } from './button.props'
 
 /**
@@ -17,12 +10,10 @@ import { ButtonProps } from './button.props'
 export function Button(props: ButtonProps) {
   // grab the props
   const {
-    type,
     preset = 'primary',
     children,
     tx,
     text,
-    source,
     style: styleOverride,
     textStyle: textStyleOverride,
     stretch,
@@ -35,8 +26,6 @@ export function Button(props: ButtonProps) {
   const viewPresetToUse = viewPresets[preset] || viewPresets.primary
   const disabledViewPresetToUse = disabledViewPresets[preset] || disabledViewPresets.primary
   const textPresetToUse = textPresets[preset] || textPresets.primary
-  const imagePresetToUse = imagePresets[preset] || imagePresets.primary
-  const checkPresetToUse = checkPresets[preset] || checkPresets.unChecked
 
   // assemble the base TouchableOpacity style
   const setViewStyle = {
@@ -57,34 +46,9 @@ export function Button(props: ButtonProps) {
     ...textStyleOverride,
   }
 
-  switch (type) {
-    case 'image':
-      return (
-        <TouchableOpacity {...rest} style={setViewStyle}>
-          <Image style={imagePresetToUse} source={source} />
-        </TouchableOpacity>
-      )
-    case 'content':
-      return (
-        <TouchableOpacity {...rest} style={setViewStyle}>
-          {children}
-        </TouchableOpacity>
-      )
-    case 'check':
-      const checked = preset === 'checked'
-      return (
-        <TouchableOpacity {...rest} style={setViewStyle}>
-          <Text preset="button" text={text} />
-          <View style={checkPresetToUse}>
-            {checked && <Icon name="check" size={20} color="white" />}
-          </View>
-        </TouchableOpacity>
-      )
-    default:
-      return (
-        <TouchableOpacity {...rest} style={setViewStyle}>
-          <Text tx={tx} text={text} style={setTextStyle} />
-        </TouchableOpacity>
-      )
-  }
+  return (
+    <TouchableOpacity {...rest} style={setViewStyle}>
+      <Text tx={tx} text={text} style={setTextStyle} />
+    </TouchableOpacity>
+  )
 }

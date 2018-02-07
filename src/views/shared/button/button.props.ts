@@ -3,11 +3,6 @@ import { ButtonPresetNames } from './button.presets'
 
 export interface ButtonProps extends TouchableOpacityProperties {
   /**
-   * One of the different types of button. text || image
-   */
-  type?: string
-
-  /**
    * Text which is looked up via i18n.
    */
   tx?: string
@@ -16,11 +11,6 @@ export interface ButtonProps extends TouchableOpacityProperties {
    * The text to display if not using `tx` or nested components.
    */
   text?: string
-
-  /**
-   * The image to display if image button.
-   */
-  source?: any
 
   /**
    * An optional style override for the button' TouchableOpacity
@@ -52,5 +42,8 @@ export interface ButtonProps extends TouchableOpacityProperties {
    */
   transparent?: boolean
 
+  /**
+   * Children stuff
+   */
   children?: any
 }

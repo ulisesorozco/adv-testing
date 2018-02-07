@@ -1,5 +1,5 @@
-import { ViewStyle, TextStyle, ImageStyle } from 'react-native'
-import { color, spacing, metrics } from '../../theme'
+import { ViewStyle, TextStyle } from 'react-native'
+import { color, spacing } from '../../theme'
 
 const BASE_VIEW: ViewStyle = {
   paddingVertical: spacing[2],
@@ -17,12 +17,6 @@ const BASE_TEXT: TextStyle = {
   paddingHorizontal: spacing[3],
 }
 
-const BASE_IMAGE: ImageStyle = {
-  flex: 1,
-  resizeMode: 'stretch',
-  alignSelf: 'center',
-}
-
 const BASE_CHECKVIEW: ViewStyle = {
   flexDirection: 'row',
   alignItems: 'center',
@@ -32,17 +26,6 @@ const BASE_CHECKVIEW: ViewStyle = {
   borderRadius: 3,
   borderWidth: 0.5,
   borderColor: color.palette.lightGrey,
-}
-
-const BASE_CHECKICON: ViewStyle = {
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: color.background,
-  borderColor: color.palette.lightGrey,
-  borderWidth: 0.5,
-  borderRadius: metrics.screenWidth / 20,
-  width: metrics.screenWidth / 10,
-  height: metrics.screenWidth / 10,
 }
 
 /**
@@ -66,24 +49,6 @@ export const textPresets = {
 }
 
 /**
- * What the image looks like.
- */
-export const imagePresets = {
-  primary: { ...BASE_IMAGE } as ImageStyle,
-}
-
-export const checkPresets = {
-  checked: {
-    ...BASE_CHECKICON,
-    backgroundColor: color.button,
-  } as ViewStyle,
-  unChecked: {
-    ...BASE_CHECKICON,
-    backgroundColor: color.transparent,
-  } as ViewStyle,
-}
-
-/**
  * What the base view looks like when disabled.
  */
 export const disabledViewPresets = {
@@ -93,8 +58,4 @@ export const disabledViewPresets = {
 /**
  * A list of preset names.
  */
-export type ButtonPresetNames =
-  | keyof typeof viewPresets
-  | keyof typeof imagePresets
-  | keyof typeof textPresets
-  | keyof typeof checkPresets
+export type ButtonPresetNames = keyof typeof viewPresets | keyof typeof textPresets
