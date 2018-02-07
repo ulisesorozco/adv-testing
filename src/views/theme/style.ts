@@ -13,7 +13,6 @@ export const commonStyles = StyleSheet.create({
   tabBarLabel: {
     fontSize: 12,
   },
-
   //text style
   text: {
     color: color.text,
