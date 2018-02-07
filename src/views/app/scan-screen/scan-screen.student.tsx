@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Text } from '../../shared/text'
 import { color } from '../../theme'
