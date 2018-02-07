@@ -2,14 +2,12 @@ import * as React from 'react'
 import { ScrollView, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { TextField } from '../../shared/text-field'
 import { Button } from '../../shared/button'
 import { SearchBox } from '../../shared/search-box'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer'
-import TestCase from './settings-screen.check'
 
 import * as screenStyles from './settings-screen.styles'
 
@@ -102,6 +100,5 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
 
   static navigationOptions = ({ navigation }) => ({
     title: translate('settingsScreen.header'),
-    tabBarIcon: ({ tintColor }) => <Icon name="gear" size={25} color={tintColor} />,
   })
 }
