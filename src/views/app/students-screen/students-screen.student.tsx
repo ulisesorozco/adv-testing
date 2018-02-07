@@ -3,12 +3,13 @@ import { View, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Text } from '../../shared/text'
 import { color } from '../../theme'
+import { translate } from '../../../i18n'
 
 import * as screenStyles from './students-screen.styles'
 
 interface StudentItemProps {
   name: string
-  toDetails(): void
+  toDetails: () => void
 }
 
 export default class StudentItem extends React.Component<StudentItemProps, {}> {
@@ -31,6 +32,5 @@ export default class StudentItem extends React.Component<StudentItemProps, {}> {
 
   static navigationOptions = ({ navigation }) => ({
     title: translate('studentsScreen.header'),
-    tabBarIcon: ({ tintColor }) => <Icon name="graduation-cap" size={25} color={tintColor} />,
   })
 }
