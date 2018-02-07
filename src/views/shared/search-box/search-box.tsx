@@ -3,7 +3,6 @@ import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { TextField } from '../text-field'
 import { color } from '../../theme'
-
 import * as screenStyles from './search-box.styles'
 
 interface SearchBoxProps {
