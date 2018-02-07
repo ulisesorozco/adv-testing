@@ -6,7 +6,6 @@ import Student from './scan-screen.student'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
-
 import * as screenStyles from './scan-screen.styles'
 
 export interface ScanScreenProps extends NavigationScreenProps<{}> {}
