@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ProgressViewIOS, ProgressBarAndroid, Platform, View } from 'react-native'
+import { ProgressViewIOS, ProgressBarAndroid, Platform } from 'react-native'
 interface ProgressBarProps {
   progress?: number
   color?: string
