@@ -27,12 +27,12 @@ const SCROLLER_CONTENT: ViewStyle = {
  */
 export class Screen extends React.Component<ScreenProps, {}> {
   render() {
-    const { style: styleOverride } = this.props
+    const { children, noScroll, style: styleOverride } = this.props
     const rootStyle = { ...ROOT, ...styleOverride }
     const contentStyle = { ...SCROLLER_CONTENT, ...styleOverride }
 
-    if (this.props.noScroll) {
-      return <View style={rootStyle}>{this.props.children}</View>
+    if (noScroll) {
+      return <View style={rootStyle}>{children}</View>
     } else {
       return (
         <ScrollView
@@ -40,9 +40,9 @@ export class Screen extends React.Component<ScreenProps, {}> {
           contentContainerStyle={contentStyle}
           keyboardShouldPersistTaps="handled"
         >
-          {this.props.children}
+          {children}
         </ScrollView>
       )
     }
-  } // render
-} // component
+  }
+}
