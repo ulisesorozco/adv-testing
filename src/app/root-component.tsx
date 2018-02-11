@@ -40,6 +40,7 @@ export class RootComponent extends React.Component<{}, State> {
     const injectableStores = {
       loginStore: store.loginStore,
       modalStore: store.modalStore,
+      instructorStore: store.instructorStore,
     }
 
     return (
