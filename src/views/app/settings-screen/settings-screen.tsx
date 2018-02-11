@@ -8,7 +8,7 @@ import { TextField } from '../../shared/text-field'
 import { Button } from '../../shared/button'
 import { SearchBox } from '../../shared/search-box'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer'
-
+import { CheckBox } from './settings-screen.check'
 import * as screenStyles from './settings-screen.styles'
 
 export interface SettingsScreenProps extends NavigationScreenProps<{}> {}
@@ -81,14 +81,19 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <View style={screenStyles.boderLine}>
                 <Text text="A" />
               </View>
-              <Button preset="secondary" text="ACT - V1" stretch />
-              <Button preset="secondary" text="ACT - V2" stretch />
+              <Button preset="secondary" text="ACT - V1" stretch renderRight={<CheckBox />} />
+              <Button
+                preset="secondary"
+                text="ACT - V2"
+                stretch
+                renderRight={<CheckBox checked />}
+              />
 
               <View style={screenStyles.boderLine}>
                 <Text text="L" />
               </View>
-              <Button preset="secondary" text="LAST - V1" stretch />
-              <Button preset="secondary" text="LAST - V2" stretch />
+              <Button preset="secondary" text="LAST - V1" stretch renderRight={<CheckBox />} />
+              <Button preset="secondary" text="LAST - V2" stretch renderRight={<CheckBox />} />
               <View style={{ height: 50 }} />
             </ScrollView>
           </ScrollableTabView>

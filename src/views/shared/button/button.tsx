@@ -19,6 +19,7 @@ export function Button(props: ButtonProps) {
     stretch,
     rounded,
     transparent,
+    renderRight,
     ...rest,
   } = props
 
@@ -49,6 +50,7 @@ export function Button(props: ButtonProps) {
   return (
     <TouchableOpacity {...rest} style={setViewStyle}>
       <Text tx={tx} text={text} style={setTextStyle} />
+      {renderRight}
     </TouchableOpacity>
   )
 }

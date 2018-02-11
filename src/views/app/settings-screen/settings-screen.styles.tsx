@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle } from 'react-native'
+import { ViewStyle, StyleSheet, TextStyle } from 'react-native'
 import { color, metrics, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -49,4 +49,17 @@ export const boderLine: ViewStyle = {
 export const button: ViewStyle = {
   marginTop: spacing[4],
   marginBottom: spacing[5],
+}
+
+export const checkContainer: ViewStyle = {}
+
+export const checkCircle: ViewStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'rgba(203,208,223,0.4)',
+  borderRadius: 15,
+  borderColor: color.palette.darkGreen,
+  borderWidth: StyleSheet.hairlineWidth,
+  width: 30,
+  height: 30,
 }

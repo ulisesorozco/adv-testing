@@ -11,6 +11,7 @@ export const color = {
   button: 'rgb(229,150,58)',
   cancel: '#FC404C',
   border: palette.darkGreen,
+  darkYellow: '#e4963b',
   borderGreen: '#9DB2A6',
   right: '#159679',
   wrong: '#FF4B4B',
