@@ -10,7 +10,7 @@ export const storage: StorageConfig = {}
  * API.
  */
 export const api: APIConfig = {
-  dev: ' http://54.218.90.55/',
-  staging: ' http://54.218.90.55/',
-  production: ' http://54.218.90.55/',
+  dev: 'http://api-dev.advantagetesting.com/',
+  staging: 'http://api-dev.advantagetesting.com/',
+  production: 'http://api-dev.advantagetesting.com/',
 }
