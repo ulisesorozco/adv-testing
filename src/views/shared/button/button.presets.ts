@@ -33,8 +33,7 @@ const BASE_CHECKVIEW: ViewStyle = {
  */
 export const viewPresets = {
   primary: { ...BASE_VIEW, backgroundColor: color.button } as ViewStyle,
-  checked: { ...BASE_CHECKVIEW } as ViewStyle,
-  unChecked: { ...BASE_CHECKVIEW } as ViewStyle,
+  secondary: { ...BASE_CHECKVIEW } as ViewStyle,
 }
 
 /**
@@ -46,6 +45,11 @@ export const textPresets = {
     fontSize: 16,
     color: color.palette.white,
   } as TextStyle,
+  secondary: {
+    ...BASE_TEXT,
+    fontSize: 16,
+    color: color.text,
+  },
 }
 
 /**

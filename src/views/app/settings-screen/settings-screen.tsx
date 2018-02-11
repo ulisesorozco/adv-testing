@@ -81,14 +81,14 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <View style={screenStyles.boderLine}>
                 <Text text="A" />
               </View>
-              <Button type="check" preset="unChecked" text="ACT - V1" stretch />
-              <Button type="check" preset="checked" text="ACT - V2" stretch />
+              <Button preset="secondary" text="ACT - V1" stretch />
+              <Button preset="secondary" text="ACT - V2" stretch />
 
               <View style={screenStyles.boderLine}>
                 <Text text="L" />
               </View>
-              <Button type="check" preset="unChecked" text="LAST - V1" stretch />
-              <Button type="check" preset="checked" text="LAST - V2" stretch />
+              <Button preset="secondary" text="LAST - V1" stretch />
+              <Button preset="secondary" text="LAST - V2" stretch />
               <View style={{ height: 50 }} />
             </ScrollView>
           </ScrollableTabView>
