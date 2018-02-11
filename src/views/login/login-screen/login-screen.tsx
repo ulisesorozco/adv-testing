@@ -8,6 +8,7 @@ import { Button } from '../../shared/button'
 import { TextField } from '../../shared/text-field/index'
 import { LoginStore } from '../../../models/login-store'
 import { ModalStore } from '../../../models/modal-store'
+import { InstructorStore } from '../../../models/instructor-store'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer/keyboard-spacer'
 import { images } from '../../theme/images'
 import * as screenStyles from './login-screen.styles'
@@ -15,15 +16,21 @@ import * as screenStyles from './login-screen.styles'
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   loginStore: LoginStore
   modalStore: ModalStore
+  instructorStore: InstructorStore
 }
 
 @inject('loginStore')
+@inject('instructorStore')
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
   toAppScreens = () => {
     this.props.navigation.navigate('appStack')
     // const { showModal } = this.props.modalStore
     // showModal('new-student')
+  }
+
+  componentDidMount() {
+    this.props.instructorStore.getAllInstructors()
   }
 
   render() {

@@ -44,6 +44,7 @@ export class API {
   }
 
   processResponse = response => {
+    console.log('--------------------->   ', response)
     if (response.ok) {
       return {
         ok: true,
@@ -78,6 +79,36 @@ export class API {
 
   guildUpdate = async (guild_id, payload) => {
     const response = await this.api.put(`guilds/${guild_id}`, payload)
+    return this.processResponse(response)
+  }
+
+  /////////////////////// Instructors ////////////////
+  /**
+   * Get all instructors.
+   */
+  getAllInstructors = async () => {
+    const response = await this.api.get('instructors')
+    return this.processResponse(response)
+  }
+  /**
+   * Get the specific instructor.
+   */
+  getInstructor = async () => {
+    const response = await this.api.get('instructors')
+    return this.processResponse(response)
+  }
+  /**
+   * Delete the specific instructor.
+   */
+  deleteInstructor = async () => {
+    const response = await this.api.delete('instructors')
+    return this.processResponse(response)
+  }
+  /**
+   * Create a instructor
+   */
+  createInstructor = async payload => {
+    const response = await this.api.post('instructors', payload)
     return this.processResponse(response)
   }
 }
