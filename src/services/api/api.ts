@@ -47,7 +47,6 @@ export class API {
   }
 
   processResponse = response => {
-    console.log('--------------------->   ', response)
     if (response.ok) {
       return {
         ok: true,

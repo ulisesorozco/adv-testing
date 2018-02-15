@@ -36,6 +36,7 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
   }
 
   render() {
+    const { students } = this.props.studentStore
     return (
       <View style={screenStyles.ROOT}>
         <View style={screenStyles.header}>

@@ -9,21 +9,22 @@ import { isEmpty } from 'ramda'
  * Get all instructors.
  */
 export async function getAllStudents(self) {
-  const instructorStore = self as StudentStore
+  const studentStore = self as StudentStore
   const environment = getEnv(self) as Environment
 
   // prep our state before we start
-  instructorStore.setStatus('pending')
-  instructorStore.setErrorMessage(null)
+  studentStore.setStatus('pending')
+  studentStore.setErrorMessage(null)
 
   const response = await environment.api.getAllStudents()
+  studentStore.setStudents(response.response.data)
 
   try {
-    instructorStore.setStatus('done')
+    studentStore.setStatus('done')
     return true
   } catch (e) {
-    instructorStore.setStatus('error')
-    instructorStore.setErrorMessage(translate('errors.unknown'))
+    studentStore.setStatus('error')
+    studentStore.setErrorMessage(translate('errors.unknown'))
   }
 
   return false
