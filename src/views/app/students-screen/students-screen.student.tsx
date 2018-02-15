@@ -8,7 +8,7 @@ import { translate } from '../../../i18n'
 import * as screenStyles from './students-screen.styles'
 
 interface StudentItemProps {
-  name: string
+  student: any
   toDetails: () => void
 }
 
@@ -18,10 +18,12 @@ export default class StudentItem extends React.Component<StudentItemProps, {}> {
   }
 
   render() {
+    const { student } = this.props
+
     return (
       <TouchableOpacity style={screenStyles.studentItem} onPress={this.toDetails}>
         <View>
-          <Text preset="bold" text={this.props.name} />
+          <Text preset="bold" text={student.firstname + ' ' + student.lastname} />
         </View>
         <View style={screenStyles.studentFooter}>
           <Icon name="caret-right" size={20} color={color.palette.darkGreen} />

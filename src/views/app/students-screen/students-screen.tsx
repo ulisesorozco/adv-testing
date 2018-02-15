@@ -49,14 +49,9 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
         <View style={screenStyles.boderLine}>
           <Text text="A" />
         </View>
-        <Student name="Steven Alexander" toDetails={this.toDetails} />
-        <Student name="Lebeca Axelrod" toDetails={this.toDetails} />
-
-        <View style={screenStyles.boderLine}>
-          <Text text="L" />
-        </View>
-        <Student name="Ashely Bower" toDetails={this.toDetails} />
-        <Student name="Andrew Bunsen" toDetails={this.toDetails} />
+        {students.map((student, index) => (
+          <Student key={`std${index}`} student={student} toDetails={this.toDetails} />
+        ))}
       </View>
     )
   }
