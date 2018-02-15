@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { translate } from '../../../i18n'
 import { ModalStore } from '../../../models/modal-store'
+import { StudentStore } from '../../../models/student-store'
 
 import { Text } from '../../shared/text'
 import { SearchBox } from '../../shared/search-box'
@@ -14,11 +15,17 @@ import * as screenStyles from './students-screen.styles'
 
 export interface StudentsScreenProps extends NavigationScreenProps<{}> {
   modalStore: ModalStore
+  studentStore: StudentStore
 }
 
 @inject('modalStore')
+@inject('studentStore')
 @observer
 export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
+  componentDidMount() {
+    this.props.studentStore.getAllStudents()
+  }
+
   toDetails = () => {
     this.props.navigation.navigate('studentDetails')
   }

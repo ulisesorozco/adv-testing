@@ -41,6 +41,7 @@ export class RootComponent extends React.Component<{}, State> {
       loginStore: store.loginStore,
       modalStore: store.modalStore,
       instructorStore: store.instructorStore,
+      studentStore: store.studentStore,
     }
 
     return (

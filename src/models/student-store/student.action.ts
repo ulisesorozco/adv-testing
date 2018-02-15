@@ -1,4 +1,4 @@
-import { InstructorStore } from '.'
+import { StudentStore } from '.'
 import { getEnv, getRoot } from 'mobx-state-tree'
 import { Environment } from '../environment'
 import { RootStore } from '../root-store'
@@ -8,15 +8,15 @@ import { isEmpty } from 'ramda'
 /**
  * Get all instructors.
  */
-export async function getAllInstructors(self) {
-  const instructorStore = self as InstructorStore
+export async function getAllStudents(self) {
+  const instructorStore = self as StudentStore
   const environment = getEnv(self) as Environment
 
   // prep our state before we start
   instructorStore.setStatus('pending')
   instructorStore.setErrorMessage(null)
 
-  const response = await environment.api.getAllInstructors()
+  const response = await environment.api.getAllStudents()
 
   try {
     instructorStore.setStatus('done')
