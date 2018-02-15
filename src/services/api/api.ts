@@ -25,9 +25,12 @@ export class API {
   constructor(config: APIConfig) {
     this.config = config
     this.api = apisauce.create({
-      baseURL: this.config.production,
+      baseURL: this.config.dev,
       headers: {
         'Content-Type': 'application/json',
+        host: 'api-dev.advantagetesting.com',
+        app_id: '123',
+        app_key: 'abc',
       },
       timeout: 10000,
     })
@@ -109,6 +112,15 @@ export class API {
    */
   createInstructor = async payload => {
     const response = await this.api.post('instructors', payload)
+    return this.processResponse(response)
+  }
+
+  /////////////////////// Students ////////////////
+  /**
+   * Get all students.
+   */
+  getAllStudents = async () => {
+    const response = await this.api.get('students')
     return this.processResponse(response)
   }
 }

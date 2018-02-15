@@ -31,6 +31,9 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
 
   componentDidMount() {
     this.props.instructorStore.getAllInstructors()
+    // fetch('http://54.218.90.55/instructors')
+    // .then((response) => console.log('@@@@@@@@@@@@@@@@@:   ', response))
+    // .catch(error => console.log('################:    ', error))
   }
 
   render() {
