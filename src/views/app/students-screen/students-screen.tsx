@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, ScrollView } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import { inject, observer } from 'mobx-react'
+import { startsWith, toLower, toUpper } from 'ramda'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { translate } from '../../../i18n'
@@ -36,7 +37,8 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
   }
 
   render() {
-    const { students } = this.props.studentStore
+    const { filters, students } = this.props.studentStore
+
     return (
       <View style={screenStyles.ROOT}>
         <View style={screenStyles.header}>
@@ -46,12 +48,23 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, {}> {
           </TouchableOpacity>
         </View>
         <SearchBox onChangeText={e => console.log(e)} />
-        <View style={screenStyles.boderLine}>
-          <Text text="A" />
-        </View>
-        {students.map((student, index) => (
-          <Student key={`std${index}`} student={student} toDetails={this.toDetails} />
-        ))}
+        <ScrollView>
+          {filters.map((filter, index) => (
+            <View key={`block${index}`}>
+              <View key={`ft-${index}`} style={screenStyles.boderLine}>
+                <Text text={toUpper(filter)} />
+              </View>
+              {students.map((student, idx) => {
+                if (startsWith(filter, toLower(student.lastname))) {
+                  return (
+                    <Student key={`${index}-${idx}`} student={student} toDetails={this.toDetails} />
+                  )
+                }
+                return null
+              })}
+            </View>
+          ))}
+        </ScrollView>
       </View>
     )
   }

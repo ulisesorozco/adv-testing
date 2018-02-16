@@ -1,5 +1,6 @@
 import { types } from 'mobx-state-tree'
-import { Student, StudentModel } from './student.model'
+import { prop, slice, sortBy, toLower, uniq } from 'ramda'
+import { StudentModel } from './student.model'
 import { getAllStudents } from './student.action'
 
 export const StudentStoreModel = types
@@ -9,6 +10,8 @@ export const StudentStoreModel = types
     status: types.optional(types.enumeration(['idle', 'pending', 'done', 'error']), 'idle'),
     /** The error message to show if we cannot get students */
     errorMessage: types.maybe(types.string),
+    /** The filters */
+    filters: types.optional(types.array(types.string), []),
     /** All students */
     students: types.optional(types.array(StudentModel), []),
   })
@@ -25,7 +28,15 @@ export const StudentStoreModel = types
       self.errorMessage = ''
     },
     setStudents(values: any) {
+      let filters = []
       self.students.clear()
+      self.filters.clear()
+      values = sortBy(prop('lastname'), values)
+      values.forEach(value => filters.push(toLower(slice(0, 1, value.lastname))))
+      filters = uniq(filters)
+      filters.forEach(filter => {
+        self.filters.push(filter)
+      })
       values.forEach(value => {
         const student = StudentModel.create({
           id: value.id + '',
