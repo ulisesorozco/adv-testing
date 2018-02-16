@@ -16,6 +16,7 @@ export class SearchBox extends React.Component<SearchBoxProps, {}> {
       <View style={screenStyles.searchItem}>
         <Icon name="search" size={30} color={color.palette.lightGrey} />
         <TextField
+          autoCorrect={false}
           hideLabel
           style={screenStyles.searchContainer}
           inputStyle={screenStyles.searchInput}
