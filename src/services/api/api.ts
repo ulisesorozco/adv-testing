@@ -122,4 +122,25 @@ export class API {
     const response = await this.api.get('students')
     return this.processResponse(response)
   }
+  /**
+   * Get the specific student.
+   */
+  getStudent = async (id: number) => {
+    const response = await this.api.get(`students/${id}`)
+    return this.processResponse(response)
+  }
+  /**
+   * Delete the specific student.
+   */
+  deleteStudent = async (id: number) => {
+    const response = await this.api.delete(`students/${id}`)
+    return this.processResponse(response)
+  }
+  /**
+   * Create a instructor
+   */
+  creatStudent = async payload => {
+    const response = await this.api.post('students', payload)
+    return this.processResponse(response)
+  }
 }
