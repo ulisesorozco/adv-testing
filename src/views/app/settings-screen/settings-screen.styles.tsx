@@ -63,3 +63,7 @@ export const checkCircle: ViewStyle = {
   width: 30,
   height: 30,
 }
+
+export const testButton: ViewStyle = {
+  backgroundColor: color.palette.white,
+}
