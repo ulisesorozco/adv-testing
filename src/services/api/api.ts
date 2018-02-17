@@ -143,4 +143,34 @@ export class API {
     const response = await this.api.post('students', payload)
     return this.processResponse(response)
   }
+
+  /////////////////////// Tests ////////////////
+  /**
+   * Get all students.
+   */
+  getAllTests = async () => {
+    const response = await this.api.get('exams')
+    return this.processResponse(response)
+  }
+  /**
+   * Get the specific student.
+   */
+  getTest = async (id: number) => {
+    const response = await this.api.get(`exams/${id}`)
+    return this.processResponse(response)
+  }
+  /**
+   * Delete the specific student.
+   */
+  deleteTest = async (id: number) => {
+    const response = await this.api.delete(`exams/${id}`)
+    return this.processResponse(response)
+  }
+  /**
+   * Create a instructor
+   */
+  creatTest = async payload => {
+    const response = await this.api.post('exams', payload)
+    return this.processResponse(response)
+  }
 }
