@@ -3,6 +3,7 @@ import { TouchableOpacity, ViewStyle } from 'react-native'
 import { Text } from '../text'
 import { viewPresets, textPresets, disabledViewPresets } from './button.presets'
 import { ButtonProps } from './button.props'
+import { color } from '../../theme'
 
 /**
  * It's a button.  That you tap!
@@ -35,7 +36,7 @@ export function Button(props: ButtonProps) {
     ...({ borderRadius: stretch ? 0 : 4 } as ViewStyle),
     ...({ borderRadius: rounded ? 50 : 0 } as ViewStyle),
     ...({
-      backgroundColor: transparent ? 'transparent' : viewPresets[preset].backgroundColor,
+      backgroundColor: transparent ? 'transparent' : color.button,
     } as ViewStyle),
     ...styleOverride,
     ...(props.disabled ? disabledViewPresetToUse : {}),
