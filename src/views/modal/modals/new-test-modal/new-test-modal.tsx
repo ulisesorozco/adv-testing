@@ -44,7 +44,7 @@ export class NewTestModal extends React.Component<NewTestModalProps, {}> {
           contentContainerStyle={screenStyles.content}
           keyboardShouldPersistTaps="handled"
         >
-          <Case text="SAT v2" icon="caret-right" stretch onPress={this.onSelectType} />
+          <Case text="Select a type of test" icon="caret-right" onPress={this.onSelectType} />
           <Case label="Test Date" text="12/11/2017" icon="caret-down" />
           <Case label="Test Time" text="10:00 AM" icon="caret-down" />
           <Button stretch text="CREATE TEST" onPress={this.onCreate} />

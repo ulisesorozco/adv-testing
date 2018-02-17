@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native'
+import { ViewStyle, TextStyle } from 'react-native'
 import { color, spacing } from '../../../theme'
 
 export const ROOT: ViewStyle = {
@@ -45,4 +45,8 @@ export const testDetail: ViewStyle = {
   padding: spacing[4],
   borderWidth: 0.5,
   borderColor: color.palette.black,
+}
+
+export const itemLabel: TextStyle = {
+  color: color.palette.black,
 }

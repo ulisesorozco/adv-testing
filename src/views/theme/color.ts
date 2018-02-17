@@ -16,4 +16,5 @@ export const color = {
   right: '#159679',
   wrong: '#FF4B4B',
   shadow: '#55615F26',
+  ligthGrey: 'rgb(216,216,216)',
 }
