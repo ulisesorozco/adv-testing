@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import { translate } from '../../../i18n'
 import { ModalStore } from '../../../models/modal-store'
 import { StudentStore } from '../../../models/student-store'
+import { ExamStore } from '../../../models/exam-store'
 import Scheduled from './student-details-screen.scheduled'
 import Completed from './student-details-screen.completed'
 import { Text } from '../../shared/text'
@@ -16,12 +17,18 @@ import * as screenStyles from './student-details-screen.styles'
 export interface StudentDetailsScreenProps extends NavigationScreenProps<{}> {
   modalStore: ModalStore
   studentStore: StudentStore
+  examStore: ExamStore
 }
 
 @inject('modalStore')
 @inject('studentStore')
+@inject('examStore')
 @observer
 export class StudentDetailsScreen extends React.Component<StudentDetailsScreenProps, {}> {
+  componentDidMount() {
+    this.props.examStore.getAllExams()
+  }
+
   back = () => {
     this.props.navigation.goBack()
   }

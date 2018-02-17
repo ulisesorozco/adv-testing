@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree'
+import { prop, slice, sortBy, toLower, uniq } from 'ramda'
 import { ExamModel } from './exam.model'
 import { getAllExams } from './exam.action'
 
@@ -11,6 +12,8 @@ export const ExamStoreModel = types
     errorMessage: types.maybe(types.string),
     /** All exams */
     exams: types.optional(types.array(ExamModel), []),
+    /** All filters */
+    filters: types.optional(types.array(types.string), []),
     /** Current exam */
     currentExam: types.maybe(ExamModel),
   })
@@ -39,7 +42,15 @@ export const ExamStoreModel = types
       self.currentExam = exam
     },
     setExams(values: any) {
+      let filters = []
       self.exams.clear()
+      self.filters.clear()
+      values = sortBy(prop('title'), values)
+      values.forEach(value => filters.push(toLower(slice(0, 1, value.title))))
+      filters = uniq(filters)
+      filters.forEach(filter => {
+        self.filters.push(filter)
+      })
       values.forEach(value => {
         const exam = ExamModel.create({
           id: value.id + '',
