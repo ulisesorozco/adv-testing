@@ -14,6 +14,8 @@ export const StudentStoreModel = types
     filters: types.optional(types.array(types.string), []),
     /** All students */
     students: types.optional(types.array(StudentModel), []),
+    /** Current student */
+    currentStudent: types.maybe(StudentModel),
   })
   // setters
   .actions(self => ({
@@ -26,6 +28,19 @@ export const StudentStoreModel = types
     reset() {
       self.status = 'idle'
       self.errorMessage = ''
+    },
+    setCurrentStudent(value: any) {
+      const student = StudentModel.create({
+        id: value.id + '',
+        firstname: value.firstname + '',
+        lastname: value.lastname + '',
+        email: value.email + '',
+        username: value.username + '',
+        password: value.password + '',
+        created_at: value.created_at + '',
+        updated_at: value.updated_at + '',
+      })
+      self.currentStudent = student
     },
     setStudents(values: any) {
       let filters = []

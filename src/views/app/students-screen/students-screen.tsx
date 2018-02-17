@@ -51,7 +51,9 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
     this.setState({ visible })
   }
 
-  toDetails = () => {
+  toDetails = student => {
+    const { setCurrentStudent } = this.props.studentStore
+    setCurrentStudent(student)
     this.props.navigation.navigate('studentDetails')
   }
 
@@ -105,7 +107,11 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
                   toString(student.firstname + ' ' + student.lastname).includes(search)
                 ) {
                   return (
-                    <Student key={`${index}-${idx}`} student={student} toDetails={this.toDetails} />
+                    <Student
+                      key={`${index}-${idx}`}
+                      student={student}
+                      toDetails={() => this.toDetails(student)}
+                    />
                   )
                 }
                 return null
