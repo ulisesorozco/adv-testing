@@ -16,10 +16,10 @@ export async function getAllStudents(self) {
   studentStore.setStatus('pending')
   studentStore.setErrorMessage(null)
 
-  const response = await environment.api.getAllStudents()
-  studentStore.setStudents(response.response.data)
-
   try {
+    const response = await environment.api.getAllStudents()
+    studentStore.setStudents(response.response.data)
+
     studentStore.setStatus('done')
     return true
   } catch (e) {
