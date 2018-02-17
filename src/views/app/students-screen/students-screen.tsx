@@ -71,7 +71,9 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
       students.map((student, idx) => {
         if (
           startsWith(filter, toLower(student.lastname)) &&
-          toString(student.firstname + ' ' + student.lastname).includes(toLower(value))
+          toString(toLower(student.firstname) + ' ' + toLower(student.lastname)).includes(
+            toLower(value),
+          )
         ) {
           visible[index] = true
         }
@@ -104,7 +106,9 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
               {students.map((student, idx) => {
                 if (
                   startsWith(filter, toLower(student.lastname)) &&
-                  toString(student.firstname + ' ' + student.lastname).includes(search)
+                  toString(toLower(student.firstname) + ' ' + toLower(student.lastname)).includes(
+                    toLower(search),
+                  )
                 ) {
                   return (
                     <Student
