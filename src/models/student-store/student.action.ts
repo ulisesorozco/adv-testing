@@ -29,3 +29,26 @@ export async function getAllStudents(self) {
 
   return false
 }
+
+/**
+ * Create a student.
+ */
+export async function createStudent(self, payload) {
+  const studentStore = self as StudentStore
+  const environment = getEnv(self) as Environment
+  try {
+    // prep our state before we start
+    studentStore.setStatus('pending')
+    studentStore.setErrorMessage(null)
+
+    const response = await environment.api.creatStudent(payload)
+
+    studentStore.setStatus('done')
+    return response.ok
+  } catch (e) {
+    studentStore.setStatus('error')
+    studentStore.setErrorMessage(translate('errors.unknown'))
+  }
+
+  return false
+}

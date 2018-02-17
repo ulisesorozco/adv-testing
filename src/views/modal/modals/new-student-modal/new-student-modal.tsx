@@ -32,7 +32,19 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
     }
   }
 
-  createStudent = () => {}
+  submit = async () => {
+    const { firstName, lastName } = this.state
+    const { createStudent, getAllStudents } = this.props.studentStore
+    const { close } = this.props.modalStore
+    const payload = {
+      firstname: firstName,
+      lastname: lastName,
+    }
+
+    await createStudent(payload)
+    await getAllStudents()
+    close()
+  }
 
   render() {
     const { close } = this.props.modalStore
@@ -77,7 +89,7 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
             blurOnSubmit={false}
           />
         </View>
-        <Button stretch text="CREATE STUDENT" onPress={close} />
+        <Button stretch text="CREATE STUDENT" onPress={this.submit} />
       </View>
     )
   }

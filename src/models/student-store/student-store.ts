@@ -1,7 +1,7 @@
 import { types } from 'mobx-state-tree'
 import { prop, slice, sortBy, toLower, uniq } from 'ramda'
 import { StudentModel } from './student.model'
-import { getAllStudents } from './student.action'
+import { getAllStudents, createStudent } from './student.action'
 
 export const StudentStoreModel = types
   .model('StudentStore')
@@ -56,6 +56,9 @@ export const StudentStoreModel = types
   .actions(self => ({
     getAllStudents: async function(): Promise<boolean> {
       return await getAllStudents(self)
+    },
+    createStudent: async function(payload: any): Promise<boolean> {
+      return await createStudent(self, payload)
     },
   }))
 
