@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Button } from '../../../shared/button'
 import { Text } from '../../../shared/text'
+import { CheckBox } from './select-test-modal.check'
 import { ModalStore } from '../../../../models/modal-store'
 import { NavigationStore } from '../../../../views/navigation'
 import { last } from 'ramda'
@@ -39,15 +40,30 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, {}> {
           <View style={screenStyles.boderLine}>
             <Text text="A" />
           </View>
-          <Button type="check" preset="checked" text="ACT V1" onPress={this.onSelect} stretch />
-          <Button type="check" preset="unChecked" text="ACT V1" onPress={this.onSelect} stretch />
-          <Button type="check" preset="checked" text="ACT V1" onPress={this.onSelect} stretch />
-          <View style={screenStyles.boderLine}>
-            <Text text="A" />
-          </View>
-          <Button type="check" preset="checked" text="ACT V1" onPress={this.onSelect} stretch />
-          <Button type="check" preset="unChecked" text="ACT V1" onPress={this.onSelect} stretch />
-          <Button type="check" preset="checked" text="ACT V1" onPress={this.onSelect} stretch />
+          <Button
+            preset="secondary"
+            text="ACT V1"
+            stretch
+            renderRight={<CheckBox />}
+            style={screenStyles.testButton}
+            onPress={this.onSelect}
+          />
+          <Button
+            preset="secondary"
+            text="ACT V2"
+            stretch
+            renderRight={<CheckBox checked />}
+            style={screenStyles.testButton}
+            onPress={this.onSelect}
+          />
+          <Button
+            preset="secondary"
+            text="ACT V3"
+            stretch
+            renderRight={<CheckBox />}
+            style={screenStyles.testButton}
+            onPress={this.onSelect}
+          />
         </ScrollView>
       </View>
     )
