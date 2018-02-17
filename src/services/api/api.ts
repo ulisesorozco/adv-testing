@@ -137,7 +137,7 @@ export class API {
     return this.processResponse(response)
   }
   /**
-   * Create a instructor
+   * Create a student
    */
   creatStudent = async payload => {
     const response = await this.api.post('students', payload)
@@ -146,30 +146,30 @@ export class API {
 
   /////////////////////// Tests ////////////////
   /**
-   * Get all students.
+   * Get all exams.
    */
-  getAllTests = async () => {
+  getAllExams = async () => {
     const response = await this.api.get('exams')
     return this.processResponse(response)
   }
   /**
-   * Get the specific student.
+   * Get the specific exam.
    */
-  getTest = async (id: number) => {
+  getExam = async (id: number) => {
     const response = await this.api.get(`exams/${id}`)
     return this.processResponse(response)
   }
   /**
-   * Delete the specific student.
+   * Delete the specific exam.
    */
-  deleteTest = async (id: number) => {
+  deleteExam = async (id: number) => {
     const response = await this.api.delete(`exams/${id}`)
     return this.processResponse(response)
   }
   /**
-   * Create a instructor
+   * Create a exam
    */
-  creatTest = async payload => {
+  creatExam = async payload => {
     const response = await this.api.post('exams', payload)
     return this.processResponse(response)
   }

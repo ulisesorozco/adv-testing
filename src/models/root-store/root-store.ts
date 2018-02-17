@@ -3,6 +3,7 @@ import { LoginStoreModel } from '../login-store'
 import { ModalStoreModel } from '../modal-store'
 import { InstructorStoreModel } from '../instructor-store'
 import { StudentStoreModel } from '../student-store'
+import { ExamStore, ExamStoreModel } from '../exam-store'
 
 /**
  * An RootStore model.
@@ -14,6 +15,7 @@ export const RootStoreModel = types
     modalStore: types.optional(ModalStoreModel, {}),
     instructorStore: types.optional(InstructorStoreModel, {}),
     studentStore: types.optional(StudentStoreModel, {}),
+    examStore: types.optional(ExamStoreModel, {}),
   })
   .actions(self => ({
     reset() {
@@ -21,6 +23,7 @@ export const RootStoreModel = types
       self.modalStore.reset()
       self.instructorStore.reset()
       self.studentStore.reset()
+      self.examStore.reset()
     },
   }))
 
