@@ -1,9 +1,16 @@
 import { ViewStyle } from 'react-native'
-import { color, metrics, spacing } from '../../theme'
+import { metrics } from '../../theme'
 
-export const ROOT: ViewStyle = {
+export const General: ViewStyle = {
   top: 0,
   position: 'absolute',
   width: metrics.screenWidth - 40,
   height: metrics.screenHeight - 100,
+}
+
+export const Student: ViewStyle = {
+  top: 0,
+  position: 'absolute',
+  width: metrics.screenWidth - 40,
+  height: metrics.screenHeight - 250,
 }

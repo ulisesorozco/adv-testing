@@ -27,15 +27,35 @@ export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
 
     switch (modal) {
       case 'test-created':
-        return <TestCreatedModal />
+        return (
+          <View style={screenStyles.General}>
+            <TestCreatedModal />
+          </View>
+        )
       case 'new-student':
-        return <NewStudentModal />
+        return (
+          <View style={screenStyles.Student}>
+            <NewStudentModal />
+          </View>
+        )
       case 'new-test':
-        return <NewTestModal />
+        return (
+          <View style={screenStyles.General}>
+            <NewTestModal />
+          </View>
+        )
       case 'select-test':
-        return <SelectTestModal />
+        return (
+          <View style={screenStyles.General}>
+            <SelectTestModal />
+          </View>
+        )
       default:
-        return <BlankModal />
+        return (
+          <View style={screenStyles.General}>
+            <BlankModal />
+          </View>
+        )
     }
   }
 
@@ -44,7 +64,7 @@ export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
 
     return (
       <Modal isVisible={isModal} swipeDirection="left" onSwipe={this._closeModal}>
-        <View style={screenStyles.ROOT}>{this._renderModal()}</View>
+        {this._renderModal()}
       </Modal>
     )
   }
