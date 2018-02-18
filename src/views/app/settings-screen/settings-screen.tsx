@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { ScrollView, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
+import { inject, observer } from 'mobx-react'
+import { startsWith, toLower, toUpper } from 'ramda'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
+import { ExamStore } from '../../../models/exam-store'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { TextField } from '../../shared/text-field'
@@ -11,11 +14,70 @@ import { KeyboardSpacer } from '../../shared/keyboard-spacer'
 import { CheckBox } from './settings-screen.check'
 import * as screenStyles from './settings-screen.styles'
 
-export interface SettingsScreenProps extends NavigationScreenProps<{}> {}
+export interface SettingsScreenProps extends NavigationScreenProps<{}> {
+  examStore: ExamStore
+}
 
-export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
+export interface SettingsScreenState {
+  selectedTest: string
+  search: string
+  visible: Array<boolean>
+}
+
+@inject('examStore')
+export class SettingsScreen extends React.Component<SettingsScreenProps, SettingsScreenState> {
+  constructor(props) {
+    super(props)
+    this.state = {
+      search: '',
+      selectedTest: null,
+      visible: [],
+    }
+  }
+
+  componentDidMount() {
+    this.initialize()
+  }
+
+  initialize() {
+    const { filters } = this.props.examStore
+    const visible = []
+
+    filters.forEach(filter => {
+      visible.push(true)
+    })
+    this.setState({ visible })
+  }
+
+  onExams = (value: string) => {
+    const { filters, exams } = this.props.examStore
+    const { visible } = this.state
+    this.initialize()
+    filters.forEach((filter, index) => {
+      visible[index] = false
+      exams.map((exam, idx) => {
+        if (
+          startsWith(filter, toLower(exam.title)) &&
+          toLower(exam.title).includes(toLower(value))
+        ) {
+          visible[index] = true
+        }
+      })
+    })
+    this.setState({ search: toLower(value), visible })
+  }
+
+  onSelect = test => {
+    const { setCurrentExam } = this.props.examStore
+
+    this.setState({ selectedTest: test.id })
+    setCurrentExam(test)
+  }
+
   render() {
     const isSaving: boolean = false
+    const { filters, exams } = this.props.examStore
+    const { search, selectedTest, visible } = this.state
 
     return (
       <View style={screenStyles.ROOT}>
@@ -73,45 +135,40 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
                 stretch
               />
             </ScrollView>
-            <ScrollView tabLabel="Manage Tests" style={screenStyles.container}>
-              <SearchBox onChangeText={e => console.log(e)} />
-              <View style={screenStyles.boderLine}>
-                <Text text="A" />
-              </View>
-              <Button
-                preset="secondary"
-                text="ACT - V1"
-                stretch
-                renderRight={<CheckBox />}
-                style={screenStyles.testButton}
-              />
-              <Button
-                preset="secondary"
-                text="ACT - V2"
-                stretch
-                renderRight={<CheckBox checked />}
-                style={screenStyles.testButton}
-              />
-
-              <View style={screenStyles.boderLine}>
-                <Text text="L" />
-              </View>
-              <Button
-                preset="secondary"
-                text="LAST - V1"
-                stretch
-                renderRight={<CheckBox />}
-                style={screenStyles.testButton}
-              />
-              <Button
-                preset="secondary"
-                text="LAST - V2"
-                stretch
-                renderRight={<CheckBox />}
-                style={screenStyles.testButton}
-              />
+            <View tabLabel="Manage Tests" style={screenStyles.container}>
+              <SearchBox onChangeText={e => this.onExams(e)} />
+              <ScrollView keyboardShouldPersistTaps="handled">
+                {filters.map((filter, index) => (
+                  <View key={`block${index}`}>
+                    {visible[index] && (
+                      <View key={`ft-${index}`} style={screenStyles.boderLine}>
+                        <Text text={toUpper(filter)} />
+                      </View>
+                    )}
+                    {exams.map((exam, idx) => {
+                      if (
+                        startsWith(filter, toLower(exam.title)) &&
+                        toLower(exam.title).includes(toLower(search))
+                      ) {
+                        return (
+                          <Button
+                            key={`${index}-${idx}`}
+                            preset="secondary"
+                            text={exam.title}
+                            stretch
+                            renderRight={<CheckBox checked={selectedTest === exam.id} />}
+                            style={screenStyles.testButton}
+                            onPress={() => this.onSelect(exam)}
+                          />
+                        )
+                      }
+                      return null
+                    })}
+                  </View>
+                ))}
+              </ScrollView>
               <View style={{ height: 50 }} />
-            </ScrollView>
+            </View>
           </ScrollableTabView>
         </View>
         <KeyboardSpacer />

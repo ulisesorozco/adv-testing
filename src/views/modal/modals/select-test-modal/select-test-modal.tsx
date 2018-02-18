@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { ScrollView, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
-import { startsWith, toLower, toUpper, toString } from 'ramda'
+import { last, startsWith, toLower, toUpper } from 'ramda'
 import { Button } from '../../../shared/button'
 import { Text } from '../../../shared/text'
 import { CheckBox } from './select-test-modal.check'
 import { ModalStore } from '../../../../models/modal-store'
 import { ExamStore } from '../../../../models/exam-store'
 import { NavigationStore } from '../../../../views/navigation'
-import { last } from 'ramda'
 import * as screenStyles from './select-test-modal.styles'
 
 export interface SelectTestModalProps {
