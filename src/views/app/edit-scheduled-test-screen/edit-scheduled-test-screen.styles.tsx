@@ -22,10 +22,6 @@ export const content: ViewStyle = {
 
 export const testItem: ViewStyle = {
   marginVertical: spacing[3],
-  shadowOffset: { width: 0, height: 2.5 },
-  shadowColor: color.palette.darkGreen,
-  shadowOpacity: 0.15,
-  shadowRadius: 2,
 }
 
 export const testDetail: ViewStyle = {
@@ -34,7 +30,13 @@ export const testDetail: ViewStyle = {
   marginTop: spacing[2],
   padding: spacing[4],
   borderWidth: 0.5,
-  borderColor: color.palette.black,
+  borderColor: color.border,
+  borderRadius: 2,
+  backgroundColor: color.palette.white,
+  shadowOffset: { width: 0, height: 2.5 },
+  shadowColor: color.palette.darkGreen,
+  shadowOpacity: 0.15,
+  shadowRadius: 2,
 }
 
 export const editButton: ViewStyle = {
