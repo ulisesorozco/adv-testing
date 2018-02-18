@@ -1,5 +1,5 @@
 import { types } from 'mobx-state-tree'
-import { prop, slice, sortBy, toLower, uniq } from 'ramda'
+import { isEmpty, prop, slice, sortBy, toLower, uniq } from 'ramda'
 import { StudentModel } from './student.model'
 import { getAllStudents, createStudent } from './student.action'
 
@@ -50,7 +50,9 @@ export const StudentStoreModel = types
       values.forEach(value => filters.push(toLower(slice(0, 1, value.lastname))))
       filters = uniq(filters)
       filters.forEach(filter => {
-        self.filters.push(filter)
+        if (!isEmpty(filter)) {
+          self.filters.push(filter)
+        }
       })
       values.forEach(value => {
         const student = StudentModel.create({
