@@ -1,9 +1,12 @@
-import { ViewStyle, TextStyle } from 'react-native'
-import { color, spacing } from '../../theme'
+import { ViewStyle, TextStyle, StyleSheet } from 'react-native'
+import { color, spacing, metrics } from '../../theme'
 
 export const ROOT: ViewStyle = {
   flex: 1,
   backgroundColor: color.background,
+}
+
+export const content: ViewStyle = {
   padding: spacing[4],
 }
 
@@ -87,6 +90,16 @@ export const completedFooter: ViewStyle = {
   borderTopRightRadius: 2,
   borderBottomRightRadius: 2,
   borderColor: color.border,
+}
+
+export const submitContainer: ViewStyle = {
+  backgroundColor: 'white',
+  borderTopColor: 'rgb(85,97,95)',
+  borderTopWidth: StyleSheet.hairlineWidth,
+  bottom: 0,
+  padding: spacing[4],
+  position: 'absolute',
+  width: metrics.screenWidth,
 }
 
 export const submitButton: ViewStyle = {
