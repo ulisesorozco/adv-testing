@@ -43,7 +43,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.username"
-                placeholderTx="common.usernamePlaceholder"
                 onChangeText={e => {}}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -57,7 +56,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.password"
-                placeholderTx="common.passwordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}
@@ -73,7 +71,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.username"
-                placeholderTx="common.usernamePlaceholder"
                 onChangeText={e => {}}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -87,7 +84,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.password"
-                placeholderTx="common.passwordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}
@@ -99,7 +95,6 @@ export class LoginScreen extends React.Component<LoginScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.confirmPassword"
-                placeholderTx="common.confirmPasswordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isLoggingIn}

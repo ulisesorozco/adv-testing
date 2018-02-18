@@ -28,7 +28,6 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.username"
-                placeholderTx="common.usernamePlaceholder"
                 onChangeText={e => {}}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -48,7 +47,6 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.newPassword"
-                placeholderTx="common.newPasswordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isSaving}
@@ -60,7 +58,6 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, {}> {
               <TextField
                 value={''}
                 labelTx="common.confirmPassword"
-                placeholderTx="common.confirmPasswordPlaceholder"
                 onChangeText={e => {}}
                 secureTextEntry
                 editable={!isSaving}
