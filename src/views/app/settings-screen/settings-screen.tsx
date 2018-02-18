@@ -135,7 +135,7 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, Setting
                 stretch
               />
             </ScrollView>
-            <View tabLabel="Manage Tests" style={screenStyles.container}>
+            <View tabLabel="Manage Tests">
               <SearchBox onChangeText={e => this.onExams(e)} />
               <ScrollView keyboardShouldPersistTaps="handled">
                 {filters.map((filter, index) => (
