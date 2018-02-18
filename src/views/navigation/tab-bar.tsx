@@ -99,7 +99,7 @@ const screenStyles = StyleSheet.create({
   ROOT: {
     flexDirection: 'row',
     width: metrics.screenWidth,
-    height: 60,
+    height: 55,
   } as ViewStyle,
   Left: {
     flex: 2,
