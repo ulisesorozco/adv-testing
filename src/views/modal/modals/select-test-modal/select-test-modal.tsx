@@ -33,9 +33,11 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, Selec
 
   onSelect = test => {
     const { showModal, close } = this.props.modalStore
+    const { setCurrentExam } = this.props.examStore
     const { routes } = this.props.navigationStore.state
 
-    this.setState({ selectedTest: test })
+    this.setState({ selectedTest: test.id })
+    setCurrentExam(test)
 
     setTimeout(async () => {
       if (last(last(routes).routes).routeName === 'studentDetails') {
@@ -74,7 +76,7 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, Selec
                       stretch
                       renderRight={<CheckBox checked={selectedTest === exam.id} />}
                       style={screenStyles.testButton}
-                      onPress={() => this.onSelect(exam.id)}
+                      onPress={() => this.onSelect(exam)}
                     />
                   )
                 }
