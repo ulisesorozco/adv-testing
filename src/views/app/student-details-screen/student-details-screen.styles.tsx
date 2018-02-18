@@ -61,7 +61,7 @@ export const completedHeader: ViewStyle = {
   borderWidth: 0.5,
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
-  borderColor: color.borderGreen,
+  borderColor: color.border,
   backgroundColor: color.palette.lightGreen,
 }
 
