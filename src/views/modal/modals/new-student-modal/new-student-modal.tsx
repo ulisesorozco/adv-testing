@@ -63,7 +63,6 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
           <TextField
             value={firstName}
             labelTx="common.firstName"
-            placeholderTx="common.firstNamePlaceholder"
             autoCapitalize="none"
             autoCorrect={false}
             editable={!isCreating}
@@ -77,7 +76,6 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
           <TextField
             value={lastName}
             labelTx="common.lastName"
-            placeholderTx="common.lastNamePlaceholder"
             autoCapitalize="none"
             autoCorrect={false}
             editable={!isCreating}
