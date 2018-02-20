@@ -7,6 +7,7 @@ export const ROOT: ViewStyle = {
 }
 
 export const content: ViewStyle = {
+  flex: 1,
   padding: spacing[4],
 }
 
