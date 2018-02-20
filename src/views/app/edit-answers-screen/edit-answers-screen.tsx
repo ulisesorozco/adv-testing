@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, ScrollView, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { translate } from '../../../i18n'
+import { Button } from '../../shared/button'
 import { Text } from '../../shared/text'
 import TestAnswer, { Test } from './edit-answers-screen.test'
 import * as screenStyles from './edit-answers-screen.styles'
@@ -60,6 +61,8 @@ export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {
     this.props.navigation.goBack()
   }
 
+  toEdits = () => {}
+
   render() {
     return (
       <View style={screenStyles.ROOT}>
@@ -67,8 +70,16 @@ export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {
           <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
           <Text preset="title" text="    ACT v2" />
         </TouchableOpacity>
-        <View style={screenStyles.answerContainer}>
+        <ScrollView style={screenStyles.answerContainer}>
           {TESTS.map(test => <TestAnswer key={Math.random()} test={test} />)}
+        </ScrollView>
+        <View style={screenStyles.footer}>
+          <Button
+            stretch
+            text="EDIT RESULTS"
+            style={screenStyles.backButton}
+            onPress={this.toEdits}
+          />
         </View>
       </View>
     )

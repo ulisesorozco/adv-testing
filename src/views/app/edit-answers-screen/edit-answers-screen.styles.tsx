@@ -1,5 +1,5 @@
 import { ViewStyle } from 'react-native'
-import { color, spacing } from '../../theme'
+import { color, metrics, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
   flex: 1,
@@ -34,6 +34,7 @@ export const sectionBody: ViewStyle = {
 
 export const answerContainer: ViewStyle = {
   padding: spacing[4],
+  marginBottom: spacing[8],
 }
 
 export const testItem: ViewStyle = {
@@ -63,4 +64,15 @@ export const testAnswerSubmitted: ViewStyle = {
 
 export const testAnswerEdit: ViewStyle = {
   flex: 4,
+}
+
+export const footer: ViewStyle = {
+  padding: spacing[4],
+  position: 'absolute',
+  bottom: 0,
+  width: metrics.screenWidth,
+}
+
+export const backButton: ViewStyle = {
+  backgroundColor: color.button,
 }

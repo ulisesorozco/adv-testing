@@ -28,7 +28,7 @@ interface TestAnswerState {
 
 export default class TestAnswer extends React.Component<TestAnswerProps, TestAnswerState> {
   state = {
-    isCollapsed: true,
+    isCollapsed: false,
     title: 'Act v2',
   }
 
