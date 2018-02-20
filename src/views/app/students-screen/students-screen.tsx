@@ -34,11 +34,11 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
       search: '',
       visible: [],
     }
-    this.props.studentStore.getAllStudents()
   }
 
   componentDidMount() {
     this.initialize()
+    this.props.studentStore.getAllStudents()
   }
 
   initialize() {

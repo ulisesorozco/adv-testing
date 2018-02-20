@@ -7,21 +7,26 @@ import { inject, observer } from 'mobx-react'
 import { Button } from '../../shared/button'
 import { TextField } from '../../shared/text-field/index'
 import { LoginStore } from '../../../models/login-store'
+import { StudentStore } from '../../../models/student-store'
 import { KeyboardSpacer } from '../../shared/keyboard-spacer/keyboard-spacer'
 import { images } from '../../theme/images'
 import * as screenStyles from './login-screen.styles'
 
 export interface LoginScreenProps extends NavigationScreenProps<{}> {
   loginStore: LoginStore
+  studentStore: StudentStore
 }
 
 @inject('loginStore')
+@inject('studentStore')
 @observer
 export class LoginScreen extends React.Component<LoginScreenProps, {}> {
+  componentDidMount() {
+    this.props.studentStore.getAllStudents()
+  }
+
   toAppScreens = () => {
     this.props.navigation.navigate('appStack')
-    // const { showModal } = this.props.modalStore
-    // showModal('new-student')
   }
 
   render() {

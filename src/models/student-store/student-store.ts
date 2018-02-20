@@ -55,17 +55,19 @@ export const StudentStoreModel = types
         }
       })
       values.forEach(value => {
-        const student = StudentModel.create({
-          id: value.id + '',
-          firstname: value.firstname + '',
-          lastname: value.lastname + '',
-          email: value.email + '',
-          username: value.username + '',
-          password: value.password + '',
-          created_at: value.created_at + '',
-          updated_at: value.updated_at + '',
-        })
-        self.students.push(student)
+        if (!isEmpty(value.firstname) && !isEmpty(value.lastname)) {
+          const student = StudentModel.create({
+            id: value.id + '',
+            firstname: value.firstname + '',
+            lastname: value.lastname + '',
+            email: value.email + '',
+            username: value.username + '',
+            password: value.password + '',
+            created_at: value.created_at + '',
+            updated_at: value.updated_at + '',
+          })
+          self.students.push(student)
+        }
       })
     },
   }))
