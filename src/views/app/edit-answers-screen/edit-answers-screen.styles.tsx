@@ -34,6 +34,8 @@ export const sectionBody: ViewStyle = {
 
 export const answerContainer: ViewStyle = {
   padding: spacing[4],
+  paddingTop: 0,
+  marginTop: spacing[4],
   marginBottom: spacing[8],
 }
 
