@@ -9,6 +9,8 @@ export const ROOT: ViewStyle = {
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
+  marginTop: spacing[4],
+  paddingTop: spacing[4],
 }
 
 export const navTitle: ViewStyle = {

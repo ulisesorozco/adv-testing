@@ -100,7 +100,7 @@ export class EditScheduledTestScreen extends React.Component<
         </TouchableOpacity>
         <View style={screenStyles.content}>
           <Case
-            text={currentExam ? `${currentExam.exam_type} v${currentExam.version}` : 'SAT v2'}
+            text={currentExam ? currentExam.title : 'ACT 1 (math)'}
             icon="caret-right"
             onPress={this.onSelectType}
           />

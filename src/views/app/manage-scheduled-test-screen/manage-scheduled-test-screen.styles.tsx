@@ -7,11 +7,13 @@ export const ROOT: ViewStyle = {
 }
 
 export const top: ViewStyle = {
-  padding: spacing[5],
+  padding: spacing[4],
 }
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
+  marginTop: spacing[4],
+  paddingTop: spacing[4],
 }
 
 export const navTitle: ViewStyle = {
@@ -19,11 +21,11 @@ export const navTitle: ViewStyle = {
 }
 
 export const manageContainer: ViewStyle = {
-  marginTop: spacing[8],
-  marginBottom: spacing[3],
+  backgroundColor: 'white',
   borderWidth: 0.5,
   borderColor: color.palette.darkGreen,
-  backgroundColor: 'white',
+  marginTop: spacing[8],
+  marginBottom: spacing[3],
   shadowOffset: { width: 0, height: 2.5 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
