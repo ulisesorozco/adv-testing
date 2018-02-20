@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import ModalDropdown from 'react-native-modal-dropdown'
 import { Text } from '../../shared/text'
 import { color } from '../../theme'
 import Collapsible from 'react-native-collapsible'
-
 import * as screenStyles from './edit-answers-screen.styles'
 
 export type Answer = {
@@ -19,6 +19,7 @@ export type Test = {
 
 interface TestAnswerProps {
   test: Test
+  isEditing: boolean
 }
 
 interface TestAnswerState {
@@ -56,7 +57,9 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
           <View style={screenStyles.testAnswerSubmitted}>
             <Text text="Submitted" style={{ textAlign: 'center' }} />
           </View>
-          <View style={screenStyles.testAnswerEdit} />
+          <View style={screenStyles.testAnswerEdit}>
+            {this.props.isEditing && <Text text="Update" style={{ textAlign: 'center' }} />}
+          </View>
         </View>
         {answers.map((answer, index) => {
           const isCorrect = answer.answer === answer.submitted
@@ -73,17 +76,34 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
                 <Icon name={iconName} size={20} style={{ alignSelf: 'center' }} color={iconColor} />
               </View>
               <View style={screenStyles.testAnswer}>
-                <Text text={answer.answer} style={{ textAlign: 'center' }} />
+                <Text text={answer.answer} style={{ color: 'black', textAlign: 'center' }} />
               </View>
               <View style={screenStyles.testAnswerSubmitted}>
-                <Text text={answer.submitted} style={{ textAlign: 'center' }} />
+                <Text text={answer.submitted} style={{ color: 'black', textAlign: 'center' }} />
               </View>
               <View style={screenStyles.testAnswerEdit}>
-                <Icon
-                  name="pencil-square-o"
-                  size={20}
-                  style={{ alignSelf: 'flex-end' }}
-                  color={color.palette.darkGreen}
+                <ModalDropdown
+                  defaultValue=""
+                  options={['A', 'B', 'C']}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: 'rgb(203,208,223)',
+                    marginLeft: 20,
+                    marginTop: -5,
+                    width: 60,
+                    height: 30,
+                  }}
+                  textStyle={{
+                    fontSize: 16,
+                    textAlign: 'center',
+                    paddingTop: 5,
+                  }}
+                  dropdownStyle={{
+                    height: 120,
+                  }}
+                  dropdownTextStyle={{
+                    fontSize: 16,
+                  }}
                 />
               </View>
             </View>
@@ -100,7 +120,7 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
     const caret = isCollapsed ? 'caret-down' : 'caret-up'
 
     return (
-      <TouchableOpacity onPress={this.open}>
+      <TouchableOpacity disabled={!isCollapsed} onPress={this.open}>
         <Collapsible collapsed={isCollapsed} collapsedHeight={50}>
           <TouchableOpacity style={screenStyles.sectionHeader} onPress={this.toggle}>
             <View>

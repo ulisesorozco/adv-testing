@@ -71,7 +71,7 @@ export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {
           <Text preset="title" text="    ACT v2" />
         </TouchableOpacity>
         <ScrollView style={screenStyles.answerContainer}>
-          {TESTS.map(test => <TestAnswer key={Math.random()} test={test} />)}
+          {TESTS.map(test => <TestAnswer key={Math.random()} test={test} isEditing />)}
         </ScrollView>
         <View style={screenStyles.footer}>
           <Button

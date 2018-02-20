@@ -4942,6 +4942,12 @@ react-native-modal-datetime-picker@^4.13.0:
     prop-types "15.5.10"
     react-native-modal "3.1.0"
 
+react-native-modal-dropdown@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal-dropdown/-/react-native-modal-dropdown-0.6.1.tgz#a5e4255ad26f3837a7a23fcf2b851187c24850ed"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-modal@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-3.1.0.tgz#3e6911152e9dcd6e15457cf0c24d7fd833c4a57a"
