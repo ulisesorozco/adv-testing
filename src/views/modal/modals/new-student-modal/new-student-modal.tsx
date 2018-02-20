@@ -18,6 +18,7 @@ export interface NewStudentModalProps {
 }
 
 export interface NewStudentModalState {
+  disabled: boolean
   firstName: string
   lastName: string
 }
@@ -31,8 +32,25 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
   constructor(props) {
     super(props)
     this.state = {
+      disabled: true,
       firstName: '',
       lastName: '',
+    }
+  }
+
+  onChangeText = async (name: string, mode: string) => {
+    if (mode === 'first') {
+      await this.setState({ firstName: name })
+    } else {
+      await this.setState({ lastName: name })
+    }
+
+    const { firstName, lastName } = this.state
+
+    if (isEmpty(firstName) || isEmpty(lastName)) {
+      this.setState({ disabled: true })
+    } else if (!isEmpty(firstName) && !isEmpty(lastName)) {
+      this.setState({ disabled: false })
     }
   }
 
@@ -54,7 +72,7 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
 
   render() {
     const { close } = this.props.modalStore
-    const { firstName, lastName } = this.state
+    const { disabled, firstName, lastName } = this.state
     const isCreating = false
 
     return (
@@ -75,10 +93,8 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
             style={screenStyles.inputTextField}
             inputStyle={screenStyles.inputText}
             returnKeyType="next"
-            onChangeText={e => this.setState({ firstName: e })}
-            onSubmitEditing={() => {
-              this.secondInput.focus()
-            }}
+            onChangeText={e => this.onChangeText(e, 'first')}
+            onSubmitEditing={() => this.secondInput.focus()}
             blurOnSubmit={false}
           />
           <TextField
@@ -93,14 +109,12 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
             style={screenStyles.inputTextField}
             inputStyle={screenStyles.inputText}
             returnKeyType="next"
-            onChangeText={e => this.setState({ lastName: e })}
-            onSubmitEditing={() => {
-              Keyboard.dismiss()
-            }}
+            onChangeText={e => this.onChangeText(e, 'last')}
+            onSubmitEditing={() => Keyboard.dismiss()}
             blurOnSubmit={false}
           />
         </View>
-        <Button stretch text="CREATE STUDENT" onPress={this.submit} />
+        <Button stretch disabled={disabled} text="CREATE STUDENT" onPress={this.submit} />
       </View>
     )
   }
