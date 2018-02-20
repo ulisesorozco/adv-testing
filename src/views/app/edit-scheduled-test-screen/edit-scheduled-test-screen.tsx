@@ -3,6 +3,8 @@ import { View, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { inject, observer } from 'mobx-react'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import moment from 'moment'
 import Case from './edit-scheduled-test-screen.item'
 import { ExamStore } from '../../../models/exam-store'
 import { ModalStore } from '../../../models/modal-store'
@@ -17,12 +19,54 @@ export interface EditScheduledTestScreenProps extends NavigationScreenProps<{}> 
   modalStore: ModalStore
 }
 
+export interface EditScheduledTestScreenState {
+  currentDate: string
+  currentTime: string
+  dateTimePickerMode: string
+  isDateTimePickerVisible: boolean
+}
+
 @inject('examStore')
 @inject('modalStore')
 @observer
-export class EditScheduledTestScreen extends React.Component<EditScheduledTestScreenProps, {}> {
+export class EditScheduledTestScreen extends React.Component<
+  EditScheduledTestScreenProps,
+  EditScheduledTestScreenState
+> {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dateTimePickerMode: 'date',
+      isDateTimePickerVisible: false,
+      currentDate: moment(new Date()).format('MM/DD/YYYY'),
+      currentTime: moment(new Date()).format('LT'),
+    }
+  }
+
   back = () => {
     this.props.navigation.goBack()
+  }
+
+  _handleDatePicked = value => {
+    const { dateTimePickerMode } = this.state
+    const date = new Date(value)
+
+    if (dateTimePickerMode === 'date') {
+      const _date = moment(date).format('MM/DD/YYYY')
+      this.setState({ currentDate: _date })
+    } else {
+      const _date = moment(date).format('LT')
+      this.setState({ currentTime: _date })
+    }
+    this._hideDateTimePicker()
+  }
+
+  _hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false })
+  }
+
+  _showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true })
   }
 
   onSelectType = async () => {
@@ -31,8 +75,19 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
     showModal('select-test')
   }
 
+  onSelectDate = () => {
+    this.setState({ dateTimePickerMode: 'date' })
+    this._showDateTimePicker()
+  }
+
+  onSelectTime = () => {
+    this.setState({ dateTimePickerMode: 'time' })
+    this._showDateTimePicker()
+  }
+
   render() {
     const { currentExam } = this.props.examStore
+    const { currentDate, currentTime, dateTimePickerMode, isDateTimePickerVisible } = this.state
 
     return (
       <View style={screenStyles.ROOT}>
@@ -49,8 +104,18 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
             icon="caret-right"
             onPress={this.onSelectType}
           />
-          <Case label="Test Date" text="12/11/2017" icon="caret-down" />
-          <Case label="Test Time" text="10:00 AM" icon="caret-down" />
+          <Case
+            label="Test Date"
+            text={currentDate}
+            icon="caret-down"
+            onPress={this.onSelectDate}
+          />
+          <Case
+            label="Test Time"
+            text={currentTime}
+            icon="caret-down"
+            onPress={this.onSelectTime}
+          />
           <Button
             stretch
             text="UPDATE TEST DETAILS"
@@ -64,6 +129,12 @@ export class EditScheduledTestScreen extends React.Component<EditScheduledTestSc
             onPress={this.back}
           />
         </View>
+        <DateTimePicker
+          isVisible={isDateTimePickerVisible}
+          mode={dateTimePickerMode}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDateTimePicker}
+        />
       </View>
     )
   }
