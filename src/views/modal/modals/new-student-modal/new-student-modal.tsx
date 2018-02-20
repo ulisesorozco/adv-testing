@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, Keyboard } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { isEmpty } from 'ramda'
 import { Button } from '../../../shared/button'
 import { Text } from '../../../shared/text'
 import { TextField } from '../../../shared/text-field'
@@ -25,6 +26,8 @@ export interface NewStudentModalState {
 @inject('studentStore')
 @observer
 export class NewStudentModal extends React.Component<NewStudentModalProps, NewStudentModalState> {
+  secondInput: any
+
   constructor(props) {
     super(props)
     this.state = {
@@ -35,6 +38,8 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
 
   submit = async () => {
     const { firstName, lastName } = this.state
+    if (isEmpty(firstName) || isEmpty(lastName)) return
+
     const { createStudent, getAllStudents } = this.props.studentStore
     const { close } = this.props.modalStore
     const payload = {
@@ -71,10 +76,15 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
             inputStyle={screenStyles.inputText}
             returnKeyType="next"
             onChangeText={e => this.setState({ firstName: e })}
-            onSubmitEditing={() => {}}
+            onSubmitEditing={() => {
+              this.secondInput.focus()
+            }}
             blurOnSubmit={false}
           />
           <TextField
+            ref={v => {
+              this.secondInput = v
+            }}
             value={lastName}
             labelTx="common.lastName"
             autoCapitalize="none"
@@ -84,7 +94,9 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
             inputStyle={screenStyles.inputText}
             returnKeyType="next"
             onChangeText={e => this.setState({ lastName: e })}
-            onSubmitEditing={() => {}}
+            onSubmitEditing={() => {
+              Keyboard.dismiss()
+            }}
             blurOnSubmit={false}
           />
         </View>
