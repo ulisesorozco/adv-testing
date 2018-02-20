@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native'
+import { ViewStyle, TextStyle, StyleSheet } from 'react-native'
 import { color, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -43,6 +43,18 @@ export const editButton: ViewStyle = {
   marginTop: spacing[4],
 }
 
+export const backContainer: ViewStyle = {
+  flexDirection: 'row',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  height: 50,
+}
+
 export const backButton: ViewStyle = {
-  marginTop: spacing[4],
+  borderBottomColor: color.border,
+  borderBottomWidth: StyleSheet.hairlineWidth,
+}
+
+export const backText: TextStyle = {
+  color: color.palette.black,
 }

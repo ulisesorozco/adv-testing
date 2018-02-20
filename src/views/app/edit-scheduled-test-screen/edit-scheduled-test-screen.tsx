@@ -122,12 +122,11 @@ export class EditScheduledTestScreen extends React.Component<
             style={screenStyles.editButton}
             onPress={() => this.props.navigation.navigate('editTest')}
           />
-          <Button
-            stretch
-            text="UPDATE TEST DETAILS"
-            style={screenStyles.backButton}
-            onPress={this.back}
-          />
+          <View style={screenStyles.backContainer}>
+            <TouchableOpacity style={screenStyles.backButton} onPress={this.back}>
+              <Text style={screenStyles.backText}>Nevermind. Go back</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <DateTimePicker
           isVisible={isDateTimePickerVisible}
