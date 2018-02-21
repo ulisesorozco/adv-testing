@@ -1,15 +1,20 @@
 import * as React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
+import { inject, observer } from 'mobx-react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { ModalStore } from '../../../models/modal-store'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
 import Result from './scanned-results-screen.item'
 import * as screenStyles from './scanned-results-screen.styles'
 
-export interface ScannedResultsScreenProps extends NavigationScreenProps<{}> {}
+export interface ScannedResultsScreenProps extends NavigationScreenProps<{}> {
+  modalStore: ModalStore
+}
 
+@inject('modalStore')
 export class ScannedResultsScreen extends React.Component<ScannedResultsScreenProps, {}> {
   goTo = (route: string) => {
     this.props.navigation.navigate(route)
@@ -17,6 +22,11 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
 
   goBack = () => {
     this.props.navigation.navigate('scan')
+  }
+
+  onNewTest = () => {
+    const { showModal } = this.props.modalStore
+    showModal('new-test')
   }
 
   render() {
@@ -39,7 +49,12 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
           <Result score={15} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
         </View>
         <View style={screenStyles.footer}>
-          <Button text="CREATE NEW TEST" style={screenStyles.submitButton} stretch />
+          <Button
+            text="CREATE NEW TEST"
+            stretch
+            style={screenStyles.submitButton}
+            onPress={this.onNewTest}
+          />
         </View>
       </View>
     )
