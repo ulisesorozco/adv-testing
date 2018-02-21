@@ -8,7 +8,9 @@ export const ROOT: ViewStyle = {
 
 export const navBar: ViewStyle = {
   flexDirection: 'row',
-  padding: spacing[6],
+  marginTop: spacing[4],
+  paddingTop: spacing[6],
+  paddingHorizontal: spacing[4],
 }
 
 export const content: ViewStyle = {

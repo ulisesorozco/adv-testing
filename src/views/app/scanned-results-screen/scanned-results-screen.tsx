@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
@@ -14,12 +15,17 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
     this.props.navigation.navigate(route)
   }
 
+  goBack = () => {
+    this.props.navigation.navigate('scan')
+  }
+
   render() {
     return (
       <View style={screenStyles.ROOT}>
-        <View style={screenStyles.navBar}>
-          <Text preset="title" text="Results" />
-        </View>
+        <TouchableOpacity onPress={this.goBack} style={screenStyles.navBar}>
+          <Icon name="caret-left" size={30} color="rgb(85,97,95)" />
+          <Text preset="title" text="    Results" />
+        </TouchableOpacity>
         <View style={screenStyles.content}>
           <View style={screenStyles.boderLine}>
             <Text text="SAT'S" />
