@@ -1,4 +1,4 @@
-import { ViewStyle, StyleSheet } from 'react-native'
+import { ViewStyle, StyleSheet, TextStyle } from 'react-native'
 import { color, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -27,7 +27,7 @@ export const boderLine: ViewStyle = {
 export const resultItem: ViewStyle = {
   flexDirection: 'row',
   marginBottom: spacing[3],
-  height: 60,
+  height: 65,
   shadowOffset: { width: 0, height: 2.5 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
@@ -41,8 +41,18 @@ export const resultHeader: ViewStyle = {
   borderWidth: StyleSheet.hairlineWidth,
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
-  backgroundColor: color.palette.lightGreen,
-  width: 60,
+  backgroundColor: 'rgba(85,97,95,0.15)',
+  width: 70,
+}
+
+export const headerText: TextStyle = {
+  color: 'rgb(85,97,95)',
+  fontWeight: '800',
+  fontSize: 18,
+}
+
+export const infoText: TextStyle = {
+  color: 'black',
 }
 
 export const resultCenter: ViewStyle = {

@@ -27,14 +27,14 @@ export default class Result extends React.Component<ResultProps, {}> {
     return (
       <TouchableOpacity style={screenStyles.resultItem} onPress={onPress}>
         <View style={screenStyles.resultHeader}>
-          <Text text={score.toString()} />
+          <Text text={score.toString()} style={screenStyles.headerText} />
         </View>
         <View style={screenStyles.resultCenter}>
-          <Text text={name} />
-          <Text text={`ID: ${ID} | ${date}`} />
+          <Text text={name} style={screenStyles.headerText} />
+          <Text text={`ID: ${ID} | ${date}`} style={screenStyles.infoText} />
         </View>
         <View style={screenStyles.resultFooter}>
-          <Icon name="caret-right" size={20} color={color.palette.darkGreen} />
+          <Icon name="caret-right" size={20} color="rgb(85,97,95)" />
         </View>
       </TouchableOpacity>
     )
