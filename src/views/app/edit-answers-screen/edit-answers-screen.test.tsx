@@ -82,29 +82,32 @@ export default class TestAnswer extends React.Component<TestAnswerProps, TestAns
                 <Text text={answer.submitted} style={{ color: 'black', textAlign: 'center' }} />
               </View>
               <View style={screenStyles.testAnswerEdit}>
-                <ModalDropdown
-                  defaultValue=""
-                  options={['A', 'B', 'C']}
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'rgb(203,208,223)',
-                    marginLeft: 20,
-                    marginTop: -5,
-                    width: 60,
-                    height: 30,
-                  }}
-                  textStyle={{
-                    fontSize: 16,
-                    textAlign: 'center',
-                    paddingTop: 5,
-                  }}
-                  dropdownStyle={{
-                    height: 120,
-                  }}
-                  dropdownTextStyle={{
-                    fontSize: 16,
-                  }}
-                />
+                {this.props.isEditing && (
+                  <ModalDropdown
+                    defaultValue=""
+                    options={['A', 'B', 'C']}
+                    style={{
+                      borderWidth: 1,
+                      borderColor: 'rgb(203,208,223)',
+                      marginLeft: 20,
+                      marginTop: -5,
+                      width: 60,
+                      height: 30,
+                    }}
+                    textStyle={{
+                      fontSize: 16,
+                      textAlign: 'center',
+                      paddingTop: 5,
+                    }}
+                    dropdownStyle={{ height: 120 }}
+                    dropdownTextStyle={{ fontSize: 16 }}
+                  />
+                )}
+                {this.props.isEditing && (
+                  <View style={{ position: 'absolute', right: 20 }}>
+                    <Icon name="caret-down" size={18} color="rgb(203,208,223)" />
+                  </View>
+                )}
               </View>
             </View>
           )

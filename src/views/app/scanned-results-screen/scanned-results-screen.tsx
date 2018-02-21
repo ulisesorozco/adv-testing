@@ -22,11 +22,11 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
         </View>
         <View style={screenStyles.content}>
           <View style={screenStyles.boderLine}>
-            <Text text="SATs" />
+            <Text text="SAT'S" />
           </View>
           <Result score={1400} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
           <View style={screenStyles.boderLine}>
-            <Text text="ACTs" />
+            <Text text="ACT'S" />
           </View>
           <Result score={34} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
           <Result score={28} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />

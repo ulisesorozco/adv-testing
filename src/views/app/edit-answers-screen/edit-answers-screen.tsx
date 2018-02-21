@@ -55,15 +55,37 @@ const TESTS: Array<Test> = [
 ]
 
 export interface EditAnswersScreenProps extends NavigationScreenProps<{}> {}
+export interface EditAnswersScreenState {
+  isEditing: boolean
+}
 
-export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {}> {
+export class EditAnswersScreen extends React.Component<
+  EditAnswersScreenProps,
+  EditAnswersScreenState
+> {
+  constructor(props) {
+    super(props)
+    this.state = { isEditing: false }
+  }
+
   back = () => {
     this.props.navigation.goBack()
   }
 
-  toEdits = () => {}
+  toEdits = () => {
+    this.setState({ isEditing: true })
+  }
+
+  toUpdate = () => {
+    this.setState({ isEditing: false })
+  }
+
+  toCancel = () => {
+    this.setState({ isEditing: false })
+  }
 
   render() {
+    const { isEditing } = this.state
     return (
       <View style={screenStyles.ROOT}>
         <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
@@ -71,16 +93,34 @@ export class EditAnswersScreen extends React.Component<EditAnswersScreenProps, {
           <Text preset="title" text="    ACT v2" />
         </TouchableOpacity>
         <ScrollView style={screenStyles.answerContainer}>
-          {TESTS.map(test => <TestAnswer key={Math.random()} test={test} isEditing />)}
+          {TESTS.map(test => <TestAnswer key={Math.random()} test={test} isEditing={isEditing} />)}
         </ScrollView>
-        <View style={screenStyles.footer}>
-          <Button
-            stretch
-            text="EDIT RESULTS"
-            style={screenStyles.backButton}
-            onPress={this.toEdits}
-          />
-        </View>
+        {!isEditing && (
+          <View style={screenStyles.footerColumn}>
+            <Button
+              stretch
+              text="EDIT RESULTS"
+              style={screenStyles.backButton}
+              onPress={this.toEdits}
+            />
+          </View>
+        )}
+        {isEditing && (
+          <View style={screenStyles.footerRow}>
+            <Button
+              stretch
+              text="UPDATE RESULTS"
+              style={screenStyles.backButton}
+              onPress={this.toUpdate}
+            />
+            <Button
+              stretch
+              text="CANCEL"
+              style={screenStyles.cancelButton}
+              onPress={this.toCancel}
+            />
+          </View>
+        )}
       </View>
     )
   }

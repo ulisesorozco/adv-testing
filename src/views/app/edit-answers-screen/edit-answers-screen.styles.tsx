@@ -42,6 +42,8 @@ export const answerContainer: ViewStyle = {
 export const testItem: ViewStyle = {
   flexDirection: 'row',
   height: 50,
+  // borderBottomColor: 'rgb(203,208,223)',
+  // borderBottomWidth: 1,
   shadowOffset: { width: 0, height: 2.5 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
@@ -68,7 +70,16 @@ export const testAnswerEdit: ViewStyle = {
   flex: 4,
 }
 
-export const footer: ViewStyle = {
+export const footerColumn: ViewStyle = {
+  padding: spacing[4],
+  position: 'absolute',
+  bottom: 0,
+  width: metrics.screenWidth,
+}
+
+export const footerRow: ViewStyle = {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
   padding: spacing[4],
   position: 'absolute',
   bottom: 0,
@@ -77,4 +88,8 @@ export const footer: ViewStyle = {
 
 export const backButton: ViewStyle = {
   backgroundColor: color.button,
+}
+
+export const cancelButton: ViewStyle = {
+  backgroundColor: color.wrong,
 }

@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native'
+import { ViewStyle, StyleSheet } from 'react-native'
 import { color, spacing } from '../../theme'
 
 export const ROOT: ViewStyle = {
@@ -19,7 +19,7 @@ export const content: ViewStyle = {
 export const boderLine: ViewStyle = {
   flexDirection: 'row',
   borderBottomColor: color.palette.lightGrey,
-  borderBottomWidth: 1,
+  borderBottomWidth: StyleSheet.hairlineWidth,
   paddingBottom: spacing[2],
   marginVertical: spacing[5],
 }
@@ -37,18 +37,18 @@ export const resultItem: ViewStyle = {
 export const resultHeader: ViewStyle = {
   alignItems: 'center',
   justifyContent: 'center',
-  width: 60,
-  borderWidth: 0.5,
+  borderColor: color.border,
+  borderWidth: StyleSheet.hairlineWidth,
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
-  borderColor: color.borderGreen,
   backgroundColor: color.palette.lightGreen,
+  width: 60,
 }
 
 export const resultCenter: ViewStyle = {
   flex: 1,
-  borderTopWidth: 0.5,
-  borderBottomWidth: 1,
+  borderTopWidth: StyleSheet.hairlineWidth,
+  borderBottomWidth: StyleSheet.hairlineWidth,
   borderColor: color.border,
   padding: spacing[3],
 }
@@ -57,9 +57,9 @@ export const resultFooter: ViewStyle = {
   alignItems: 'flex-end',
   justifyContent: 'center',
   padding: spacing[3],
-  borderTopWidth: 0.5,
-  borderRightWidth: 1,
-  borderBottomWidth: 1,
+  borderTopWidth: StyleSheet.hairlineWidth,
+  borderRightWidth: StyleSheet.hairlineWidth,
+  borderBottomWidth: StyleSheet.hairlineWidth,
   borderTopRightRadius: 2,
   borderBottomRightRadius: 2,
   borderColor: color.border,
@@ -74,6 +74,6 @@ export const submitButton: ViewStyle = {
 export const footer: ViewStyle = {
   padding: spacing[6],
   backgroundColor: 'white',
-  borderTopWidth: 0.5,
+  borderTopWidth: StyleSheet.hairlineWidth,
   borderTopColor: color.border,
 }
