@@ -15,7 +15,7 @@ export const navBar: ViewStyle = {
 
 export const content: ViewStyle = {
   flex: 1,
-  paddingHorizontal: spacing[6],
+  paddingHorizontal: spacing[4],
 }
 
 export const boderLine: ViewStyle = {
