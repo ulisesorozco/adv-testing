@@ -43,7 +43,7 @@ export const studentItem: ViewStyle = {
   borderRadius: 2,
   borderColor: color.border,
   backgroundColor: 'white',
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,

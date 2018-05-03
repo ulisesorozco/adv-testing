@@ -4,6 +4,7 @@ import { color, spacing } from '../../theme'
 const BASE_VIEW: ViewStyle = {
   paddingVertical: spacing[2],
   paddingHorizontal: spacing[2],
+  position: 'relative',
   borderRadius: 4,
   alignSelf: 'stretch',
   minHeight: 50,
@@ -50,6 +51,14 @@ export const textPresets = {
     fontSize: 16,
     color: color.text,
   },
+}
+
+export const loaderPresets: ViewStyle = {
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
 }
 
 /**

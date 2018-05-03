@@ -26,13 +26,13 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<!--To support localhost -->
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
-		<!--To continue to work for iOS 9 -->
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>
@@ -58,8 +58,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

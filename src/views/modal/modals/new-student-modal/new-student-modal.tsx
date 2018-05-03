@@ -7,13 +7,13 @@ import { Button } from '../../../shared/button'
 import { Text } from '../../../shared/text'
 import { TextField } from '../../../shared/text-field'
 import { ModalStore } from '../../../../models/modal-store'
-import { StudentStore } from '../../../../models/student-store'
+import { UserStore } from '../../../../models/user-store'
 import * as screenStyles from './new-student-modal.styles'
 import { color } from '../../../theme'
 
 export interface NewStudentModalProps {
   modalStore?: ModalStore
-  studentStore?: StudentStore
+  userStore?: UserStore
 }
 
 export interface NewStudentModalState {
@@ -23,7 +23,7 @@ export interface NewStudentModalState {
 }
 
 @inject('modalStore')
-@inject('studentStore')
+@inject('userStore')
 @observer
 export class NewStudentModal extends React.Component<NewStudentModalProps, NewStudentModalState> {
   secondInput: any
@@ -57,15 +57,16 @@ export class NewStudentModal extends React.Component<NewStudentModalProps, NewSt
     const { firstName, lastName } = this.state
     if (isEmpty(firstName) || isEmpty(lastName)) return
 
-    const { createStudent, getAllStudents } = this.props.studentStore
+    const { createUser, getAllUsers } = this.props.userStore
     const { close } = this.props.modalStore
     const payload = {
       firstname: firstName,
       lastname: lastName,
+      instructor_id: 1,
     }
 
-    await createStudent(payload)
-    await getAllStudents()
+    await createUser(payload)
+    await getAllUsers()
     close()
   }
 

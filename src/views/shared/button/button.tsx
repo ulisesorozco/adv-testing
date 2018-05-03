@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { TouchableOpacity, ViewStyle } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, ViewStyle } from 'react-native'
 import { Text } from '../text'
-import { viewPresets, textPresets, disabledViewPresets } from './button.presets'
+import { viewPresets, textPresets, loaderPresets, disabledViewPresets } from './button.presets'
 import { ButtonProps } from './button.props'
 
 /**
@@ -11,6 +11,7 @@ export function Button(props: ButtonProps) {
   // grab the props
   const {
     preset = 'primary',
+    disabled = false,
     children,
     tx,
     text,
@@ -49,6 +50,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <TouchableOpacity {...rest} style={setViewStyle}>
+      {disabled && <ActivityIndicator color="white" size="large" style={loaderPresets} />}
       <Text tx={tx} text={text} style={setTextStyle} />
       {renderRight}
     </TouchableOpacity>

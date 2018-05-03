@@ -67,3 +67,8 @@ export const checkCircle: ViewStyle = {
 export const testButton: ViewStyle = {
   backgroundColor: color.palette.white,
 }
+
+export const spacer: ViewStyle = {
+  width: metrics.screenWidth,
+  height: 80,
+}

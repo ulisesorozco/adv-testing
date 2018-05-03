@@ -26,7 +26,7 @@ export const manageContainer: ViewStyle = {
   borderColor: color.palette.darkGreen,
   marginTop: spacing[8],
   marginBottom: spacing[3],
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,
@@ -57,6 +57,11 @@ export const footer: ViewStyle = {
   borderTopWidth: 0.5,
   borderTopColor: color.palette.darkGreen,
   backgroundColor: 'white',
+}
+
+export const boldText: TextStyle = {
+  fontSize: 18,
+  fontWeight: '900',
 }
 
 export const editButton: ViewStyle = {

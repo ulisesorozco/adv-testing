@@ -7,14 +7,27 @@ import { types } from 'mobx-state-tree'
  * as well as including as props in other `mobx-state-tree` models.
  */
 
-type modalTypes = 'test-created' | 'new-student' | 'new-test' | 'select-test' | 'blank'
+type modalTypes =
+  | 'test-created'
+  | 'new-student'
+  | 'new-test'
+  | 'select-test'
+  | 'select-section'
+  | 'blank'
 
 export const ModalStoreModel = types
   .model('ModalStore')
   .props({
     banner: types.optional(types.enumeration(['auto', 'blank']), 'auto'),
     modal: types.optional(
-      types.enumeration(['test-created', 'new-student', 'new-test', 'select-test', 'blank']),
+      types.enumeration([
+        'test-created',
+        'new-student',
+        'new-test',
+        'select-test',
+        'select-section',
+        'blank',
+      ]),
       'blank',
     ),
     /** Tracks the status of the Modal workflow. */

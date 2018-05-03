@@ -2,12 +2,12 @@ import * as React from 'react'
 import { View, TouchableOpacity, ScrollView } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import { inject, observer } from 'mobx-react'
-import { startsWith, toLower, toUpper, toString } from 'ramda'
+import { equals, startsWith, toLower, toUpper, toString } from 'ramda'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { translate } from '../../../i18n'
 import { ModalStore } from '../../../models/modal-store'
-import { StudentStore } from '../../../models/student-store'
+import { UserStore } from '../../../models/user-store'
 
 import { Text } from '../../shared/text'
 import { SearchBox } from '../../shared/search-box'
@@ -16,7 +16,7 @@ import * as screenStyles from './students-screen.styles'
 
 export interface StudentsScreenProps extends NavigationScreenProps<{}> {
   modalStore: ModalStore
-  studentStore: StudentStore
+  userStore: UserStore
 }
 
 export interface StudentsScreenState {
@@ -25,7 +25,7 @@ export interface StudentsScreenState {
 }
 
 @inject('modalStore')
-@inject('studentStore')
+@inject('userStore')
 @observer
 export class StudentsScreen extends React.Component<StudentsScreenProps, StudentsScreenState> {
   constructor(props) {
@@ -34,15 +34,15 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
       search: '',
       visible: [],
     }
+    this.props.userStore.getAllUsers()
   }
 
   componentDidMount() {
     this.initialize()
-    this.props.studentStore.getAllStudents()
   }
 
   initialize() {
-    const { filters } = this.props.studentStore
+    const { filters } = this.props.userStore
     const visible = []
 
     filters.forEach(filter => {
@@ -52,8 +52,8 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
   }
 
   toDetails = student => {
-    const { setCurrentStudent } = this.props.studentStore
-    setCurrentStudent(student)
+    const { setCurrentUser } = this.props.userStore
+    setCurrentUser(student)
     this.props.navigation.navigate('studentDetails')
   }
 
@@ -63,17 +63,16 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
   }
 
   onStudents = (value: string) => {
-    const { filters, students } = this.props.studentStore
+    const { filters, users } = this.props.userStore
     const { visible } = this.state
     this.initialize()
     filters.forEach((filter, index) => {
       visible[index] = false
-      students.map((student, idx) => {
+      users.map((user, idx) => {
         if (
-          startsWith(filter, toLower(student.lastname)) &&
-          toString(toLower(student.firstname) + ' ' + toLower(student.lastname)).includes(
-            toLower(value),
-          )
+          equals(user.account_type, 'student') &&
+          startsWith(filter, toLower(user.lastname)) &&
+          toString(toLower(user.firstname) + ' ' + toLower(user.lastname)).includes(toLower(value))
         ) {
           visible[index] = true
         }
@@ -83,7 +82,7 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
   }
 
   render() {
-    const { filters, students } = this.props.studentStore
+    const { filters, users } = this.props.userStore
     const { search, visible } = this.state
 
     return (
@@ -100,22 +99,23 @@ export class StudentsScreen extends React.Component<StudentsScreenProps, Student
             <View key={`block${index}`}>
               {visible[index] && (
                 <View key={`ft-${index}`} style={screenStyles.boderLine}>
-                  <Text text={toUpper(filter)} />
+                  <Text text={toUpper(filter) || ''} />
                 </View>
               )}
-              {students.map((student, idx) => {
+              {users.map((user, idx) => {
                 if (
                   visible[index] &&
-                  startsWith(filter, toLower(student.lastname)) &&
-                  toString(toLower(student.firstname) + ' ' + toLower(student.lastname)).includes(
+                  equals(user.account_type, 'student') &&
+                  startsWith(filter, toLower(user.lastname)) &&
+                  toString(toLower(user.firstname) + ' ' + toLower(user.lastname)).includes(
                     toLower(search),
                   )
                 ) {
                   return (
                     <Student
                       key={`${index}-${idx}`}
-                      student={student}
-                      toDetails={() => this.toDetails(student)}
+                      student={user}
+                      toDetails={() => this.toDetails(user)}
                     />
                   )
                 }

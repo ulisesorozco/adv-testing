@@ -7,6 +7,7 @@ import { BlankModal } from './blank-modal'
 import { NewStudentModal } from './new-student-modal'
 import { NewTestModal } from './new-test-modal'
 import { SelectTestModal } from './select-test-modal'
+import { SelectSectionModal } from './select-section-modal'
 import { TestCreatedModal } from './test-created-modal'
 import * as screenStyles from './modals.styles'
 
@@ -48,6 +49,12 @@ export class ModalNavigator extends React.Component<ModalNavigatorProps, {}> {
         return (
           <View style={screenStyles.General}>
             <SelectTestModal />
+          </View>
+        )
+      case 'select-section':
+        return (
+          <View style={screenStyles.General}>
+            <SelectSectionModal />
           </View>
         )
       default:

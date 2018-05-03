@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { inject, observer } from 'mobx-react'
+import { isNil } from 'ramda'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import moment from 'moment'
 import Case from './edit-scheduled-test-screen.item'
@@ -85,22 +86,35 @@ export class EditScheduledTestScreen extends React.Component<
     this._showDateTimePicker()
   }
 
+  onUpdateTest = async () => {
+    const { currentExam, updateExam } = this.props.examStore
+    const payload = {
+      title: currentExam.title,
+      exam_type: currentExam.exam_type,
+      version: currentExam.version,
+      section: currentExam.section,
+    }
+    await updateExam(payload)
+    this.props.navigation.goBack()
+  }
+
   render() {
-    const { currentExam } = this.props.examStore
+    const { currentExam, currentType } = this.props.examStore
     const { currentDate, currentTime, dateTimePickerMode, isDateTimePickerVisible } = this.state
+    const type = this.props.examStore.getType(currentExam.exam_type_id)
 
     return (
       <View style={screenStyles.ROOT}>
         <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
           <Icon name="caret-left" size={30} color={color.palette.darkGreen} />
           <View style={screenStyles.navTitle}>
-            <Text preset="title" text="SAT v2" />
-            <Text text="ID:1234522" />
+            <Text preset="title" text={type.exam_type} />
+            <Text text={`ID: ${currentExam.id}`} />
           </View>
         </TouchableOpacity>
         <View style={screenStyles.content}>
           <Case
-            text={currentExam ? currentExam.title : 'ACT 1 (math)'}
+            text={isNil(currentType) ? '' : `${currentType.exam_type} ${currentType.exam_version}`}
             icon="caret-right"
             onPress={this.onSelectType}
           />
@@ -120,7 +134,7 @@ export class EditScheduledTestScreen extends React.Component<
             stretch
             text="UPDATE TEST DETAILS"
             style={screenStyles.editButton}
-            onPress={() => this.props.navigation.navigate('editTest')}
+            onPress={this.onUpdateTest}
           />
           <View style={screenStyles.backContainer}>
             <TouchableOpacity style={screenStyles.backButton} onPress={this.back}>

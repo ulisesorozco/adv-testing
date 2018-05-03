@@ -37,7 +37,7 @@ export const resultProgress: ViewStyle = {
   marginVertical: spacing[2],
   borderWidth: 0.5,
   borderColor: color.border,
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,

@@ -11,6 +11,11 @@ export const content: ViewStyle = {
   padding: spacing[4],
 }
 
+export const scrollSpace: ViewStyle = {
+  width: metrics.screenWidth,
+  height: 80,
+}
+
 export const navBar: ViewStyle = {
   flexDirection: 'row',
   marginTop: spacing[4],
@@ -34,7 +39,7 @@ export const scheduledItem: ViewStyle = {
   backgroundColor: color.palette.white,
   padding: spacing[3],
   marginBottom: spacing[3],
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,
@@ -49,7 +54,7 @@ export const completedItem: ViewStyle = {
   flexDirection: 'row',
   marginBottom: spacing[3],
   backgroundColor: color.palette.white,
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,
@@ -107,4 +112,13 @@ export const submitButton: ViewStyle = {
   padding: spacing[3],
   backgroundColor: color.button,
   borderRadius: 2,
+}
+
+export const itemHeader: TextStyle = {
+  fontWeight: '900',
+  fontSize: 17,
+}
+
+export const itemDesc: TextStyle = {
+  color: 'black',
 }

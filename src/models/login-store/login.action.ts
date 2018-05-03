@@ -3,32 +3,62 @@ import { getEnv, getRoot } from 'mobx-state-tree'
 import { Environment } from '../environment'
 import { RootStore } from '../root-store'
 import { translate } from '../../i18n/translate'
-import { isEmpty } from 'ramda'
 
-/**
- * Let's login.
- */
-export async function loginWithEmail(self) {
-  // strongly type self inside to make pacify typescript
+export async function login(self, payload) {
   const loginStore = self as LoginStore
-
-  // Grab the environment dependencies since this is pretty much always the point of async actions.
   const environment = getEnv(self) as Environment
 
-  // prep our state before we start
   loginStore.setStatus('pending')
   loginStore.setErrorMessage(null)
 
   try {
+    const response = await environment.api.login(payload)
+
+    if (response.ok) {
+      self.setToken(response.response.data.api_key)
+      self.setEmail(response.response.data.email)
+      self.setType(payload.account_type)
+
+      environment.api.setupToken(response.response.data.api_key)
+      loginStore.setStatus('done')
+      return true
+    }
+
     loginStore.setStatus('done')
     return true
   } catch (e) {
-    // IMPORTANT:
-    //   Don't trust your services.  Always try/catch.  You may decide to bubble
-    //   up the error, but it will be on your terms, not your dependencies.
-    //
     loginStore.setStatus('error')
-    loginStore.setErrorMessage(translate('firebase.error.unknown'))
+    loginStore.setErrorMessage(translate('errors.unknown'))
+  }
+
+  return false
+}
+
+export async function register(self, payload) {
+  const loginStore = self as LoginStore
+  const environment = getEnv(self) as Environment
+
+  loginStore.setStatus('pending')
+  loginStore.setErrorMessage(null)
+
+  try {
+    const response = await environment.api.register(payload)
+
+    if (response.ok) {
+      self.setToken(response.response.data.api_key)
+      self.setEmail(response.response.data.email)
+      self.setType(payload.account_type)
+
+      environment.api.setupToken(response.response.data.api_key)
+      loginStore.setStatus('done')
+      return true
+    }
+
+    loginStore.setStatus('error')
+    return false
+  } catch (e) {
+    loginStore.setStatus('error')
+    loginStore.setErrorMessage(translate('errors.unknown'))
   }
 
   return false

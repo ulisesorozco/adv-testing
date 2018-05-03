@@ -12,6 +12,7 @@ export const container: ViewStyle = {
 }
 
 export const content: ViewStyle = {
+  marginTop: spacing[3],
   padding: spacing[3],
 }
 

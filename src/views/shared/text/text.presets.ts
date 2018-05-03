@@ -56,6 +56,11 @@ export const presets = {
   secondary: { ...BASE, fontSize: 9 } as TextStyle,
 
   /**
+   * A smaller piece of secondard information.
+   */
+  secondaryBold: { ...BASE, fontSize: 10, fontWeight: '600' } as TextStyle,
+
+  /**
    * Appears above the form when there is a problem.
    */
   formError: { ...BASE, fontSize: 12 } as TextStyle,

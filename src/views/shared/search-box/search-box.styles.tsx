@@ -12,7 +12,7 @@ export const searchItem: ViewStyle = {
   borderWidth: 0.5,
   borderColor: color.palette.lightGrey,
   backgroundColor: color.palette.white,
-  shadowOffset: { width: 0, height: 2.5 },
+  shadowOffset: { width: 0, height: 1 },
   shadowColor: color.palette.darkGreen,
   shadowOpacity: 0.15,
   shadowRadius: 2,

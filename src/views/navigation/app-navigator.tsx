@@ -13,6 +13,7 @@ import { EditAnswersScreen } from '../app/edit-answers-screen'
 import { ManageScheduledTestScreen } from '../app/manage-scheduled-test-screen'
 import { EditScheduledTestScreen } from '../app/edit-scheduled-test-screen'
 import { TestResultsScreen } from '../app/test-results-screen'
+import { PrintScreen } from '../app/print-screen'
 import { TXTabBar } from './tab-bar'
 
 const scan: NavigationRouteConfig<any> = {
@@ -55,6 +56,10 @@ const testResults: NavigationRouteConfig<any> = {
   screen: TestResultsScreen,
 }
 
+const print: NavigationRouteConfig<any> = {
+  screen: PrintScreen,
+}
+
 const tabs = {
   students,
   scan,
@@ -87,6 +92,7 @@ const routes = {
   testResults,
   scoringTest,
   scannedResults,
+  print,
 }
 
 export const AppNavigator = StackNavigator(routes, {

@@ -11,13 +11,13 @@ import { NavigationStore } from '../../../../views/navigation'
 import * as screenStyles from './select-test-modal.styles'
 
 export interface SelectTestModalProps {
-  modalStore: ModalStore
-  navigationStore: NavigationStore
-  examStore: ExamStore
+  modalStore?: ModalStore
+  navigationStore?: NavigationStore
+  examStore?: ExamStore
 }
 
 export interface SelectTestModalState {
-  selectedTest: string
+  selectedTest: number
 }
 
 @inject('modalStore')
@@ -30,13 +30,13 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, Selec
     this.state = { selectedTest: null }
   }
 
-  onSelect = test => {
+  onSelect = type => {
     const { showModal, close } = this.props.modalStore
-    const { setCurrentExam } = this.props.examStore
+    const { setCurrentType } = this.props.examStore
     const { routes } = this.props.navigationStore.state
 
-    this.setState({ selectedTest: test.id })
-    setCurrentExam(test)
+    this.setState({ selectedTest: type.id })
+    setCurrentType(type)
 
     setTimeout(async () => {
       if (last(last(routes).routes).routeName === 'studentDetails') {
@@ -49,7 +49,7 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, Selec
   }
 
   render() {
-    const { filters, exams } = this.props.examStore
+    const { types } = this.props.examStore
     const { selectedTest } = this.state
 
     return (
@@ -60,28 +60,16 @@ export class SelectTestModal extends React.Component<SelectTestModalProps, Selec
           contentContainerStyle={screenStyles.content}
           keyboardShouldPersistTaps="handled"
         >
-          {filters.map((filter, index) => (
-            <View key={`block${index}`}>
-              <View key={`ft-${index}`} style={screenStyles.boderLine}>
-                <Text text={toUpper(filter)} />
-              </View>
-              {exams.map((exam, idx) => {
-                if (startsWith(filter, toLower(exam.title))) {
-                  return (
-                    <Button
-                      key={`${index}-${idx}`}
-                      preset="secondary"
-                      text={exam.title}
-                      stretch
-                      renderRight={<CheckBox checked={selectedTest === exam.id} />}
-                      style={screenStyles.testButton}
-                      onPress={() => this.onSelect(exam)}
-                    />
-                  )
-                }
-                return null
-              })}
-            </View>
+          {types.map((type, index) => (
+            <Button
+              key={`${index}`}
+              preset="secondary"
+              text={`${type.exam_type} ${type.exam_version}`}
+              stretch
+              renderRight={<CheckBox checked={selectedTest === type.id} />}
+              style={screenStyles.testButton}
+              onPress={() => this.onSelect(type)}
+            />
           ))}
         </ScrollView>
       </View>

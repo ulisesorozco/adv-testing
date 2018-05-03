@@ -51,4 +51,9 @@ export interface ButtonProps extends TouchableOpacityProperties {
    * The components to be rendered in the right.
    */
   renderRight?: React.ReactNode
+
+  /**
+   *
+   */
+  disabled?: boolean
 }

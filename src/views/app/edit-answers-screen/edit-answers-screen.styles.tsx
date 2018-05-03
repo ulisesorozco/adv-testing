@@ -42,12 +42,6 @@ export const answerContainer: ViewStyle = {
 export const testItem: ViewStyle = {
   flexDirection: 'row',
   height: 50,
-  // borderBottomColor: 'rgb(203,208,223)',
-  // borderBottomWidth: 1,
-  shadowOffset: { width: 0, height: 2.5 },
-  shadowColor: color.palette.darkGreen,
-  shadowOpacity: 0.15,
-  shadowRadius: 2,
 }
 
 export const testNumber: ViewStyle = {

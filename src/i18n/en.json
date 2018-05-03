@@ -1,6 +1,7 @@
 {
   "common": {
     "appName": "Advanced Testing",
+    "email": "Email",
     "username": "Username",
     "password": "Password",
     "newPassword": "New Password",

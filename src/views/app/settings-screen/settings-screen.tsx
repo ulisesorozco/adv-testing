@@ -19,7 +19,7 @@ export interface SettingsScreenProps extends NavigationScreenProps<{}> {
 }
 
 export interface SettingsScreenState {
-  selectedTest: string
+  selectedTest: number
   search: string
   visible: Array<boolean>
 }
@@ -49,22 +49,33 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, Setting
     this.setState({ visible })
   }
 
+  getTitle(exam) {
+    const { getType } = this.props.examStore
+    try {
+      const type = getType(exam.exam_type_id)
+      return `${type.exam_type} ${type.exam_version} ${exam.id}`
+    } catch (err) {
+      console.log('------------>>>   ', err, ' : ', exam)
+      return ''
+    }
+  }
+
   onExams = (value: string) => {
-    const { filters, exams } = this.props.examStore
-    const { visible } = this.state
-    this.initialize()
-    filters.forEach((filter, index) => {
-      visible[index] = false
-      exams.map((exam, idx) => {
-        if (
-          startsWith(filter, toLower(exam.title)) &&
-          toLower(exam.title).includes(toLower(value))
-        ) {
-          visible[index] = true
-        }
-      })
-    })
-    this.setState({ search: toLower(value), visible })
+    // const { filters, exams } = this.props.examStore
+    // const { visible } = this.state
+    // this.initialize()
+    // filters.forEach((filter, index) => {
+    //   visible[index] = false
+    //   exams.map((exam, idx) => {
+    //     if (
+    //       startsWith(filter, toLower(exam.title)) &&
+    //       toLower(exam.title).includes(toLower(value))
+    //     ) {
+    //       visible[index] = true
+    //     }
+    //   })
+    // })
+    // this.setState({ search: toLower(value), visible })
   }
 
   onSelect = test => {
@@ -76,8 +87,8 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, Setting
 
   render() {
     const isSaving: boolean = false
-    const { filters, exams } = this.props.examStore
-    const { search, selectedTest, visible } = this.state
+    const { exams } = this.props.examStore
+    const { selectedTest } = this.state
 
     return (
       <View style={screenStyles.ROOT}>
@@ -138,34 +149,18 @@ export class SettingsScreen extends React.Component<SettingsScreenProps, Setting
             <View tabLabel="Manage Tests">
               <SearchBox onChangeText={e => this.onExams(e)} />
               <ScrollView keyboardShouldPersistTaps="handled">
-                {filters.map((filter, index) => (
-                  <View key={`block${index}`}>
-                    {visible[index] && (
-                      <View key={`ft-${index}`} style={screenStyles.boderLine}>
-                        <Text text={toUpper(filter)} />
-                      </View>
-                    )}
-                    {exams.map((exam, idx) => {
-                      if (
-                        startsWith(filter, toLower(exam.title)) &&
-                        toLower(exam.title).includes(toLower(search))
-                      ) {
-                        return (
-                          <Button
-                            key={`${index}-${idx}`}
-                            preset="secondary"
-                            text={exam.title}
-                            stretch
-                            renderRight={<CheckBox checked={selectedTest === exam.id} />}
-                            style={screenStyles.testButton}
-                            onPress={() => this.onSelect(exam)}
-                          />
-                        )
-                      }
-                      return null
-                    })}
-                  </View>
+                {exams.map((exam, index) => (
+                  <Button
+                    key={`${index}`}
+                    preset="secondary"
+                    text={this.getTitle(exam)}
+                    stretch
+                    renderRight={<CheckBox checked={selectedTest == exam.id} />}
+                    style={screenStyles.testButton}
+                    onPress={() => this.onSelect(exam)}
+                  />
                 ))}
+                <View style={screenStyles.spacer} />
               </ScrollView>
               <View style={{ height: 50 }} />
             </View>

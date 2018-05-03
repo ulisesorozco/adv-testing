@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Text } from '../../shared/text'
 import { color } from '../../theme'
@@ -11,6 +11,7 @@ interface StudentProps {
   test?: string
   completed?: number
   total?: number
+  onRemoveStudent?: () => void
 }
 
 export default class Student extends React.Component<StudentProps, {}> {
@@ -23,7 +24,7 @@ export default class Student extends React.Component<StudentProps, {}> {
 
   render() {
     const { name, test, completed, total } = this.props
-    const done = completed === total
+    const done = completed >= total
     const textColor = { color: done ? 'white' : 'black' }
 
     return (
@@ -33,12 +34,27 @@ export default class Student extends React.Component<StudentProps, {}> {
           backgroundColor: done ? color.right : 'white',
         }}
       >
-        <Icon name="check" size={20} color={'white'} />
+        {done && (
+          <View style={{ marginLeft: 10 }}>
+            <Icon name="check" size={20} color="white" />
+          </View>
+        )}
         <View style={screenStyles.studentText}>
-          <Text preset="secondary" style={textColor} text={name} />
-          <Text preset="secondary" style={textColor} text={test} />
+          <Text preset="secondaryBold" style={textColor} text={name} />
+          <View style={screenStyles.studentLine}>
+            <Text preset="secondary" style={textColor} text={test} />
+            <Text preset="secondary" style={textColor} text={' | '} />
+            <Text preset="secondary" style={textColor} text={`${completed} of ${total}`} />
+          </View>
         </View>
-        <Text preset="secondary" style={textColor} text={`${completed} of ${total}`} />
+        {!done && (
+          <TouchableOpacity
+            style={screenStyles.studentRemove}
+            onPress={() => this.props.onRemoveStudent()}
+          >
+            <Icon name="times" size={20} color="white" />
+          </TouchableOpacity>
+        )}
       </View>
     )
   }

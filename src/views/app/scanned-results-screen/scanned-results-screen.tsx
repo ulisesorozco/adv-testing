@@ -4,6 +4,8 @@ import { NavigationScreenProps } from 'react-navigation'
 import { inject, observer } from 'mobx-react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { ModalStore } from '../../../models/modal-store'
+import { ScanStore } from '../../../models/scan-store'
+import { ExamStore } from '../../../models/exam-store'
 import { translate } from '../../../i18n'
 import { Text } from '../../shared/text'
 import { Button } from '../../shared/button'
@@ -12,12 +14,27 @@ import * as screenStyles from './scanned-results-screen.styles'
 
 export interface ScannedResultsScreenProps extends NavigationScreenProps<{}> {
   modalStore: ModalStore
+  scanStore: ScanStore
+  examStore: ExamStore
 }
 
 @inject('modalStore')
+@inject('scanStore')
+@inject('examStore')
+@observer
 export class ScannedResultsScreen extends React.Component<ScannedResultsScreenProps, {}> {
-  goTo = (route: string) => {
-    this.props.navigation.navigate(route)
+  goTo = async (route: string, id: number) => {
+    const { exams, getResults } = this.props.examStore
+    const results = await getResults({ id })
+
+    let _exam: any
+    exams.forEach(exam => {
+      if (exam.id == id) _exam = exam
+    })
+    _exam.results = results
+    this.props.navigation.navigate('testResults', {
+      exam: _exam,
+    })
   }
 
   goBack = () => {
@@ -30,6 +47,8 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
   }
 
   render() {
+    const { students } = this.props.scanStore
+
     return (
       <View style={screenStyles.ROOT}>
         <TouchableOpacity onPress={this.goBack} style={screenStyles.navBar}>
@@ -38,15 +57,18 @@ export class ScannedResultsScreen extends React.Component<ScannedResultsScreenPr
         </TouchableOpacity>
         <View style={screenStyles.content}>
           <View style={screenStyles.boderLine}>
-            <Text text="SAT'S" />
-          </View>
-          <Result score={1400} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
-          <View style={screenStyles.boderLine}>
             <Text text="ACT'S" />
           </View>
-          <Result score={34} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
-          <Result score={28} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
-          <Result score={15} name="MARK SANCHEZ" onPress={() => this.goTo('testResults')} />
+          {students.map(student => (
+            <Result
+              key={student.id}
+              score={34}
+              name={student.student_name}
+              id={student.exam_id}
+              date={student.updated_at}
+              onPress={() => this.goTo('testResults', student.exam_id)}
+            />
+          ))}
         </View>
         <View style={screenStyles.footer}>
           <Button

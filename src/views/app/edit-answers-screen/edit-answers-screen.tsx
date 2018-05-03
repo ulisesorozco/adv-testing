@@ -2,6 +2,7 @@ import * as React from 'react'
 import { View, ScrollView, TouchableOpacity } from 'react-native'
 import { NavigationScreenProps } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { values } from 'ramda'
 import { translate } from '../../../i18n'
 import { Button } from '../../shared/button'
 import { Text } from '../../shared/text'
@@ -9,54 +10,10 @@ import TestAnswer, { Test } from './edit-answers-screen.test'
 import * as screenStyles from './edit-answers-screen.styles'
 import { color } from '../../theme'
 
-const TESTS: Array<Test> = [
-  {
-    title: 'English',
-    answers: [
-      {
-        answer: 'A',
-        submitted: 'B',
-      },
-      {
-        answer: 'C',
-        submitted: 'B',
-      },
-      {
-        answer: 'D',
-        submitted: 'D',
-      },
-      {
-        answer: 'A',
-        submitted: 'C',
-      },
-    ],
-  },
-  {
-    title: 'Math',
-    answers: [
-      {
-        answer: 'A',
-        submitted: 'B',
-      },
-      {
-        answer: 'C',
-        submitted: 'B',
-      },
-      {
-        answer: 'D',
-        submitted: 'D',
-      },
-      {
-        answer: 'A',
-        submitted: 'C',
-      },
-    ],
-  },
-]
-
 export interface EditAnswersScreenProps extends NavigationScreenProps<{}> {}
 export interface EditAnswersScreenState {
   isEditing: boolean
+  tests: Array<any>
 }
 
 export class EditAnswersScreen extends React.Component<
@@ -65,7 +22,37 @@ export class EditAnswersScreen extends React.Component<
 > {
   constructor(props) {
     super(props)
-    this.state = { isEditing: false }
+    this.state = {
+      isEditing: false,
+      tests: [],
+    }
+  }
+
+  componentWillMount() {
+    const { answers } = this.props.navigation.state.params
+    const english = {
+      title: 'English',
+      answers: values(answers.section_1),
+    }
+    const math = {
+      title: 'Math',
+      answers: values(answers.section_2),
+    }
+    const reading = {
+      title: 'Reading',
+      answers: values(answers.section_3),
+    }
+    const science = {
+      title: 'Science',
+      answers: values(answers.section_4),
+    }
+
+    let tests = []
+    if (english.answers.length > 0) tests.push(english)
+    if (math.answers.length > 0) tests.push(math)
+    if (reading.answers.length > 0) tests.push(reading)
+    if (science.answers.length > 0) tests.push(science)
+    this.setState({ tests })
   }
 
   back = () => {
@@ -85,7 +72,7 @@ export class EditAnswersScreen extends React.Component<
   }
 
   render() {
-    const { isEditing } = this.state
+    const { isEditing, tests } = this.state
     return (
       <View style={screenStyles.ROOT}>
         <TouchableOpacity style={screenStyles.navBar} onPress={this.back}>
@@ -93,7 +80,7 @@ export class EditAnswersScreen extends React.Component<
           <Text preset="title" text="    ACT v2" />
         </TouchableOpacity>
         <ScrollView style={screenStyles.answerContainer}>
-          {TESTS.map(test => <TestAnswer key={Math.random()} test={test} isEditing={isEditing} />)}
+          {tests.map(test => <TestAnswer key={Math.random()} test={test} isEditing={isEditing} />)}
         </ScrollView>
         {!isEditing && (
           <View style={screenStyles.footerColumn}>

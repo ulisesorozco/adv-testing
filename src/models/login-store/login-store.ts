@@ -1,6 +1,6 @@
 import { types } from 'mobx-state-tree'
 
-import { loginWithEmail } from './login.action'
+import { login, register } from './login.action'
 
 /**
  * Coordinates logging in.
@@ -11,6 +11,11 @@ import { loginWithEmail } from './login.action'
 export const LoginStoreModel = types
   .model('LoginStore')
   .props({
+    /** The login token */
+    token: types.optional(types.string, ''),
+    email: types.optional(types.string, ''),
+    password: types.optional(types.string, ''),
+    accountType: types.optional(types.string, ''),
     /** Tracks the status of the login workflow. */
     status: types.optional(
       types.enumeration(['idle', 'pending', 'done', 'error', 'needToRegister']),
@@ -18,8 +23,6 @@ export const LoginStoreModel = types
     ),
     /** The error message to show if we cannot login */
     errorMessage: types.maybe(types.string),
-    /** The login token */
-    token: types.optional(types.string, ''),
   })
   .views(self => ({
     /** Are we currently logging in? */
@@ -31,6 +34,15 @@ export const LoginStoreModel = types
   .actions(self => ({
     setToken(newToken) {
       self.token = newToken
+    },
+    setEmail(email: string) {
+      self.email = email
+    },
+    setPassword(password: string) {
+      self.password = password
+    },
+    setType(type: string) {
+      self.accountType = type
     },
     setStatus(value: 'idle' | 'pending' | 'done' | 'error' | 'needToRegister') {
       self.status = value
@@ -46,8 +58,11 @@ export const LoginStoreModel = types
   }))
   // async actions tend to be larger, so we farm these out to children
   .actions(self => ({
-    loginWithEmail: async function(): Promise<boolean> {
-      return await loginWithEmail(self)
+    login: async function(payload): Promise<boolean> {
+      return await login(self, payload)
+    },
+    register: async function(payload): Promise<boolean> {
+      return await register(self, payload)
     },
   }))
 

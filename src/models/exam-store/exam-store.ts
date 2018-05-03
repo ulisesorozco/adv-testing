@@ -1,7 +1,15 @@
 import { types } from 'mobx-state-tree'
-import { prop, slice, sortBy, toLower, uniq } from 'ramda'
-import { ExamModel } from './exam.model'
-import { getAllExams } from './exam.action'
+import { find, isNil, prop, propEq, slice, sortBy, toLower, uniq } from 'ramda'
+import { ExamModel, ExamType } from './exam.model'
+import {
+  getAllExams,
+  getExamTypes,
+  createExam,
+  updateExam,
+  getResults,
+  removeExam,
+  sendEmail,
+} from './exam.action'
 
 export const ExamStoreModel = types
   .model('ExamStore')
@@ -12,10 +20,16 @@ export const ExamStoreModel = types
     errorMessage: types.maybe(types.string),
     /** All exams */
     exams: types.optional(types.array(ExamModel), []),
+    /** All exam types */
+    types: types.optional(types.array(ExamType), []),
     /** All filters */
     filters: types.optional(types.array(types.string), []),
     /** Current exam */
     currentExam: types.maybe(ExamModel),
+    /** Current exam type */
+    currentType: types.maybe(ExamType),
+    /** Current section */
+    currentSection: types.maybe(types.string),
   })
   // setters
   .actions(self => ({
@@ -29,46 +43,122 @@ export const ExamStoreModel = types
       self.status = 'idle'
       self.errorMessage = ''
     },
+    setCurrentSection(value: string) {
+      self.currentSection = value
+    },
+    setCurrentType(value: any) {
+      if (isNil(value)) {
+        const type = ExamType.create({
+          id: null,
+          active: null,
+          exam_type: '',
+          exam_version: '',
+          created_at: '',
+          updated_at: '',
+        })
+        self.currentType = type
+      } else {
+        const type = ExamType.create({
+          id: value.id,
+          active: value.active,
+          exam_type: value.exam_type,
+          exam_version: value.exam_version,
+          created_at: value.created_at,
+          updated_at: value.updated_at,
+        })
+        self.currentType = type
+      }
+    },
     setCurrentExam(value: any) {
-      const exam = ExamModel.create({
-        id: value.id + '',
-        title: value.title + '',
-        exam_type: value.exam_type + '',
-        version: value.version + '',
-        section: value.section + '',
-        created_at: value.created_at + '',
-        updated_at: value.updated_at + '',
-      })
-      self.currentExam = exam
+      if (isNil(value)) {
+        const exam = ExamModel.create({
+          id: null,
+          student_id: null,
+          exam_type_id: null,
+          exam_section_ids: '',
+          created_at: '',
+          updated_at: '',
+          scheduled: '',
+          pages: null,
+          document_metadata: '',
+          is_processed: '',
+        })
+        self.currentExam = exam
+      } else {
+        const exam = ExamModel.create({
+          id: value.id,
+          student_id: value.student_id,
+          exam_type_id: value.exam_type_id,
+          exam_section_ids: value.exam_section_ids + '',
+          created_at: value.created_at,
+          updated_at: value.updated_at,
+          scheduled: value.scheduled,
+          pages: value.pages,
+          document_metadata: value.document_metadata,
+          is_processed: value.is_processed,
+        })
+        self.currentExam = exam
+      }
     },
     setExams(values: any) {
-      let filters = []
       self.exams.clear()
-      self.filters.clear()
-      values = sortBy(prop('title'), values)
-      values.forEach(value => filters.push(toLower(slice(0, 1, value.title))))
-      filters = uniq(filters)
-      filters.forEach(filter => {
-        self.filters.push(filter)
-      })
       values.forEach(value => {
         const exam = ExamModel.create({
-          id: value.id + '',
-          title: value.title + '',
-          exam_type: value.exam_type + '',
-          version: value.version + '',
-          section: value.section + '',
-          created_at: value.created_at + '',
-          updated_at: value.updated_at + '',
+          id: value.id,
+          student_id: value.student_id,
+          exam_type_id: value.exam_type_id,
+          exam_section_ids: value.exam_section_ids + '',
+          created_at: value.created_at,
+          updated_at: value.updated_at,
+          scheduled: value.scheduled,
+          pages: value.pages,
+          document_metadata: value.document_metadata,
+          is_processed: value.is_processed,
         })
         self.exams.push(exam)
       })
+    },
+    setTypes(values: any) {
+      self.types.clear()
+      values.forEach(value => {
+        const type = ExamType.create({
+          id: value.id,
+          active: value.active,
+          exam_type: value.exam_type,
+          exam_version: value.exam_version,
+          created_at: value.created_at,
+          updated_at: value.updated_at,
+        })
+        self.types.push(type)
+      })
+    },
+    getType(value: number) {
+      const type = find(propEq('id', value))(self.types)
+      return type
     },
   }))
   // async actions tend to be larger, so we farm these out to children
   .actions(self => ({
     getAllExams: async function(): Promise<boolean> {
       return await getAllExams(self)
+    },
+    createExam: async function(payload): Promise<boolean> {
+      return await createExam(self, payload)
+    },
+    updateExam: async function(payload): Promise<boolean> {
+      return await updateExam(self, payload)
+    },
+    removeExam: async function(payload): Promise<boolean> {
+      return await removeExam(self, payload)
+    },
+    getExamTypes: async function(): Promise<boolean> {
+      return await getExamTypes(self)
+    },
+    getResults: async function(payload): Promise<string> {
+      return await getResults(self, payload)
+    },
+    sendEmail: async function(payload): Promise<string> {
+      return await sendEmail(self, payload)
     },
   }))
 

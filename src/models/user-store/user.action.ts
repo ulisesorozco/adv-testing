@@ -8,7 +8,7 @@ import { isEmpty } from 'ramda'
 /**
  * Get all instructors.
  */
-export async function getAllStudents(self) {
+export async function getAllUsers(self) {
   const studentStore = self as StudentStore
   const environment = getEnv(self) as Environment
 
@@ -17,8 +17,8 @@ export async function getAllStudents(self) {
   studentStore.setErrorMessage(null)
 
   try {
-    const response = await environment.api.getAllStudents()
-    studentStore.setStudents(response.response.data)
+    const response = await environment.api.getAllUsers()
+    studentStore.setUsers(response.response.data)
 
     studentStore.setStatus('done')
     return true
@@ -33,7 +33,7 @@ export async function getAllStudents(self) {
 /**
  * Create a student.
  */
-export async function createStudent(self, payload) {
+export async function createUser(self, payload) {
   const studentStore = self as StudentStore
   const environment = getEnv(self) as Environment
   try {
@@ -41,7 +41,7 @@ export async function createStudent(self, payload) {
     studentStore.setStatus('pending')
     studentStore.setErrorMessage(null)
 
-    const response = await environment.api.creatStudent(payload)
+    const response = await environment.api.register(payload)
 
     studentStore.setStatus('done')
     return response.ok
