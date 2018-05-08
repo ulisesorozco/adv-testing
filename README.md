@@ -47,15 +47,13 @@ $ brew install yarn
 
 
 ## Simulate for iOS
-*Install node modules, and cocoapods, first.*
+*Install node modules, first.*
 ```sh
 $ yarn
-$ cd ios
-$ pod install
 ```
 
 **Method One**
-*	Open the project in XCode from **ios/Trippple.xcworkspace**
+*	Open the project in Xcode from **ios/Trippple.xcworkspace**
 *	Hit the play button.
 
 **Method Two**
