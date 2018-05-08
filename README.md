@@ -53,7 +53,7 @@ $ yarn
 ```
 
 **Method One**
-*	Open the project in Xcode from **ios/Trippple.xcworkspace**
+*	Open the project in Xcode from **ios/AdvTesting.xcodeproj**
 *	Hit the play button.
 
 **Method Two**
